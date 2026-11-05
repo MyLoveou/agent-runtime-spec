@@ -1,8 +1,11 @@
-# Generated Cursor runtime. Source lives in rules/, agents/, shared/, platforms/cursor/, mcp/.
-.cursor/
-
-# Local editor config (not the spec source)
+# Runtime config lives in .cursor/, .opencode/, .dsh/ and IS committed.
+# Local editor config (not a platform runtime)
 .codex/
+
+# OpenCode installs local deps here on demand
+.opencode/node_modules/
+.opencode/package.json
+.opencode/package-lock.json
 
 # If a global skill dir is copied into this repo by mistake
 .agents/

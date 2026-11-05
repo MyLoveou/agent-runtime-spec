@@ -1,0 +1,27 @@
+# 后端约定
+
+> API 信封与 REST 约定：`rules/api-contracts`
+
+## 栈与结构
+
+- Java 21 · Spring Boot 3.x · JPA · Flyway
+- 包：`com.example.app.{controller,service,repository,entity,dto,security,exception}`（按项目调整）
+
+## API
+
+- 统一信封：见 `rules/api-contracts`
+- 权限：Spring Security + JWT（按项目调整）
+
+## 数据
+
+- 新表/改表：仅 Flyway `V{n}__*.sql`
+- 写操作：Service `@Transactional`；Controller 薄层
+
+## 改后必须重启
+
+修改 `backend/**` 后重启并冒烟改动接口。
+
+## 验收
+
+`.\mvnw.cmd test`（或 `mvn test`）→ 重启 → 冒烟
+

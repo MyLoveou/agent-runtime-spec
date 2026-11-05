@@ -1,0 +1,34 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "AGENTS.md",
+    ".opencode/constraints.md",
+    ".opencode/rules/project-core.md",
+    ".opencode/rules/ai-execution.md",
+    ".opencode/rules/workflow-triggers.md",
+    ".opencode/rules/common-openspec.md"
+  ],
+  "mcp": {
+    "codegraph": {
+      "type": "local",
+      "command": ["codegraph", "serve", "--mcp", "--path", "."],
+      "enabled": true
+    },
+    "git": {
+      "type": "local",
+      "command": ["uvx", "mcp-server-git", "--repository", "."],
+      "enabled": true
+    },
+    "ssh": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-server-ssh"],
+      "enabled": true,
+      "environment": {
+        "SSH_MCP_DEFAULT_USERNAME": "REPLACE_SSH_USER",
+        "SSH_MCP_DEFAULT_KEY": "REPLACE_SSH_KEY_PATH",
+        "SSH_MCP_ALLOWED_HOSTS": "REPLACE_ALLOWED_HOSTS",
+        "SSH_MCP_STRICT_HOST_CHECK": "true"
+      }
+    }
+  }
+}

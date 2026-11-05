@@ -1,3 +1,0 @@
-{
-  "_comment": "不要在此维护第二份 MCP。知识图谱片段只写在规范库 mcp/knowledge-graph.md。默认 mcp.json 含 codegraph、git、ssh。仅企业认证需要跨会话线索时，按该文档合并。"
-}

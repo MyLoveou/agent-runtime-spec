@@ -1,0 +1,13 @@
+{
+  "comment": "复制为 hosts.json 后填写。hosts.json 不要提交（含环境信息）。SSH_MCP_ALLOWED_HOSTS 须与 allowedHosts 一致。",
+  "allowedHosts": [
+    "dev.example.com",
+    "10.0.0.12"
+  ],
+  "defaultUsername": "deploy",
+  "defaultKey": "~/.ssh/id_ed25519",
+  "notes": [
+    "只用密钥，不要把密码写进本文件或聊天",
+    "Host 名也可写 ~/.ssh/config 里已有的别名"
+  ]
+}

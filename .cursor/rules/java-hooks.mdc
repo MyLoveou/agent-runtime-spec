@@ -1,0 +1,12 @@
+---
+description: "改 Java 后的检查"
+globs: "**/*.java, **/pom.xml, **/build.gradle, **/build.gradle.kts"
+alwaysApply: false
+---
+
+# Java 改动检查
+
+这是编码后的检查，不是编辑器的 hooks 运行时。
+
+- 格式跟随项目已有的 formatter，不另引入一套
+- 改后端后编译或跑相关测试，再按 `backend-spring` 重启冒烟

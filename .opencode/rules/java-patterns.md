@@ -1,0 +1,8 @@
+# Java 模式
+
+- 构造器注入。不在字段上 `@Autowired`
+- API 用 DTO，不把 JPA 实体当请求/响应体
+- 写操作放在 Service，并标 `@Transactional`；Controller 保持薄
+- 改表只走 Flyway `V{n}__*.sql`
+- 查询使用参数绑定。禁止把用户输入拼进 SQL/JPQL
+

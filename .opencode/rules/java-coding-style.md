@@ -1,0 +1,9 @@
+# Java 编码
+
+跟项目现有风格。不可变与错误处理见 `common/coding-style`。
+
+- 一个公开顶层类型一个文件
+- 值对象用 `record` 或 `final` 字段；对外集合返回副本
+- Controller 只做入参与响应信封；业务在 Service；持久化在 Repository
+- 入参在系统边界校验。失败用项目统一错误，不把堆栈返回客户端
+
