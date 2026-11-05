@@ -65,8 +65,11 @@ git submodule update --remote temp     # 拉收件箱最新
 
 ```powershell
 skills/encoding-guard/scripts/install-hooks.ps1                  # 装进当前仓库：pre-commit + pre-push
+skills/encoding-guard/scripts/install-hooks.ps1 -Scope global    # 装到所有仓库：~/.githooks + core.hooksPath
 skills/encoding-guard/scripts/check-encoding.ps1 -Mode commit    # 手动跑一次
 ```
+
+本机已装 global，任何仓库的 commit / push 都先过这道校验；撤销用 `-Scope global -Uninstall`。
 
 拦：`U+FFFD` 替换符、连续问号、GBK 乱码片段、坏掉的文件名与提交信息；`-Mode remote` 还能查仓库描述。细节见 `skills/encoding-guard/SKILL.md`（三平台各一份）。
 
