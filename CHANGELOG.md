@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-06（全局运行时清零）
+
+- 清空各平台全局安装：`~/.agents/skills` 386、`~/.cursor/skills` 294、`skills-cursor` 26、rules 121 / commands 94 / agents 67 / hooks 17、`~/.opencode` 210、`~/.config/opencode/skills` 11、`~/.claude/skills` 11
+- 全部归档到 `D:\Project\_archive\global-agent-20261106`（含 `restore.ps1`），可原样还原
+- 效果：DSH 新会话 Skill 目录从 400+ 收敛为本仓 17 个 + 平台自带
+- 定性：全局 Skill 与「拷目录即用」互斥，统一改用项目级（D-20261106-07）
+
 ## 2026-11-06（编码门禁）
 
 - 新增 `encoding-guard` Skill（三平台各一份）：`check-encoding.ps1` 查问号替字、U+FFFD、mojibake、非法 UTF-8、坏文件名 / 提交信息 / 仓库描述；`install-hooks.ps1` 装 pre-commit + pre-push，校验不过就挡住

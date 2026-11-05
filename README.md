@@ -39,6 +39,8 @@
 | OpenCode | `.opencode/` | `AGENTS.md`、`docs/` | 重开 opencode |
 | DSH | `.dsh/` | `AGENTS.md`、`docs/` | 新会话 |
 
+**不要装全局副本。** 全局 Skill 每个会话都全量加载，还会与本仓项目副本同名打架——需要哪个项目，就用那个项目的拷贝。
+
 **拷贝单元 = 平台目录 + `AGENTS.md` + `docs/`。** 只拷平台目录，规则与 Skill 能用；但入口文档、事实基线、项目规范在根目录，别漏。
 
 拷完填两处：`constraints.md` 的 `{占位符}`、`docs/product/facts.md` 的实现与方向。

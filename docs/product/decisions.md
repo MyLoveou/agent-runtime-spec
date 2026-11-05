@@ -4,6 +4,14 @@
 
 ## 有效决策
 
+### D-20261106-07 · 全局不装 Skill / Rule，统一用项目级
+
+- 场景：ECC 全家桶曾装进 `~/.agents/skills`（386）、`~/.cursor/skills`（294）、`~/.opencode`（210）等全局位置；安装源 `D:\Project\CursorProjectSpec` 已不存在，清单失效、无法按原样卸载
+- **决定**：全局目录一律不装 Skill / Rule / Command / Hook；需要什么，就把本仓对应平台目录拷进项目
+- **不选**：全局装一份省事——每会话全量加载、与项目副本同名打架、版本随全局漂移
+- **落点**：`docs/product/facts.md` §实现边界；清理产物归档在 `D:\Project\_archive\global-agent-20261106`（含 MANIFEST 与 restore.ps1）
+- 状态：有效
+
 ### D-20261106-06 · 编码门禁进 pre-commit / pre-push
 
 - 场景：仓库描述与文档里出现成片 `?`；非 ASCII 字符走了 ANSI / OEM 通道被替换，**不可逆**
