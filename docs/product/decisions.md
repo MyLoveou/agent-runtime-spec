@@ -4,6 +4,15 @@
 
 ## 有效决策
 
+### D-20261106-05 · 用 `temp/` submodule 收其他项目的要求
+
+- 场景：其他项目要把对本仓的要求 / 建议 / 经验同步进来
+- **决定**：`temp/` 为 submodule，指向私有仓 `MyLoveou/temp`；主仓只提交指针，不提交收件内容
+- **不选**：收件内容直接进主仓（本仓公开，会带出他项目私有信息）；拷无 `.git` 的副本（失去同步能力）
+- **配套**：条目命名 `YYYY-MM-DD-来源-主题`，每个带 `README.md`；吸收完即删，结论写进 `docs/product/`
+- **落点**：`README.md` §跨项目收件箱、`STRUCTURE.md`、`AGENTS.md`
+- 状态：有效
+
 ### D-20261106-04 · DSH 目录只放 Skill
 
 - **依据**：DSH 项目级只识别 `.dsh/skills`（优先级 100）与 `.agents/skills`（200）；无项目级 Agent / 命令 / hooks / MCP；项目指令只读 `AGENTS.md` / `CLAUDE.md`

@@ -36,10 +36,15 @@
 │  ├─ requirements/features/ 需求 / 设计 / 实现方案
 │  └─ standards/             项目规范样板
 │
+├─ temp/                     # 跨仓收件箱（submodule → MyLoveou/temp）
+│  └─ <YYYY-MM-DD-来源-主题>/ 其他项目的要求 / 建议，吸收完即删
+│
 ├─ AGENTS.md                 # 三平台共用入口
 ├─ README.md  STRUCTURE.md  CHANGELOG.md
 └─ .gitignore
 ```
+
+`temp/` 不是平台运行时：不参与拷贝，内容不入主仓历史，只提交 submodule 指针。
 
 ## 每个目录装什么
 

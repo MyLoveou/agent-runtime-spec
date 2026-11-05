@@ -23,6 +23,7 @@
 | DSH | `.dsh/skills/`（平台只支持项目级 Skill） |
 | 入口 | 根 `AGENTS.md`，三平台共用 |
 | 本仓文档 | `docs/product`、`docs/requirements`、`docs/standards` |
+| 收件箱 | `temp/`：submodule → `MyLoveou/temp`，接其他项目对本仓的要求 / 建议（不参与拷贝） |
 
 无生成脚本、无同步脚本、无共享源目录；一致性靠正文去平台化 + `spec-runtime-maintain` 的发布清单。
 

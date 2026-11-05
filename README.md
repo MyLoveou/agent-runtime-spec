@@ -27,6 +27,7 @@
 │  └─ README.md            平台限制说明
 ├─ AGENTS.md         # 三平台共用入口
 ├─ docs/             # 本仓自身文档
+├─ temp/             # 跨仓收件箱（submodule → MyLoveou/temp）
 └─ README.md  STRUCTURE.md  CHANGELOG.md
 ```
 
@@ -41,6 +42,22 @@
 **拷贝单元 = 平台目录 + `AGENTS.md` + `docs/`。** 只拷平台目录，规则与 Skill 能用；但入口文档、事实基线、项目规范在根目录，别漏。
 
 拷完填两处：`constraints.md` 的 `{占位符}`、`docs/product/facts.md` 的实现与方向。
+
+`temp/` 不属于拷贝单元：它是本仓自己的收件箱，业务仓不需要。
+
+## 跨项目收件箱（`temp/`）
+
+`temp/` 是 submodule，指向私有仓 `MyLoveou/temp`（跨项目临时沉淀区）。用途：**其他项目把对本仓的要求、建议、跑通的经验丢进去，本仓按需吸收**。
+
+```powershell
+git submodule update --init            # 首次拉到 temp/
+git submodule update --remote temp     # 拉收件箱最新
+```
+
+- 只在本仓读写，不进 `拷贝单元`，不影响三平台的任何运行时资产。
+- 里面每个条目一个子目录，命名 `YYYY-MM-DD-来源-主题`，子目录必须有 `README.md` 写清来源、范围、建议去向。
+- 吸收完（改进规则/Skill 或明确不做）就删掉该子目录，保持常空；结论记进 `docs/product/`。
+- `MyLoveou/temp` 是私有仓，主仓是公开的：这里只提交 submodule 指针，不提交收件内容。没有权限的克隆方拿到的是空目录，属正常。
 
 ## 平台差异（为什么不是三份一模一样）
 
