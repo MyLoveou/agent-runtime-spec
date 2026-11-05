@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-06（编码门禁）
+
+- 新增 `encoding-guard` Skill（三平台各一份）：`check-encoding.ps1` 查问号替字、U+FFFD、mojibake、非法 UTF-8、坏文件名 / 提交信息 / 仓库描述；`install-hooks.ps1` 装 pre-commit + pre-push，校验不过就挡住
+- 新增根 `.encodingignore`：示例文档可放行，避免守卫误伤自己
+- 起因：仓库描述里出现 21 个问号（非 ASCII 被编码器替换，不可逆）
+
 ## 2026-11-06（跨仓收件箱）
 
 - 新增 `temp/`：submodule 指向私有仓 `MyLoveou/temp`，用于接其他项目对本仓的要求 / 建议 / 经验

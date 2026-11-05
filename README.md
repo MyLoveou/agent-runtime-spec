@@ -10,7 +10,7 @@
 ├─ .cursor/          # Cursor 运行时（完整）
 │  ├─ rules/*.mdc          42 条
 │  ├─ agents/*.md          9 个
-│  ├─ skills/<name>/       16 个
+│  ├─ skills/<name>/       17 个
 │  ├─ workflows/  evals/
 │  ├─ hooks/hooks.json
 │  ├─ mcp.json  mcp/
@@ -19,11 +19,11 @@
 │  ├─ opencode.json        instructions + mcp
 │  ├─ rules/*.md           42 条（正文同 Cursor）
 │  ├─ agent/*.md           9 个
-│  ├─ skills/<name>/       16 个
+│  ├─ skills/<name>/       17 个
 │  ├─ workflows/  evals/  mcp/
 │  └─ constraints.md
 ├─ .dsh/             # DeepSeek Harness：只有 skills/
-│  ├─ skills/<name>/       16 个
+│  ├─ skills/<name>/       17 个
 │  └─ README.md            平台限制说明
 ├─ AGENTS.md         # 三平台共用入口
 ├─ docs/             # 本仓自身文档
@@ -58,6 +58,17 @@ git submodule update --remote temp     # 拉收件箱最新
 - 里面每个条目一个子目录，命名 `YYYY-MM-DD-来源-主题`，子目录必须有 `README.md` 写清来源、范围、建议去向。
 - 吸收完（改进规则/Skill 或明确不做）就删掉该子目录，保持常空；结论记进 `docs/product/`。
 - `MyLoveou/temp` 是私有仓，主仓是公开的：这里只提交 submodule 指针，不提交收件内容。没有权限的克隆方拿到的是空目录，属正常。
+
+## 提交前校验（`encoding-guard`）
+
+页面上的成片问号不是显示问题，是**数据已损坏**：非 ASCII 字符被编码器替换成 `?`，原字找不回来。本仓用 `encoding-guard` 在提交前拦住这类内容。
+
+```powershell
+skills/encoding-guard/scripts/install-hooks.ps1                  # 装进当前仓库：pre-commit + pre-push
+skills/encoding-guard/scripts/check-encoding.ps1 -Mode commit    # 手动跑一次
+```
+
+拦：`U+FFFD` 替换符、连续问号、GBK 乱码片段、坏掉的文件名与提交信息；`-Mode remote` 还能查仓库描述。细节见 `skills/encoding-guard/SKILL.md`（三平台各一份）。
 
 ## 平台差异（为什么不是三份一模一样）
 
