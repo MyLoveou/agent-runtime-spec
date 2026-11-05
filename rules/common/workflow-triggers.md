@@ -26,6 +26,7 @@ description: 工作流自动触发。命中信号须先读对应 Skill。
 | 只要实现计划、先别写代码 | `plan-workflow`（无 OpenSpec 仓时） |
 | 加依赖 / 查现有实现 | `search-first` |
 | 代码图 / 调用链 / 影响面 | CodeGraph MCP（见 `mcp/codegraph.md`）；未接入则 Grep |
+| 画 mermaid / 时序图 / 流程图 / 状态图 | `mermaid-diagrams` |
 | 远程主机 / SSH / 上服务器 | SSH MCP（仅 `hosts.json` 已登记机） |
 | 构建失败 | `build-fix` |
 | 改 backend 后验收 | `backend-verify` |

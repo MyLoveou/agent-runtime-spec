@@ -11,7 +11,7 @@
 ### 做什么
 
 - 产品一句话：维护 **Cursor** 用的规则、Agent、Skill、工作流、MCP、域包，供业务仓 bootstrap。
-- 已交付：`project-spec` 家族（含 L1/L2/L3、组合式拆实现）、需求/规划/验收 Skill、Vue+React 短规则、enterprise-cert 域包、`mcp/`（codegraph/git/ssh；知识图谱可选且不进默认配置）。
+- 已交付：`project-spec` 家族（含 L1/L2/L3、组合式拆实现）、需求/规划/验收 Skill、`mermaid-diagrams`、Vue+React 短规则、enterprise-cert 域包、`mcp/`（codegraph/git/ssh；知识图谱可选且不进默认配置）。
 - **尚未实现**：OpenCode/Hermes 适配；MCP 默认占位未接真实主机；本库无业务前后端代码。
 
 ### 怎么做的

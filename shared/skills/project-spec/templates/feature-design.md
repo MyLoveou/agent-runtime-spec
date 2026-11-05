@@ -32,6 +32,7 @@
 
 - 用户主路径 + 空态/失败/权限
 - 系统协作：前端 ↔ API ↔ 模块 ↔ 数据
+- 协作步骤用 Mermaid 时序图（Skill `mermaid-diagrams`）
 
 ## 4. 模块划分
 

@@ -1,5 +1,10 @@
 ﻿# 变更记录
 
+## 2026-09-24（Mermaid 图质量 Skill）
+
+- 新增 `mermaid-diagrams`：时序图、流程图、状态图的选型与交图检查
+- 设计模板的系统协作指向该 Skill
+
 ## 2026-09-23（短规则、审查口吻、MCP 合一）
 
 - `rules/java`、`rules/react`、`rules/vue` 收成项目栈短规则
