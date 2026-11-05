@@ -1,6 +1,6 @@
 # 项目事实基线
 
-> 本仓库（cursor-project-spec）的实现与方向。只写已确认项。
+> 本仓库（agent-runtime-spec）的实现与方向。只写已确认项。
 
 **最后核对**：2026-11-06（拆成 `.cursor/` `.opencode/` `.dsh/` 三套自包含运行时）
 
