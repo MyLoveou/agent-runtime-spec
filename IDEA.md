@@ -1,1 +1,1 @@
-这是一个用于管理 Cursor 项目规范（规则、Agent、Skill、域包）的仓库。多编辑器适配已延后。
+维护 Cursor / OpenCode / DeepSeek Harness 三套自包含运行时：`.cursor/`、`.opencode/`、`.dsh/`。一平台一目录，拷贝即用，无生成与同步。

@@ -1,65 +1,73 @@
-# 目录结构（规范库 vs 业务项目）
+# 目录结构
 
-> Cursor 规范库：规则在 `rules/`，通过 `generate.ps1` 生成 `.mdc`。
-> OpenCode / Hermes 适配已延后。
+> 一平台一目录，各自自包含。没有源目录、没有生成、没有同步。
 
----
-
-## 规范库（本仓库）
+## 顶层
 
 ```
-├── mcp/                   # Cursor MCP：CodeGraph / git / ssh
-├── rules/                  # 统一规则源
-│   ├── common/
-│   ├── java/
-│   ├── typescript/
-│   ├── vue/
-│   └── react/
-├── agents/
-├── shared/
-│   ├── skills/
-│   ├── workflows/
-│   └── evals/
-├── platforms/cursor/hooks/
-├── domains/
-├── templates/
-└── scripts/
-    ├── generate.ps1
-    ├── bootstrap-project.ps1
-    ├── install-global-skills.ps1
-    └── apply-domain-pack.ps1
+.
+├─ .cursor/                  # Cursor 运行时（可直接拷走）
+│  ├─ rules/*.mdc            42 条（common 18 / java 7 / react 6 / vue 6 / typescript 5）
+│  ├─ agents/*.md            9 个
+│  ├─ skills/<name>/SKILL.md 16 个（含 spec-runtime-maintain）
+│  ├─ workflows/             5 个（README + 需求/设计/开发/交付）
+│  ├─ evals/                 3 个示例
+│  ├─ hooks/hooks.json       sessionStart / stop
+│  ├─ mcp.json               codegraph / git / ssh
+│  ├─ mcp/                   说明与主机登记模板
+│  └─ constraints.md         业务项目硬约束模板
+│
+├─ .opencode/                # OpenCode 运行时（可直接拷走）
+│  ├─ opencode.json          instructions(6) + mcp(3)
+│  ├─ rules/*.md             42 条（正文同 Cursor，无 frontmatter）
+│  ├─ agent/*.md             9 个（mode: subagent）
+│  ├─ skills/<name>/         16 个（与 Cursor 逐字一致）
+│  ├─ workflows/  evals/
+│  ├─ mcp/                   说明
+│  └─ constraints.md
+│
+├─ .dsh/                     # DeepSeek Harness（只支持 Skill）
+│  ├─ skills/<name>/         16 个（与 Cursor 逐字一致）
+│  └─ README.md              平台限制与加载优先级
+│
+├─ docs/                     # 本仓自身
+│  ├─ product/facts.md       实现 + 方向
+│  ├─ product/decisions.md   决策记忆
+│  ├─ requirements/features/ 需求 / 设计 / 实现方案
+│  └─ standards/             项目规范样板
+│
+├─ AGENTS.md                 # 三平台共用入口
+├─ README.md  STRUCTURE.md  CHANGELOG.md
+└─ .gitignore
 ```
 
-### 规则统一格式
+## 每个目录装什么
 
-每条规则一个 `.md` 文件，YAML frontmatter 携带元数据。`globs` / `alwaysApply` 仅 Cursor 使用。
+| 资产 | `.cursor` | `.opencode` | `.dsh` |
+|------|-----------|-------------|--------|
+| 规则 | `rules/*.mdc` | `rules/*.md` | — |
+| Agent | `agents/*.md` | `agent/*.md` | — |
+| Skill | `skills/` | `skills/` | `skills/` |
+| 工作流 | `workflows/` | `workflows/` | — |
+| 评测 | `evals/` | `evals/` | — |
+| Hooks | `hooks/hooks.json` | —（要写 TS plugin） | — |
+| MCP | `mcp.json` | `opencode.json#mcp` | —（全局配置） |
+| 硬约束 | `constraints.md` | `constraints.md`（进 instructions） | 并入 `AGENTS.md` |
 
-### 生成
+## 一致性契约
 
-| 命令 | 输出 |
-|------|------|
-| `generate.ps1 -Target cursor -OutputDir <项目根>` | `<项目根>/.cursor/rules/*.mdc` + `agents/*.md` |
+- 规则的正文：`.cursor/rules/<name>.mdc` 去掉 frontmatter == `.opencode/rules/<name>.md`
+- Skill 的正文：三个目录逐字相同
+- 正文不出现 `.cursor/`、`.opencode/`、`.dsh/` 前缀；引用写相对平台根
+- 唯一例外：根 `AGENTS.md` 列出三个真实路径
 
-`OutputDir` 是项目根，不是 `.cursor` 目录。本仓库的 `.cursor/`、`.codex/` 已 gitignore。
+## 命名
 
----
+- 规则：common 用 `common-<id>`，栈规则用 `<cat>-<id>`；历史名保持原样（`project-core`、`ai-execution`、`workflow-triggers`、`docs-maintenance`、`api-contracts`、`backend-spring`、`frontend-vue`、`frontend-react`）
+- Agent / Skill：kebab-case，Skill 的 `name` 必须等于目录名
 
-## 业务项目（部署后）
+## 维护
 
-| 规范库 | 业务项目 |
-|--------|----------|
-| `rules/` → 生成 | `.cursor/rules/*.mdc` |
-| `agents/` → 生成 | `.cursor/agents/*.md` |
-| `mcp/` | `.cursor/mcp.json` + `.cursor/mcp/` |
-| `platforms/cursor/hooks/` | `.cursor/hooks/hooks.json` |
-| `shared/skills/` | `.cursor/skills/` |
-| `shared/workflows/` | `.cursor/workflows/` |
-| `shared/evals/` | `.cursor/evals/` |
-| `domains/<id>/` | 合并进 `.cursor/` |
+改资产 → 三份同步 → 自检清单（`spec-runtime-maintain`）→ 更新 `CHANGELOG.md`。
 
-## 部署
-
-```powershell
-powershell -File scripts/bootstrap-project.ps1 -SpecRoot <规范库> -ProjectRoot <项目>
-powershell -File scripts/bootstrap-project.ps1 -SpecRoot <规范库> -ProjectRoot <项目> -Domain enterprise-cert
-```
+历史：`pre-restructure` tag 保存了旧的 `rules/ + shared/ + scripts/` 结构。

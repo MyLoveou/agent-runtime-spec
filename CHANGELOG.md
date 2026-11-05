@@ -1,4 +1,16 @@
-﻿# 变更记录
+# 变更记录
+
+## 2026-11-06（三套自包含运行时）
+
+- 顶层改为 `.cursor/`、`.opencode/`、`.dsh/`，各自完整、可单独拷走
+- 删除 `rules/`、`agents/`、`shared/`、`platforms/`、`mcp/`、`templates/`、`domains/`、`scripts/`，以及 generate / bootstrap / apply-domain / sync-domain / install-global 全部脚本
+- 正文去平台化：不写平台前缀，三份副本去掉 frontmatter 后逐字一致
+- OpenCode 只把 6 个入口规则放进 `instructions`，其余按需读（避免每会话约 15k tokens）
+- DSH 项目级只支持 Skill，故 `.dsh/` 仅 `skills/`；规则等效物为根 `AGENTS.md`
+- 新增 `spec-runtime-maintain` Skill（三平台目录维护与发布自检）
+- 加厚模板并入 `skills/project-spec/templates/`；`docs-standards` 落到 `docs/standards/`
+- 删除规范扫描器与 enterprise-cert 域包（tag `pre-restructure` 可查）
+- `.gitignore` 反转：`.cursor/` 入库，`.codex/` 继续忽略
 
 ## 2026-09-24（Mermaid 图质量 Skill）
 

@@ -1,21 +1,43 @@
-# 项目规范 · Agent（Cursor）
+# 项目规范 · 多平台运行时库
 
-> 本仓库维护 **Cursor** 运行时配置。OpenCode / Hermes 适配已延后。
-> 规则在 `rules/`，Agents 在 `agents/`，用 `generate.ps1` 生成 `.cursor/` 格式。
-> `shared/` 提供 Skill / Workflow / Eval；`platforms/cursor/` 为 hooks。
+> 一个平台一个自包含目录：`.cursor/`、`.opencode/`、`.dsh/`。
+> 没有生成脚本、没有同步脚本、没有共享源目录——新增资产就在每个平台目录各写一份。
 
-| 类型 | 统一源 | 产出 |
-|------|--------|------|
-| Rules | `rules/{category}/{id}.md` | `.cursor/rules/*.mdc` |
-| Agents | `agents/{name}.md` | `.cursor/agents/{name}.md` |
-| Skills | `shared/skills/*/SKILL.md` | 部署到 `.cursor/skills/` |
-| 工作流 | `shared/workflows/` | `.cursor/workflows/` |
-| Hooks | `platforms/cursor/hooks/hooks.json` | `.cursor/hooks/hooks.json` |
-| MCP | `mcp/` | `.cursor/mcp.json` + `.cursor/mcp/` |
-| 业务域包 | `domains/<id>/` | 合并进 `.cursor/` |
+## 目录
 
-业务项目接入：[BOOTSTRAP.md](./BOOTSTRAP.md)
-域包约定：[domains/README.md](./domains/README.md)
-结构说明：[STRUCTURE.md](./STRUCTURE.md)
+| 路径 | 内容 |
+|------|------|
+| `.cursor/` | Cursor：`rules`（`.mdc`）/ `agents` / `skills` / `workflows` / `evals` / `hooks` / `mcp.json` / `constraints.md` |
+| `.opencode/` | OpenCode：`opencode.json` / `rules`（`.md`）/ `agent` / `skills` / `workflows` / `evals` / `mcp` |
+| `.dsh/` | DeepSeek Harness：只有 `skills`（平台只支持这个） |
+| `docs/` | 本仓自身：事实基线、决策记忆、需求与设计、项目规范样板 |
+| `README.md` | 三平台怎么拷到业务仓、怎么新增资产 |
+| `STRUCTURE.md` | 目录树与平台差异 |
+| `CHANGELOG.md` | 变更记录 |
 
-新能力用 `project-spec` Skill（事实基线、决策记忆、**复杂需求先过设计阶段**、切片契约、项目规范、项目架构、门禁）。声称完成前走 `verification-gate`（组合式须测到组合根）。用户反复强调的偏好走 `knowledge-extract`，确认后再写入规则。
+## 三条硬规则
+
+1. 新增或修改资产，**每个应放平台各写一份完整副本**；不建 `shared/`，不跨目录引用。
+2. 正文平台中立：不写 `.cursor/`、`.opencode/`、`.dsh/` 前缀，只写 `rules/<name>`、`skills/<name>/SKILL.md`、`constraints.md`。
+3. 同一资产的三份副本，去掉 frontmatter 后必须逐字一致。
+
+细则与发布自检见 `spec-runtime-maintain` Skill（三个平台目录各一份）。
+
+## 读什么
+
+| 场景 | 先读 |
+|------|------|
+| 改本仓结构 / 新增资产 | `spec-runtime-maintain` |
+| 项目现状与方向 | `docs/product/facts.md` |
+| 历次拍板 | `docs/product/decisions.md` |
+| 新能力、大改 | `project-spec`（复杂需求先 L2 设计） |
+| 修 bug / 改样式 / 视觉方向 | `project-spec-fix` / `project-spec-style` / `project-spec-design` |
+| 交付前 | `code-review-gate` → `verification-gate` |
+
+## 验收
+
+- Cursor：重载窗口，Rules 面板能看到规则，`@architect` 等可调用
+- OpenCode：`opencode debug config`、`opencode debug skill`
+- DSH：新会话的 Skill 目录包含本仓 16 个 Skill
+
+用户未要求时不 commit / push。

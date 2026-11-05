@@ -1,72 +1,77 @@
-# 项目规范 · Cursor 运行时库
+# 项目规范 · 多平台运行时库
 
-> 面向 **Cursor** 的规则 / Agent / Skill 库。OpenCode / Hermes 适配已延后。
-> 规则维护在 `rules/`，通过 `generate.ps1` 生成 `.cursor/rules/*.mdc`。
+> Cursor / OpenCode / DeepSeek Harness 三套运行时，各自一个自包含目录。
+> **拷目录即可用**：没有生成、没有同步、没有域包、没有脚本。
 
-## 快速开始
-
-**Windows**（PowerShell 5+）：
-```powershell
-powershell -File scripts/bootstrap-project.ps1 `
-  -SpecRoot "E:\项目\项目规范" `
-  -ProjectRoot "E:\项目\YourApp"
-```
-
-**macOS**（需安装 [PowerShell Core](https://learn.microsoft.com/powershell/scripting/installing-powershell-on-macos)）：
-```bash
-pwsh -File scripts/bootstrap-project.ps1 \
-  -SpecRoot "/Users/me/projects/spec-repo" \
-  -ProjectRoot "/Users/me/projects/my-app"
-```
-
-可选：`-Domain "enterprise-cert"` 叠加业务域包。
-
-## 目录结构
+## 目录
 
 ```
-├── rules/             # 统一规则源
-│   ├── common/
-│   ├── java/
-│   ├── typescript/
-│   ├── vue/
-│   └── react/
-├── agents/            # Cursor Agent 定义
-├── shared/            # skills / workflows / evals
-├── mcp/               # CodeGraph / git / ssh MCP
-├── platforms/cursor/  # hooks
-├── domains/           # 业务域配置包
-├── templates/
-└── scripts/
-    ├── generate.ps1
-    ├── bootstrap-project.ps1
-    ├── install-global-skills.ps1
-    ├── sync-domain-bundle.ps1
-    └── apply-domain-pack.ps1
+.
+├─ .cursor/          # Cursor 运行时（完整）
+│  ├─ rules/*.mdc          42 条
+│  ├─ agents/*.md          9 个
+│  ├─ skills/<name>/       16 个
+│  ├─ workflows/  evals/
+│  ├─ hooks/hooks.json
+│  ├─ mcp.json  mcp/
+│  └─ constraints.md
+├─ .opencode/        # OpenCode 运行时（完整）
+│  ├─ opencode.json        instructions + mcp
+│  ├─ rules/*.md           42 条（正文同 Cursor）
+│  ├─ agent/*.md           9 个
+│  ├─ skills/<name>/       16 个
+│  ├─ workflows/  evals/  mcp/
+│  └─ constraints.md
+├─ .dsh/             # DeepSeek Harness：只有 skills/
+│  ├─ skills/<name>/       16 个
+│  └─ README.md            平台限制说明
+├─ AGENTS.md         # 三平台共用入口
+├─ docs/             # 本仓自身文档
+└─ README.md  STRUCTURE.md  CHANGELOG.md
 ```
 
-本仓库自己的 `.cursor/` 是生成结果，不提交。在仓库根执行：
+## 拷到业务仓
 
-```powershell
-powershell -File scripts/generate.ps1 -SpecRoot . -OutputDir . -Target cursor
-```
+| 平台 | 必拷 | 建议同拷 | 生效 |
+|------|------|----------|------|
+| Cursor | `.cursor/` | `AGENTS.md`、`docs/` | 重载窗口 |
+| OpenCode | `.opencode/` | `AGENTS.md`、`docs/` | 重开 opencode |
+| DSH | `.dsh/` | `AGENTS.md`、`docs/` | 新会话 |
 
-## 核心工作流
+**拷贝单元 = 平台目录 + `AGENTS.md` + `docs/`。** 只拷平台目录，规则与 Skill 能用；但入口文档、事实基线、项目规范在根目录，别漏。
 
-```
-rules/ + agents/
-    │
-    ▼
-generate.ps1 -Target cursor
-    │
-    └── .cursor/rules/*.mdc + .cursor/agents/*.md
-```
+拷完填两处：`constraints.md` 的 `{占位符}`、`docs/product/facts.md` 的实现与方向。
 
-新能力默认走 `project-spec` Skill：L1 需求 →（复杂）**L2 设计确认**（组合式含切片契约）→ L3 → apply → archive。
+## 平台差异（为什么不是三份一模一样）
 
-## 维护
+| 维度 | Cursor | OpenCode | DSH |
+|------|--------|----------|-----|
+| 规则 | `.mdc` + `globs`/`alwaysApply`，按需注入 | `.md` + `instructions`，**全量注入** | 无（只有 `AGENTS.md`） |
+| Agent | `agents/` | `agent/`（`mode: subagent`） | 无 |
+| Skill | ✓ | ✓ | ✓ |
+| 工作流 / 评测 | 纯文档 | 纯文档 | 无效 |
+| Hooks | `hooks.json` | 不移植（要写 TS plugin） | 无 |
+| MCP | `mcp.json` | `opencode.json` 的 `mcp` | 全局配置，无项目级 |
 
-- 新增/修改规则 → `rules/{category}/{id}.md`
-- 新增 Skill → `shared/skills/`
-- 新增 MCP → `mcp/`（`mcp.json` + 说明）
-- 全局安装 Skill → `scripts/install-global-skills.ps1`（只装 Skill；规则随 bootstrap 进业务仓）
-- 业务域包 → `domains/_template` 复制为 `domains/<id>/`
+OpenCode 只把 6 个入口规则放进 `instructions`（`project-core`、`ai-execution`、`workflow-triggers`、`common-openspec` + `AGENTS.md` + `constraints.md`），其余 36 条按需读——全塞进去每次会话多烧约 15k tokens。
+
+DSH 项目级只认 `.dsh/skills`（优先级 100），没有项目级 Agent / 命令 / hooks / MCP；规则等效物只有根 `AGENTS.md`。
+
+## 新增资产
+
+见 `spec-runtime-maintain` Skill（三个平台目录各一份）。核心三条：
+
+1. 每个应放平台各写一份完整副本，不建 `shared/`、不跨目录引用；
+2. 正文平台中立，不写平台前缀；
+3. 三份副本去掉 frontmatter 后逐字一致。
+
+## 本仓文档
+
+- [docs/product/facts.md](docs/product/facts.md)：实现与方向
+- [docs/product/decisions.md](docs/product/decisions.md)：历次拍板
+- [docs/requirements/features/](docs/requirements/features/)：需求与设计
+- [docs/standards/](docs/standards/)：项目规范样板（动工门禁、编码约定、审查）
+
+## 历史
+
+重构前是「`rules/` + `shared/` + 生成脚本」结构，tag `pre-restructure` 可查。旧脚本与域包已删除，需要时从 git 历史取。
