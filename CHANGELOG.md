@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-06（收尾：分类计数 / 绝对路径 / 许可证）
+
+- STRUCTURE 的规则分类改为实际值（common 14 / java 5 / react 5 / vue 5 / typescript 5 / 其它 8），spec-check 新增该分类的漂移检查
+- 文档里的本机绝对路径改成「仓外」表述；spec-check 新增「文档不得出现盘符路径」检查
+- 新增 MIT `LICENSE`，README 补「许可」小节、facts 记录
+
 ## 2026-11-06（docs/standards 占位化，校验零豁免）
 
 - `代码审查.md` / `TDD与测试.md` / `Bugbot审查.md` 去掉业务项目残留（savePatch / TipTap / app-services / `../功能/…`）与失效链接，改为 `{占位符}` 样板
@@ -22,7 +28,7 @@
 ## 2026-11-06（全局运行时清零）
 
 - 清空各平台全局安装：`~/.agents/skills` 386、`~/.cursor/skills` 294、`skills-cursor` 26、rules 121 / commands 94 / agents 67 / hooks 17、`~/.opencode` 210、`~/.config/opencode/skills` 11、`~/.claude/skills` 11
-- 全部归档到 `D:\Project\_archive\global-agent-20261106`（含 `restore.ps1`），可原样还原
+- 全部归档到仓外 `_archive/global-agent-20261106`（含 `restore.ps1`），可原样还原
 - 效果：DSH 新会话 Skill 目录从 400+ 收敛为本仓 17 个 + 平台自带
 - 定性：全局 Skill 与「拷目录即用」互斥，统一改用项目级（D-20261106-07）
 

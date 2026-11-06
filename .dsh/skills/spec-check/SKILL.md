@@ -26,6 +26,8 @@ description: >-
 | 相对链接 | 文档里的 `[x](./y.md)` 指向不存在的文件 |
 | JSON | 平台目录里的 `.json` 解析失败；`opencode.json` 的 `instructions` 指向不存在的文件 |
 | 文档计数 | README / STRUCTURE / AGENTS / facts 写的「N 条规则 / N 个 Agent / N 个 Skill」与实物不符 |
+| 规则分类 | STRUCTURE 的 `common / java / react / vue / typescript / 其它` 拆分与实际不符 |
+| 本机路径 | 文档里出现盘符开头的绝对路径（应写相对路径或「仓外」） |
 | 目录纯度 | 平台目录顶层出现约定外的条目（只警告） |
 
 退出码 `0` = 通过，`1` = 有错误。警告不影响退出码。

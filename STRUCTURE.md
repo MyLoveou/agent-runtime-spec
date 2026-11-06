@@ -7,7 +7,7 @@
 ```
 .
 ├─ .cursor/                  # Cursor 运行时（可直接拷走）
-│  ├─ rules/*.mdc            42 条（common 18 / java 7 / react 6 / vue 6 / typescript 5）
+│  ├─ rules/*.mdc            42 条（common 14 / java 5 / react 5 / vue 5 / typescript 5 / 其它 8）
 │  ├─ agents/*.md            9 个
 │  ├─ skills/<name>/SKILL.md 18 个（含 spec-runtime-maintain、encoding-guard）
 │  ├─ workflows/             5 个（README + 需求/设计/开发/交付）

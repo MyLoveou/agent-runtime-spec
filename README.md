@@ -107,6 +107,10 @@ DSH 项目级只认 `.dsh/skills`（优先级 100），没有项目级 Agent / �
 2. 正文平台中立，不写平台前缀；
 3. 三份副本去掉 frontmatter 后逐字一致。
 
+## 许可
+
+MIT，见 [LICENSE](./LICENSE)。
+
 ## 本仓文档
 
 - [docs/product/facts.md](docs/product/facts.md)：实现与方向

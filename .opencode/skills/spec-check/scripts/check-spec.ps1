@@ -227,6 +227,16 @@ foreach ($f in $linkFiles) {
     }
 }
 
+# ---------- 4b. 文档不写本机绝对路径 ----------
+foreach ($f in $linkFiles) {
+    $rel = Get-Rel $f.FullName
+    $text = Get-Norm $f.FullName
+    $hit = [regex]::Match($text, '[A-Za-z]:\\')
+    if ($hit.Success) {
+        $lineNo = ($text.Substring(0, $hit.Index) -split "`n").Count
+        Add-Error "本机绝对路径 $rel`:$lineNo（文档里请写相对路径或「仓外」）"
+    }
+}
 # ---------- 5. JSON 与 opencode 指令 ----------
 $jsonFiles = @()
 foreach ($dir in @('.cursor', '.opencode', '.dsh')) {
@@ -289,6 +299,41 @@ foreach ($cf in $claimFiles) {
     }
 }
 
+# ---------- 6b. 规则分类计数 ----------
+$groups = @{}
+foreach ($n in $ruleCur) {
+    $prefix = ($n -split '-')[0]
+    if (-not $groups.ContainsKey($prefix)) { $groups[$prefix] = 0 }
+    $groups[$prefix] = $groups[$prefix] + 1
+}
+$knownGroups = @('common', 'java', 'react', 'vue', 'typescript')
+$knownSum = 0
+foreach ($g in $knownGroups) { if ($groups.ContainsKey($g)) { $knownSum += $groups[$g] } }
+$otherCount = $ruleCur.Count - $knownSum
+
+$structurePath = Join-Path $Root 'STRUCTURE.md'
+if (Test-Path -LiteralPath $structurePath) {
+    $st = Get-Norm $structurePath
+    $m = [regex]::Match($st, 'common (\d+) / java (\d+) / react (\d+) / vue (\d+) / typescript (\d+) / 其它 (\d+)')
+    if ($m.Success) {
+        $pairs = @(
+            @{ name = 'common';     doc = [int]$m.Groups[1].Value },
+            @{ name = 'java';       doc = [int]$m.Groups[2].Value },
+            @{ name = 'react';      doc = [int]$m.Groups[3].Value },
+            @{ name = 'vue';        doc = [int]$m.Groups[4].Value },
+            @{ name = 'typescript'; doc = [int]$m.Groups[5].Value }
+        )
+        foreach ($p in $pairs) {
+            $key = $p.name
+            $real = 0
+            if ($groups.ContainsKey($key)) { $real = $groups[$key] }
+            if ($p.doc -ne $real) { Add-Error "STRUCTURE 规则分类漂移：$key 写 $($p.doc)，实际 $real" }
+        }
+        if ($otherCount -ne [int]$m.Groups[6].Value) {
+            Add-Error "STRUCTURE 规则分类漂移：其它 写 $($m.Groups[6].Value)，实际 $otherCount"
+        }
+    }
+}
 # ---------- 7. 平台目录纯度 ----------
 $layout = @{
     '.cursor'   = @('rules', 'agents', 'skills', 'workflows', 'evals', 'hooks', 'mcp', 'mcp.json', 'constraints.md')
