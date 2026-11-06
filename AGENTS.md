@@ -2,6 +2,7 @@
 
 > 一个平台一个自包含目录：`.cursor/`、`.opencode/`、`.dsh/`。
 > 没有生成脚本、没有同步脚本、没有共享源目录——新增资产就在每个平台目录各写一份。
+> 唯一的脚本是**单向导出**（`project-assembly`）：按装配单把子集拷到外部业务仓，从不回写本仓。
 
 ## 目录
 
@@ -40,6 +41,6 @@
 
 - Cursor：重载窗口，Rules 面板能看到规则，`@architect` 等可调用
 - OpenCode：`opencode debug config`、`opencode debug skill`
-- DSH：新会话的 Skill 目录包含本仓 19 个 Skill
+- DSH：新会话的 Skill 目录包含本仓 20 个 Skill
 
 用户未要求时不 commit / push。

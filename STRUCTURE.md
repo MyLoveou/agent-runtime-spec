@@ -9,7 +9,7 @@
 ├─ .cursor/                  # Cursor 运行时（可直接拷走）
 │  ├─ rules/*.mdc            42 条（common 14 / java 5 / react 5 / vue 5 / typescript 5 / 其它 8）
 │  ├─ agents/*.md            9 个
-│  ├─ skills/<name>/SKILL.md 19 个（含 spec-runtime-maintain、encoding-guard）
+│  ├─ skills/<name>/SKILL.md 20 个（含 spec-runtime-maintain、encoding-guard）
 │  ├─ workflows/             5 个（README + 需求/设计/开发/交付）
 │  ├─ evals/                 3 个示例
 │  ├─ hooks/hooks.json       sessionStart / stop
@@ -21,13 +21,13 @@
 │  ├─ opencode.json          instructions(6) + mcp(3)
 │  ├─ rules/*.md             42 条（正文同 Cursor，无 frontmatter）
 │  ├─ agent/*.md             9 个（mode: subagent）
-│  ├─ skills/<name>/         19 个（与 Cursor 逐字一致）
+│  ├─ skills/<name>/         20 个（与 Cursor 逐字一致）
 │  ├─ workflows/  evals/
 │  ├─ mcp/                   说明
 │  └─ constraints.md
 │
 ├─ .dsh/                     # DeepSeek Harness（只支持 Skill）
-│  ├─ skills/<name>/         19 个（与 Cursor 逐字一致）
+│  ├─ skills/<name>/         20 个（与 Cursor 逐字一致）
 │  └─ README.md              平台限制与加载优先级
 │
 ├─ docs/                     # 本仓自身

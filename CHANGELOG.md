@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-06（装配单导出工具）
+
+- 新增 `project-assembly` 技能：`assemble.ps1` 按 `assembly.json` 把规则 / Agent / Skill 子集单向导出到业务仓
+- 安全默认：内容不同不覆盖（`-Force` 才覆盖）、不删目标文件、不动 `opencode.json` / `mcp.json`、拒绝往本仓内部写
+- 边界写进 D-20261106-11：允许「仓 → 外」导出，仍然禁止「仓内生成 / 同步」
+- 技能数 19 → 20；AGENTS / README 里「没有脚本」的表述改为「只有单向导出」
 ## 2026-11-06（按项目装配单）
 
 - 新增 `projects/`：每个业务仓一份 `assembly.json`，记录启用的规则 / Skill / Agent；只存名字，不复制资产

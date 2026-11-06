@@ -127,7 +127,7 @@ Get-ChildItem .cursor/skills -Directory | ForEach-Object {
 ## 8. 禁止
 
 - 建 `shared/`、`templates/`、`rules/` 之类的源目录再生成
-- 写同步 / 迁移脚本（本仓明确不要）
+- 写生成 / 同步脚本，或让工具回写本仓（单向导出到外部目标除外）
 - 让 `.opencode` 或 `.dsh` 去读 `.cursor` 的文件
 - 把全部规则塞进 OpenCode `instructions`
 - 在正文里写死平台前缀

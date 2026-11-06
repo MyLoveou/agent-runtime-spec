@@ -1,7 +1,7 @@
 # 项目规范 · 多平台运行时库
 
 > Cursor / OpenCode / DeepSeek Harness 三套运行时，各自一个自包含目录。
-> **拷目录即可用**：没有生成、没有同步、没有域包、没有脚本。
+> **拷目录即可用**：没有生成、没有同步、没有域包；唯一的工具是单向导出（按装配单把子集拷到业务仓，不回写本仓）。
 >
 > [![spec-check](https://github.com/MyLoveou/agent-runtime-spec/actions/workflows/spec-check.yml/badge.svg)](https://github.com/MyLoveou/agent-runtime-spec/actions/workflows/spec-check.yml)
 
@@ -12,7 +12,7 @@
 ├─ .cursor/          # Cursor 运行时（完整）
 │  ├─ rules/*.mdc          42 条
 │  ├─ agents/*.md          9 个
-│  ├─ skills/<name>/       19 个
+│  ├─ skills/<name>/       20 个
 │  ├─ workflows/  evals/
 │  ├─ hooks/hooks.json
 │  ├─ mcp.json  mcp/
@@ -21,11 +21,11 @@
 │  ├─ opencode.json        instructions + mcp
 │  ├─ rules/*.md           42 条（正文同 Cursor）
 │  ├─ agent/*.md           9 个
-│  ├─ skills/<name>/       19 个
+│  ├─ skills/<name>/       20 个
 │  ├─ workflows/  evals/  mcp/
 │  └─ constraints.md
 ├─ .dsh/             # DeepSeek Harness：只有 skills/
-│  ├─ skills/<name>/       19 个
+│  ├─ skills/<name>/       20 个
 │  └─ README.md            平台限制说明
 ├─ AGENTS.md         # 三平台共用入口
 ├─ docs/             # 本仓自身文档
@@ -57,7 +57,7 @@
 - 校验：`spec-check` 检查引用是否存在、`include`/`exclude` 是否冲突；
 - 示例：`projects/source-manager/`。
 
-细节见 `projects/README.md`。`projects/` 同样不属于拷贝单元：它是本仓的档案，业务仓不需要。
+导出工具：`skills/project-assembly/scripts/assemble.ps1 -Project <项目> -Target <业务仓>`（先加 `-DryRun` 看计划）。细节见 `projects/README.md`。`projects/` 同样不属于拷贝单元：它是本仓的档案，业务仓不需要。
 
 ## 跨项目收件箱（`temp/`）
 
