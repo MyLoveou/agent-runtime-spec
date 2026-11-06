@@ -7,6 +7,7 @@
 - 自测当场修掉校验器自己的一个 bug：原来用「路径含 `temp`」跳过收件箱，导致在 `%TEMP%` 下扫描为空
 - `spec-runtime-maintain` 增「自动化闸门」一节，指向三个脚本
 - STRUCTURE 补 `LICENSE`；CI 增加自测步骤
+
 ## 2026-11-06（收尾：分类计数 / 绝对路径 / 许可证）
 
 - STRUCTURE 的规则分类改为实际值（common 14 / java 5 / react 5 / vue 5 / typescript 5 / 其它 8），spec-check 新增该分类的漂移检查
