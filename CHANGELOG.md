@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-06（结构校验自动化）
+
+- 新增 `spec-check` Skill（三份）：校验资产集合、Skill 三份逐字一致、规则正文一致、frontmatter 合法、正文无平台前缀、相对链接、JSON、文档计数、平台目录纯度
+- 新增 `.github/workflows/spec-check.yml`：push / PR 自动跑 `check-spec.ps1` + `check-encoding.ps1`
+- 新增根 `.speccheck.json` 豁免清单（当前只放 `docs/standards/**` 的历史坏链）
+- Skill 数量 17 → 18，README / STRUCTURE / AGENTS / facts 同步
+
 ## 2026-11-06（修跨平台坏链）
 
 - 规则里的旧路径链接（`testing.md`、`../typescript/testing.md` 等）改成纯规则名（`common-testing`、`typescript-testing`），两个平台都不再断

@@ -89,6 +89,8 @@ exit 0
 
     $hookMode = if ($HookName -eq 'pre-commit') { 'commit' } else { 'push' }
     $path = Join-Path $HookDir $HookName
+    # 链式块里的占位符必须在插入模板前替换，否则会留下 __HOOKNAME__ / __HOOKFILE__
+    $chainBlock = $chainBlock.Replace('__HOOKNAME__', $HookName).Replace('__HOOKFILE__', ($path -replace '\\', '/'))
     $text = $tpl.Replace('__MARKER__', $marker).
         Replace('__CHECKER__', ($CheckerPath -replace '\\', '/')).
         Replace('__HOOKNAME__', $HookName).
@@ -115,12 +117,13 @@ function Test-IsOurs {
 
 if ($Scope -eq 'repo') {
     $repoPath = (Resolve-Path -LiteralPath $Repo).Path
-    $rel = (& git -C $repoPath rev-parse --git-path hooks 2>$null) -join ''
-    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($rel)) {
+    # 注意：不能用 --git-path hooks，它会被 core.hooksPath 改写成全局目录
+    $gitDir = (& git -C $repoPath rev-parse --git-dir 2>$null) -join ''
+    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($gitDir)) {
         Write-Host "不是 git 仓库：$repoPath" -ForegroundColor Red
         exit 1
     }
-    $hookDir = if ([System.IO.Path]::IsPathRooted($rel)) { $rel } else { Join-Path $repoPath $rel }
+    $hookDir = if ([System.IO.Path]::IsPathRooted($gitDir)) { Join-Path $gitDir 'hooks' } else { Join-Path (Join-Path $repoPath $gitDir) 'hooks' }
 
     Write-Host "作用域 repo：$repoPath" -ForegroundColor Cyan
 

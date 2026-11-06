@@ -1,0 +1,28 @@
+name: spec-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  structure:
+    name: 结构与一致性
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: spec-check（三平台一致 / 规则正文 / 计数 / 链接 / JSON）
+        shell: pwsh
+        run: ./.cursor/skills/spec-check/scripts/check-spec.ps1
+
+      - name: encoding-guard（问号替字 / mojibake / 非法 UTF-8）
+        shell: pwsh
+        run: ./.cursor/skills/encoding-guard/scripts/check-encoding.ps1 -Mode files -Path .

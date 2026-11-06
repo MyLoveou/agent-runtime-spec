@@ -11,8 +11,9 @@
 ### 做什么
 
 - 产品一句话：给业务仓提供 Cursor / OpenCode / DeepSeek Harness 三套**自包含**运行时（规则、Agent、Skill、工作流、MCP），拷贝即用。
-- 已交付：42 条规则、9 个 Agent、17 个 Skill（`project-spec` 家族、需求、规划、验收、`mermaid-diagrams`、`spec-runtime-maintain`、`encoding-guard`）、4 条工作流、3 个评测样例；Cursor hooks 与 MCP（codegraph / git / ssh）。
+- 已交付：42 条规则、9 个 Agent、18 个 Skill（`project-spec` 家族、需求、规划、验收、`mermaid-diagrams`、`spec-runtime-maintain`、`encoding-guard`）、4 条工作流、3 个评测样例；Cursor hooks 与 MCP（codegraph / git / ssh）。
 - **编码门禁**：`encoding-guard` 提供 `check-encoding.ps1`（commit / push / files / remote 四种模式）与 `install-hooks.ps1`（pre-commit + pre-push，可 repo 或 global），拦截问号替字、U+FFFD、mojibake。
+- **结构校验**：`spec-check` 把契约写成判据（资产集合、Skill 三份一致、规则正文、frontmatter、平台前缀、坏链、JSON、文档计数），本地 pre-push 与 GitHub Actions 双闸；豁免走根 `.speccheck.json`。
 - **尚未实现**：OpenCode 版 hooks（要写 TS plugin）；DSH 侧的规则自动加载（平台不支持，只能靠根 `AGENTS.md`）。
 
 ### 怎么做的
@@ -32,7 +33,7 @@
 
 - OpenCode：`opencode debug config`、`opencode debug skill`
 - Cursor：重载窗口，Rules 面板与 `@agent` 可用
-- DSH：新会话 Skill 目录含本仓 17 个 Skill
+- DSH：新会话 Skill 目录含本仓 18 个 Skill
 - 一致性：同一 Skill 三份正文逐字一致；规则 `.mdc` 去 frontmatter == `.md`
 
 ### 实现边界

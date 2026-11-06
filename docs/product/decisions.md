@@ -4,6 +4,13 @@
 
 ## 有效决策
 
+### D-20261106-08 · 结构契约改为自动校验，不靠注意力
+
+- 场景：三条硬规则与各类计数只写在文档里，已实际攒出 26 处坏链与多处计数漂移
+- **决定**：`spec-check` 把判据写成脚本；本地 pre-push + GitHub Actions 双闸，任一失败即拦；豁免统一走根 `.speccheck.json`，只降级为警告
+- **不选**：只靠 review 清单（会漏）；只在 CI 跑（反馈慢）；引通用 lint（判据是本仓特有的，通用工具覆盖不了三份一致）
+- **落点**：`skills/spec-check/**`（三份）、`.speccheck.json`、`.github/workflows/spec-check.yml`
+- 状态：有效
 ### D-20261106-07 · 全局不装 Skill / Rule，统一用项目级
 
 - 场景：ECC 全家桶曾装进 `~/.agents/skills`（386）、`~/.cursor/skills`（294）、`~/.opencode`（210）等全局位置；安装源 `D:\Project\CursorProjectSpec` 已不存在，清单失效、无法按原样卸载

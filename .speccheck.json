@@ -1,0 +1,6 @@
+{
+  "$comment": "spec-check 的临时豁免清单。修完就把条目删掉，别让清单变成垃圾桶。",
+  "ignoreLinkPaths": [
+    "docs/standards/**"
+  ]
+}
