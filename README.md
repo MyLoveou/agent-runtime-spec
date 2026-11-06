@@ -2,6 +2,8 @@
 
 > Cursor / OpenCode / DeepSeek Harness 三套运行时，各自一个自包含目录。
 > **拷目录即可用**：没有生成、没有同步、没有域包、没有脚本。
+>
+> [![spec-check](https://github.com/MyLoveou/agent-runtime-spec/actions/workflows/spec-check.yml/badge.svg)](https://github.com/MyLoveou/agent-runtime-spec/actions/workflows/spec-check.yml)
 
 ## 目录
 
