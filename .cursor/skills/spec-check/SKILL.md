@@ -44,6 +44,15 @@ $c = 'skills/spec-check/scripts/check-spec.ps1'
 
 > 脚本是 UTF-8 **带 BOM** 的 `.ps1`：Windows PowerShell 5.1 会按 ANSI 读无 BOM 文件，中文直接变乱码。
 
+## 自测
+
+校验器自己也会漂移（误报 / 漏报）。`selftest.ps1` 把仓库复制到临时目录，逐项制造破坏，断言每种都能被拦住：
+
+```powershell
+skills/spec-check/scripts/selftest.ps1
+```
+
+当前 5 条断言：健康副本通过、Skill 副本不一致、分类计数漂移、坏链、盘符绝对路径。CI 每次都跑；改完 `check-spec.ps1` 必须让自测全过。
 ## 豁免
 
 **默认零豁免**：本仓没有豁免文件。确实需要放行时，才在仓库根建 `.speccheck.json`：

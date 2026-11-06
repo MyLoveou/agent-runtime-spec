@@ -216,7 +216,7 @@ function Invoke-ModeCommit {
 
 function Invoke-ModePush {
     $root = (Get-Location).Path
-    $up = (& git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>$null) -join ''
+    $up = (& git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>&1) -join ''
     if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($up)) {
         $branch = (& git rev-parse --abbrev-ref HEAD 2>$null) -join ''
         $candidate = "origin/$branch"
@@ -243,9 +243,37 @@ function Invoke-ModePush {
     }
 
     $changed = Get-NullPaths @('diff', '--name-only', '--diff-filter=ACMR', '-z', $range)
+    $dirty = @()
     foreach ($f in $changed) {
         Test-PathName $f
-        Test-FileOnDisk -Rel $f -Root $root
+        & git diff --quiet HEAD -- $f 2>$null
+        if ($LASTEXITCODE -eq 0) { Test-FileOnDisk -Rel $f -Root $root }
+        else { $dirty += $f }
+    }
+
+    # 工作区与提交不一致的文件，按提交里的内容检查，避免拿错版本
+    if ($dirty.Count -gt 0) {
+        $tmpDir = Join-Path ([System.IO.Path]::GetTempPath()) ('encoding-guard-' + [guid]::NewGuid().ToString('N'))
+        New-Item -ItemType Directory -Path $tmpDir -Force | Out-Null
+        try {
+            $zip = Join-Path $tmpDir 'blobs.zip'
+            & git archive --format=zip -o $zip HEAD -- $dirty 2>$null
+            if ($LASTEXITCODE -ne 0) { throw 'git archive 失败' }
+            Expand-Archive -LiteralPath $zip -DestinationPath $tmpDir -Force
+            foreach ($f in $dirty) {
+                $blob = Join-Path $tmpDir $f
+                if (Test-Path -LiteralPath $blob) {
+                    Test-FileBytes -Rel $f -Bytes ([System.IO.File]::ReadAllBytes($blob))
+                }
+                else { Add-Warn "$f 取不到提交内容，跳过" }
+            }
+        }
+        catch {
+            foreach ($f in $dirty) { Add-Warn "$f 工作区与提交不一致，且无法读取提交内容，跳过" }
+        }
+        finally {
+            Remove-Item -LiteralPath $tmpDir -Recurse -Force -ErrorAction SilentlyContinue
+        }
     }
 }
 

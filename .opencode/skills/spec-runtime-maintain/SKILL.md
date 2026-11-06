@@ -139,3 +139,15 @@ Get-ChildItem .cursor/skills -Directory | ForEach-Object {
 2. 根 `AGENTS.md` 增加一行路径
 3. 本 Skill 的能力矩阵与自检清单各加一行
 4. 单拷该目录 + `AGENTS.md` 到空仓验证一次
+
+## 10. 自动化闸门（先跑再交）
+
+手点清单会漏，交付前跑这两条，CI 也会跑：
+
+```powershell
+skills/spec-check/scripts/check-spec.ps1      # 结构：三份一致、规则正文、计数、链接、JSON
+skills/encoding-guard/scripts/check-encoding.ps1 -Mode files -Path .   # 编码：问号替字 / mojibake
+skills/spec-check/scripts/selftest.ps1        # 校验器自测（改过校验器才需要）
+```
+
+失败就修，别绕过：本仓没有豁免文件，`spec-check` 的判据就是本 Skill 第 1–7 节的可执行版本。

@@ -193,12 +193,17 @@ foreach ($name in $ruleCur) {
 
 # ---------- 4. 相对链接 ----------
 $linkFiles = @()
-foreach ($dir in @('.', '.cursor', '.opencode', '.dsh', 'docs')) {
-    $base = Join-Path $Root $dir
+foreach ($dir in @('', '.cursor', '.opencode', '.dsh', 'docs')) {
+    $base = if ($dir -eq '') { $Root } else { Join-Path $Root $dir }
     if (-not (Test-Path -LiteralPath $base)) { continue }
     $linkFiles += Get-ChildItem -LiteralPath $base -Recurse -File -ErrorAction SilentlyContinue |
         Where-Object { $_.Extension -eq '.md' -or $_.Extension -eq '.mdc' } |
-        Where-Object { $_.FullName -notmatch '[\\/](\.git|temp|node_modules)[\\/]' }
+        Where-Object {
+            $rp = $_.FullName
+            if ($rp.Length -gt $Root.Length) { $rp = $rp.Substring($Root.Length) }
+            $rp = $rp.TrimStart('\', '/') -replace '\\', '/'
+            ($rp -notmatch '^(\.git|temp|node_modules)(/|$)') -and ($rp -notmatch '/(\.git|temp|node_modules)(/|$)')
+        }
 }
 $linkFiles = @($linkFiles | Sort-Object FullName -Unique)
 
@@ -240,10 +245,10 @@ foreach ($f in $linkFiles) {
 # ---------- 5. JSON 与 opencode 指令 ----------
 $jsonFiles = @()
 foreach ($dir in @('.cursor', '.opencode', '.dsh')) {
-    $base = Join-Path $Root $dir
+    $base = if ($dir -eq '') { $Root } else { Join-Path $Root $dir }
     if (-not (Test-Path -LiteralPath $base)) { continue }
     $jsonFiles += Get-ChildItem -LiteralPath $base -Recurse -File -Filter '*.json' -ErrorAction SilentlyContinue |
-        Where-Object { $_.FullName -notmatch '[\\/]node_modules[\\/]' }
+        Where-Object { $_.FullName.Replace($Root, '') -notmatch '[\\/]node_modules[\\/]' }
 }
 foreach ($j in $jsonFiles) {
     try { Get-Content -LiteralPath $j.FullName -Raw -Encoding UTF8 | ConvertFrom-Json | Out-Null }
@@ -341,7 +346,7 @@ $layout = @{
     '.dsh'      = @('skills', 'README.md')
 }
 foreach ($dir in $layout.Keys) {
-    $base = Join-Path $Root $dir
+    $base = if ($dir -eq '') { $Root } else { Join-Path $Root $dir }
     if (-not (Test-Path -LiteralPath $base)) { Add-Error "缺平台目录 $dir"; continue }
     foreach ($item in Get-ChildItem -LiteralPath $base -Force) {
         if ($layout[$dir] -notcontains $item.Name) { Add-Warning "平台目录 $dir 有多余条目：$($item.Name)" }

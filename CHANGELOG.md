@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-06（可选项收尾：自测 / 提交快照 / 跨平台）
+
+- `encoding-guard -Mode push` 改为检查**提交里的内容**：工作区与提交不一致时不再拿错版本（走 `git archive` 取 HEAD blob）
+- `spec-check` 新增 `selftest.ps1`：5 条负例断言（健康副本 / 副本不一致 / 分类漂移 / 坏链 / 盘符路径），CI 每次跑
+- 自测当场修掉校验器自己的一个 bug：原来用「路径含 `temp`」跳过收件箱，导致在 `%TEMP%` 下扫描为空
+- `spec-runtime-maintain` 增「自动化闸门」一节，指向三个脚本
+- STRUCTURE 补 `LICENSE`；CI 增加自测步骤
 ## 2026-11-06（收尾：分类计数 / 绝对路径 / 许可证）
 
 - STRUCTURE 的规则分类改为实际值（common 14 / java 5 / react 5 / vue 5 / typescript 5 / 其它 8），spec-check 新增该分类的漂移检查

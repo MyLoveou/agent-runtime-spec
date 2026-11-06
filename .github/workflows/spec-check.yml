@@ -23,6 +23,10 @@ jobs:
         shell: pwsh
         run: ./.cursor/skills/spec-check/scripts/check-spec.ps1
 
+      - name: spec-check 自测（校验器自己的负例）
+        shell: pwsh
+        run: ./.cursor/skills/spec-check/scripts/selftest.ps1
+
       - name: encoding-guard（问号替字 / mojibake / 非法 UTF-8）
         shell: pwsh
         run: ./.cursor/skills/encoding-guard/scripts/check-encoding.ps1 -Mode files -Path .
