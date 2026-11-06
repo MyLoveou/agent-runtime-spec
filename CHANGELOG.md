@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-06（按项目装配单）
+
+- 新增 `projects/`：每个业务仓一份 `assembly.json`，记录启用的规则 / Skill / Agent；只存名字，不复制资产
+- 新增 `projects/_template/`（复制即用）与 `projects/source-manager/`（示例）
+- `spec-check` 新增装配单校验：引用存在、`include`/`exclude` 不相交、`platforms` 合法、目录名与 `project` 一致
+- `selftest` 增至 6 条断言；链接扫描范围加入 `projects/`
 ## 2026-11-06（video-production：收件箱沉淀成技能）
 
 - 新增 `video-production`：九步流水线 + 四条设计决定 + 8 份 references（流水线 / 数据契约 / 动效 / 字幕 / 口播 / 图片 / 素材获取 / 坑 / infra）

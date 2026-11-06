@@ -1,0 +1,14 @@
+{
+  "project": "example",
+  "role": "一句话说明这个项目是什么",
+  "platforms": ["cursor", "opencode"],
+  "stack": ["typescript"],
+  "rules": {
+    "include": ["project-core", "ai-execution", "workflow-triggers", "common-*"],
+    "exclude": []
+  },
+  "skills": ["project-spec", "code-review-gate", "verification-gate", "encoding-guard", "spec-check"],
+  "agents": ["architect", "code-reviewer"],
+  "entry": ["AGENTS.md", "docs/"],
+  "notes": "复制本目录后改名，并把 project 字段改成目录名"
+}

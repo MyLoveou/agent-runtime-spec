@@ -10,6 +10,7 @@
       3. 改错规则分类计数   -> 期望失败（1）
       4. 塞一个坏链         -> 期望失败（1）
       5. 塞一个盘符绝对路径 -> 期望失败（1）
+      6. 装配单引用不存在的 Skill -> 期望失败（1）
 
     任何一条断言不符，本脚本退出码 1。CI 每次都会跑它。
 
@@ -94,6 +95,22 @@ try {
     & $checker -Root $tmp -Quiet | Out-Null
     Assert-Exit '本机绝对路径应被拦住' 1 $LASTEXITCODE
     [System.IO.File]::WriteAllText($readme, $backup, (New-Object System.Text.UTF8Encoding($false)))
+
+    # 6. 装配单引用不存在的 Skill
+    $projRoot = Join-Path $tmp 'projects'
+    if (Test-Path -LiteralPath $projRoot) {
+        $asmDir = Get-ChildItem -LiteralPath $projRoot -Directory | Where-Object { $_.Name -notlike '_*' } | Select-Object -First 1
+        if ($null -ne $asmDir) {
+            $asmFile = Join-Path $asmDir.FullName 'assembly.json'
+            $asmBackup = [System.IO.File]::ReadAllText($asmFile)
+            $asmObj = $asmBackup | ConvertFrom-Json
+            $asmObj.skills = @($asmObj.skills) + 'no-such-skill'
+            [System.IO.File]::WriteAllText($asmFile, ($asmObj | ConvertTo-Json -Depth 10), (New-Object System.Text.UTF8Encoding($false)))
+            & $checker -Root $tmp -Quiet | Out-Null
+            Assert-Exit '装配单引用不存在的 Skill 应被拦住' 1 $LASTEXITCODE
+            [System.IO.File]::WriteAllText($asmFile, $asmBackup, (New-Object System.Text.UTF8Encoding($false)))
+        }
+    }
 }
 finally {
     Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue

@@ -207,7 +207,7 @@ foreach ($name in $ruleCur) {
 
 # ---------- 4. 相对链接 ----------
 $linkFiles = @()
-foreach ($dir in @('', '.cursor', '.opencode', '.dsh', 'docs')) {
+foreach ($dir in @('', '.cursor', '.opencode', '.dsh', 'docs', 'projects')) {
     $base = if ($dir -eq '') { $Root } else { Join-Path $Root $dir }
     if (-not (Test-Path -LiteralPath $base)) { continue }
     $linkFiles += Get-ChildItem -LiteralPath $base -Recurse -File -ErrorAction SilentlyContinue |
@@ -367,6 +367,52 @@ foreach ($dir in $layout.Keys) {
     }
 }
 
+# ---------- 8. 项目装配单 ----------
+$projRoot = Join-Path $Root 'projects'
+if (Test-Path -LiteralPath $projRoot) {
+    $validPlatforms = @('cursor', 'opencode', 'dsh')
+
+    foreach ($pd in Get-ChildItem -LiteralPath $projRoot -Directory | Where-Object { $_.Name -notlike '_*' }) {
+        $pname = $pd.Name
+        $asmPath = Join-Path $pd.FullName 'assembly.json'
+        if (-not (Test-Path -LiteralPath $asmPath)) { Add-Error "projects/$pname：缺 assembly.json"; continue }
+        if (-not (Test-Path -LiteralPath (Join-Path $pd.FullName 'README.md'))) { Add-Error "projects/$pname：缺 README.md" }
+
+        try { $asm = Get-Content -LiteralPath $asmPath -Raw -Encoding UTF8 | ConvertFrom-Json }
+        catch { Add-Error "projects/$pname/assembly.json 解析失败：$($_.Exception.Message)"; continue }
+
+        if ($asm.project -ne $pname) { Add-Error "projects/$pname：project 字段是 '$($asm.project)'，应与目录名一致" }
+
+        foreach ($pl in @($asm.platforms)) {
+            if ($validPlatforms -notcontains $pl) { Add-Error "projects/$pname：platforms 里的 '$pl' 不合法" }
+        }
+
+        $inc = @()
+        foreach ($pat in @($asm.rules.include)) {
+            if ([string]::IsNullOrWhiteSpace($pat)) { continue }
+            $hits = @($ruleCur | Where-Object { $_ -like $pat })
+            if ($hits.Count -eq 0) { Add-Error "projects/$pname：规则通配 '$pat' 展开为空" }
+            $inc += $hits
+        }
+        $exc = @()
+        foreach ($pat in @($asm.rules.exclude)) {
+            if ([string]::IsNullOrWhiteSpace($pat)) { continue }
+            $exc += @($ruleCur | Where-Object { $_ -like $pat })
+        }
+        foreach ($n in $inc) {
+            if ($exc -contains $n) { Add-Error "projects/$pname：规则 '$n' 同时出现在 include 与 exclude" }
+        }
+
+        foreach ($s in @($asm.skills)) {
+            if ([string]::IsNullOrWhiteSpace($s)) { continue }
+            if ($skillCur -notcontains $s) { Add-Error "projects/$pname：Skill '$s' 不存在" }
+        }
+        foreach ($a in @($asm.agents)) {
+            if ([string]::IsNullOrWhiteSpace($a)) { continue }
+            if ($agentCur -notcontains $a) { Add-Error "projects/$pname：Agent '$a' 不存在" }
+        }
+    }
+}
 # ---------- 输出 ----------
 if (-not $Quiet) {
     Write-Host ''

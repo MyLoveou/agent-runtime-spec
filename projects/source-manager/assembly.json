@@ -1,0 +1,14 @@
+{
+  "project": "source-manager",
+  "role": "Electron + Vue 3 的桌面资源管理器（pnpm workspace）",
+  "platforms": ["cursor", "opencode"],
+  "stack": ["typescript", "vue", "node", "electron"],
+  "rules": {
+    "include": ["project-core", "ai-execution", "workflow-triggers", "common-*", "typescript-*", "vue-*", "frontend-vue"],
+    "exclude": ["java-*", "react-*", "backend-spring", "api-contracts"]
+  },
+  "skills": ["project-spec", "requirements-refinement", "plan-workflow", "code-review-gate", "verification-gate", "eval-harness", "encoding-guard", "spec-check", "knowledge-extract", "search-first"],
+  "agents": ["architect", "planner", "code-reviewer", "frontend-vue-dev", "backend-dev", "qa-engineer"],
+  "entry": ["AGENTS.md", "docs/"],
+  "notes": "Electron 主进程按后端对待；仓库是 pnpm workspace，apps/ 与 packages/ 分层"
+}

@@ -39,6 +39,9 @@
 ├─ temp/                     # 跨仓收件箱（submodule → MyLoveou/temp）
 │  └─ <YYYY-MM-DD-来源-主题>/ 其他项目的要求 / 建议，吸收完即删
 │
+├─ projects/                 # 按项目装配单（只存清单，不存资产副本）
+│  └─ <项目>/assembly.json   启用了哪些规则 / Skill / Agent
+│
 ├─ AGENTS.md                 # 三平台共用入口
 ├─ README.md  STRUCTURE.md  CHANGELOG.md
 ├─ .github/workflows/         # CI：spec-check（结构 + 编码）

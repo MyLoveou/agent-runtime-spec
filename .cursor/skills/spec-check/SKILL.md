@@ -52,7 +52,7 @@ $c = 'skills/spec-check/scripts/check-spec.ps1'
 skills/spec-check/scripts/selftest.ps1
 ```
 
-当前 5 条断言：健康副本通过、Skill 副本不一致、分类计数漂移、坏链、盘符绝对路径。CI 每次都跑；改完 `check-spec.ps1` 必须让自测全过。
+当前 6 条断言：健康副本通过、Skill 副本不一致、分类计数漂移、坏链、盘符绝对路径、装配单引用不存在的资产。CI 每次都跑；改完 `check-spec.ps1` 必须让自测全过。
 ## 豁免
 
 **默认零豁免**：本仓没有豁免文件。确实需要放行时，才在仓库根建 `.speccheck.json`：

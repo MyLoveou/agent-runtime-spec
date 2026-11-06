@@ -14,6 +14,7 @@
 - 已交付：42 条规则、9 个 Agent、19 个 Skill（`project-spec` 家族、需求、规划、验收、`mermaid-diagrams`、`spec-runtime-maintain`、`encoding-guard`、`spec-check`、`video-production`）、4 条工作流、3 个评测样例；Cursor hooks 与 MCP（codegraph / git / ssh）。
 - **编码门禁**：`encoding-guard` 提供 `check-encoding.ps1`（commit / push / files / remote 四种模式）与 `install-hooks.ps1`（pre-commit + pre-push，可 repo 或 global），拦截问号替字、U+FFFD、mojibake。
 - **许可**：MIT（根 `LICENSE`）。
+- **项目装配**：`projects/<项目>/assembly.json` 记录每个业务仓启用的规则 / Skill / Agent；只存名字不存副本，`spec-check` 校验引用与冲突。
 - **结构校验**：`spec-check` 把契约写成判据（资产集合、Skill 三份一致、规则正文、frontmatter、平台前缀、坏链、JSON、文档计数），自带 `selftest.ps1`（5 条负例）并在 CI 跑；本地 pre-push 与 GitHub Actions 双闸；当前零豁免（`.speccheck.json` 已删，`docs/standards` 已占位化）。
 - **尚未实现**：OpenCode 版 hooks（要写 TS plugin）；DSH 侧的规则自动加载（平台不支持，只能靠根 `AGENTS.md`）。
 

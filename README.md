@@ -49,6 +49,16 @@
 
 `temp/` 不属于拷贝单元：它是本仓自己的收件箱，业务仓不需要。
 
+## 按项目装配（`projects/`）
+
+每个业务仓在 `projects/<项目>/assembly.json` 里记一份装配单：启用了哪些规则 / Skill / Agent。**只写名字，不存副本**，也不生成、不同步——作用是让「新项目该拷什么」「本仓改动影响谁」有据可查。
+
+- 新项目：复制 `projects/_template/`，改目录名与 `project` 字段；
+- 校验：`spec-check` 检查引用是否存在、`include`/`exclude` 是否冲突；
+- 示例：`projects/source-manager/`。
+
+细节见 `projects/README.md`。`projects/` 同样不属于拷贝单元：它是本仓的档案，业务仓不需要。
+
 ## 跨项目收件箱（`temp/`）
 
 `temp/` 是 submodule，指向私有仓 `MyLoveou/temp`（跨项目临时沉淀区）。用途：**其他项目把对本仓的要求、建议、跑通的经验丢进去，本仓按需吸收**。
