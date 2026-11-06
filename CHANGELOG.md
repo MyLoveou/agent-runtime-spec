@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-06（video-production：收件箱沉淀成技能）
+
+- 新增 `video-production`：九步流水线 + 四条设计决定 + 8 份 references（流水线 / 数据契约 / 动效 / 字幕 / 口播 / 图片 / 素材获取 / 坑 / infra）
+- 不打包脚本：只写能力需求与判断标准；`infra` 作为可选后端单列
+- `spec-check` 副本比对扩到整个 Skill 目录（含 `references/`），防止多文件技能漏改一个平台
+- 技能数 18 → 19，README / STRUCTURE / AGENTS / facts 同步
 ## 2026-11-06（可选项收尾：自测 / 提交快照 / 跨平台）
 
 - `encoding-guard -Mode push` 改为检查**提交里的内容**：工作区与提交不一致时不再拿错版本（走 `git archive` 取 HEAD blob）

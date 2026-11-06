@@ -135,23 +135,37 @@ Compare-Sets 'evals 集合' $evCur $evOc
 
 # ---------- 2. Skill 三份一致 + frontmatter ----------
 foreach ($name in $skillCur) {
-    $files = @(
-        (Join-Path $Root ".cursor/skills/$name/SKILL.md"),
-        (Join-Path $Root ".opencode/skills/$name/SKILL.md"),
-        (Join-Path $Root ".dsh/skills/$name/SKILL.md")
-    )
-    $missing = @($files | Where-Object { -not (Test-Path -LiteralPath $_) })
-    if ($missing.Count -gt 0) {
-        Add-Error "Skill $name：缺 SKILL.md（$($missing.Count) 处）"
+    $cursorRoot = Join-Path $Root ".cursor/skills/$name"
+    $cursorSkl = Join-Path $cursorRoot 'SKILL.md'
+    if (-not (Test-Path -LiteralPath $cursorSkl)) {
+        Add-Error "Skill $name：缺 SKILL.md"
         continue
     }
 
-    $texts = @($files | ForEach-Object { Get-Norm $_ })
-    if (-not ($texts[0] -eq $texts[1] -and $texts[0] -eq $texts[2])) {
-        Add-Error "Skill $name：三份副本内容不一致"
+    # 目录内所有文件（含 references/ scripts/）都要三份一致
+    $relFiles = @(Get-ChildItem -LiteralPath $cursorRoot -Recurse -File | ForEach-Object {
+        $_.FullName.Substring($cursorRoot.Length).TrimStart('\', '/') -replace '\\', '/'
+    } | Sort-Object)
+
+    foreach ($rel in $relFiles) {
+        $baseText = Get-Norm (Join-Path $cursorRoot $rel)
+        foreach ($plat in '.opencode', '.dsh') {
+            $other = Join-Path $Root "$plat/skills/$name/$rel"
+            if (-not (Test-Path -LiteralPath $other)) { Add-Error "Skill $name：$plat 缺 $rel"; continue }
+            if ((Get-Norm $other) -ne $baseText) { Add-Error "Skill $name：$rel 在 $plat 侧不一致" }
+        }
     }
 
-    $t = $texts[0]
+    foreach ($plat in '.opencode', '.dsh') {
+        $proot = Join-Path $Root "$plat/skills/$name"
+        if (-not (Test-Path -LiteralPath $proot)) { continue }
+        foreach ($pf in Get-ChildItem -LiteralPath $proot -Recurse -File) {
+            $rel = $pf.FullName.Substring($proot.Length).TrimStart('\', '/') -replace '\\', '/'
+            if ($relFiles -notcontains $rel) { Add-Error "Skill $name：$plat 多出 $rel" }
+        }
+    }
+
+    $t = Get-Norm $cursorSkl
     if ($t -notmatch '(?s)^---\n(.*?)\n---') {
         Add-Error "Skill $name：缺 frontmatter"
         continue
