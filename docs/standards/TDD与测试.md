@@ -1,14 +1,13 @@
 # TDD 与测试
 
-> 状态：**已定稿** · {DATE}  
-> 来源：Cursor Skill `/tdd-workflow` · 项目 Rules `common-testing.mdc`  
-> 关联：[工作流索引.md](./工作流索引.md) · [代码审查.md](./代码审查.md)
+> 状态：**样板** —— 复制到业务仓后，按 `{...}` 填本项目的真实命令与目录
+> 关联：`skills/tdd-workflow`（平台提供时）· `rules/common-testing` · [工作流索引.md](./工作流索引.md) · [代码审查.md](./代码审查.md)
 
 ## 1. 何时必须 TDD
 
 | 场景 | TDD |
 |------|-----|
-| 新功能、新 API、新 domain 函数 | **必须** |
+| 新功能、新 API、新核心函数 | **必须** |
 | 修 bug（可复现） | **必须**（先写失败用例） |
 | 重构（行为不变） | 先有测试再改 |
 | 纯文档 / 注释 | 可跳过 |
@@ -18,24 +17,24 @@
 
 | 类型 | 要求 |
 |------|------|
-| **Unit** | 函数、组件逻辑、domain 纯函数 |
-| **Integration** | IPC handler、repository、savePatch 事务 |
-| **E2E** | 关键用户流（新建 → 编辑 → 重启） |
-| **合计** | **≥ 80%**（domain 包重点；见 `common-testing.mdc`） |
+| **Unit** | 函数、组件逻辑、核心纯函数 |
+| **Integration** | 接口 handler、repository、事务 |
+| **E2E** | 关键用户流（{E2E_FLOW}） |
+| **合计** | **≥ 80%**（核心模块重点；见 `rules/common-testing`） |
 
 本项目命令：
 
 ```bash
-{TEST_CMD}                    # Vitest（跑前停 dev；必要时 pnpm rebuild:native:node）
-pnpm exec vitest run packages/domain   # domain 单测
-pnpm exec vitest run electron/main/__tests__   # IPC 冒烟（需 native 与 Electron ABI 一致）
+{TEST_CMD}                 # 全量单测
+{TEST_CMD} {UNIT_DIR}      # 只跑核心模块
+{TEST_CMD} {INTEGRATION_DIR}   # 集成 / 冒烟
 ```
 
 ## 3. RED → GREEN → REFACTOR
 
 ### 3.1 RED（先写测试，禁止先改生产代码）
 
-1. 写用例（描述用户可见行为或 domain 不变量）
+1. 写用例（描述用户可见行为或核心不变量）
 2. 运行测试，**必须失败**
 3. 失败原因须为「缺实现 / 业务 bug」，而非语法错误或无关 setup
 
@@ -54,7 +53,7 @@ pnpm exec vitest run electron/main/__tests__   # IPC 冒烟（需 native 与 Ele
 ### 3.3 REFACTOR
 
 - 测试仍绿的前提下改善命名、去重、提取函数
-- 遵循不可变数据与项目编码风格
+- 遵循不可变数据与项目编码风格（见 [coding-conventions.md](./coding-conventions.md)）
 
 ### 3.4 Git 检查点（仓库可用时）
 
@@ -65,42 +64,42 @@ pnpm exec vitest run electron/main/__tests__   # IPC 冒烟（需 native 与 Ele
 | REFACTOR 完成 | `refactor: clean up after <feature>` |
 
 - 检查点须在当前功能分支、当前任务序列上
-- 用户未要求时不主动 commit（见用户规则）
+- 用户未要求时不主动 commit
 
 ## 4. 测试分层（本项目）
 
 ```
-packages/domain/src/__tests__/     # buildPmDoc, diffPmDoc, orderBlockPatch, …
-electron/main/__tests__/           # IPC smoke（savePatch 往返）
-src/**/__tests__/                  # 前端 util / store（待补充）
-e2e/                               # Playwright 冒烟（v1.0 验收）
+{UNIT_DIR}/            # 核心函数与不变量
+{INTEGRATION_DIR}/     # 接口 / 事务 / IPC 冒烟
+{FRONTEND_TEST_DIR}/   # 前端 util / store / 组件
+{E2E_DIR}/             # 端到端冒烟
 ```
 
-### 4.1 Domain 必测场景
+### 4.1 核心层必测场景
 
-- [ ] `buildPmDoc` ↔ `flattenPmDoc` 往返
-- [ ] `diffPmDoc`：增删改块、codeBlock attrs
-- [ ] `orderBlockPatch`：嵌套 list FK 顺序、reparent delete 顺序
-- [ ] `validateBlockPatchParentRefs`：无效 parent、自引用
+- [ ] `{CORE_FN_1}` 的往返 / 幂等
+- [ ] `{CORE_FN_2}`：增删改、边界输入
+- [ ] `{CORE_FN_3}`：顺序与引用一致性
+- [ ] 无效引用的拒绝路径
 
-### 4.2 IPC / 主进程建议场景
+### 4.2 接口 / 主流程建议场景
 
-- [ ] create doc → savePatch → get 单段落
-- [ ] **建议**：`bulletList > listItem > paragraph` 多块 upsert
-- [ ] savePatch 校验失败返回明确错误码（非裸 `DB_ERROR`）
+- [ ] 创建 → 修改 → 读取 的完整往返
+- [ ] 批量写入（多层级嵌套）的 upsert
+- [ ] 校验失败返回明确错误码（非裸 `DB_ERROR`）
 
 ### 4.3 前端建议场景
 
-- [ ] `reconcileEditorPm` 后 snapshot 与 pmDoc 一致
-- [ ] `load()` loading 期间不丢失 `onEditorUpdate`（待 HIGH 修复后）
+- [ ] 状态重建后与源数据一致
+- [ ] loading 期间不丢弃用户输入
 
 ## 5. 测试编写约定
 
 ### 5.1 命名
 
 ```typescript
-describe('orderBlockPatch', () => {
-  it('upsert 父块先于子块', () => { … })
+describe('formatDate', () => {
+  it('空值返回空串', () => { … })
 })
 ```
 
@@ -114,7 +113,7 @@ describe('orderBlockPatch', () => {
 
 ### 5.4 边界与错误路径
 
-每个公共函数至少覆盖：正常路径、空输入、非法输入、边界（空 patch、环状 parent 等）。
+每个公共函数至少覆盖：正常路径、空输入、非法输入、边界（空集合、环状引用等）。
 
 ## 6. 与审查 / 交付的关系
 
@@ -124,7 +123,7 @@ TDD (RED→GREEN→REFACTOR) → code-review-gate → Bugbot → verification-ga
 
 | 环节 | TDD 相关检查 |
 |------|----------------|
-| code-review-gate | 新逻辑是否有测试；domain ≥ 80% |
+| code-review-gate | 新逻辑是否有测试；核心模块 ≥ 80% |
 | Bugbot | 测试是否覆盖本次 diff 的回归点 |
 | verification-gate | `{TEST_CMD}` 全绿 |
 
@@ -132,8 +131,8 @@ TDD (RED→GREEN→REFACTOR) → code-review-gate → Bugbot → verification-ga
 
 | 信号 | 动作 |
 |------|------|
-| `/tdd-workflow` | 读本规范 → RED → GREEN → REFACTOR |
-| 新功能 / 修 bug | 主动 `@tdd-guide` 或按 §3 执行 |
-| 构建失败 | `@build-error-resolver` / `@java-build-resolver` 等 |
+| 新功能 / 修 bug | 按 §3 执行；测试设计可交给 `qa-engineer` |
+| 构建 / 测试失败 | `build-fix` Skill |
+| 交付前 | `verification-gate` Skill |
 
-Skill 路径（Cursor）：`tdd-workflow` · 项目 Agent `tdd-guide`。
+Skill 路径：`tdd-workflow`（平台提供时）· `qa-engineer`（本库 Agent）· `build-fix`

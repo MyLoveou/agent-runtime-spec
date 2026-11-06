@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-06（docs/standards 占位化，校验零豁免）
+
+- `代码审查.md` / `TDD与测试.md` / `Bugbot审查.md` 去掉业务项目残留（savePatch / TipTap / app-services / `../功能/…`）与失效链接，改为 `{占位符}` 样板
+- 删除 `.speccheck.json`：`spec-check` 从 8 条警告降到 0，进入零豁免
+- 顺带修正样板里引用的 Agent / Skill 名（`vue-reviewer` 等并不存在，改用本库的 `code-reviewer` / `frontend-dev` / `backend-dev` / `qa-engineer` / `build-fix`）
+
 ## 2026-11-06（结构校验自动化）
 
 - 新增 `spec-check` Skill（三份）：校验资产集合、Skill 三份逐字一致、规则正文一致、frontmatter 合法、正文无平台前缀、相对链接、JSON、文档计数、平台目录纯度

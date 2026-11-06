@@ -1,8 +1,7 @@
 # Bugbot 审查
 
-> 状态：**已定稿** · {DATE}  
-> 来源：Cursor Skill `/review-bugbot`  
-> 关联：[代码审查.md](./代码审查.md) · [工作流索引.md](./工作流索引.md)
+> 状态：**样板** —— 平台提供 Bugbot / 缺陷扫描 subagent 时适用；没有就跳过这一环
+> 关联：`skills/review-bugbot`（平台提供时）· [代码审查.md](./代码审查.md) · [工作流索引.md](./工作流索引.md)
 
 Bugbot 是对 **本地 diff** 的自动化缺陷扫描，侧重回归、静默失败、边界条件。与 `code-reviewer`（架构 / 规格）**互补**，不替代人工审查清单。
 
@@ -12,13 +11,13 @@ Bugbot 是对 **本地 diff** 的自动化缺陷扫描，侧重回归、静默�
 |------|-------------|
 | 用户显式要求 | `/review-bugbot` |
 | PR / 合并前 | 与 `code-review-gate` 串联 |
-| 修完 HIGH 项后 | 可选二次 Bugbot（`uncommitted changes`） |
+| 修完 HIGH 项后 | 可选二次扫描（`uncommitted changes`） |
 
-**默认不自动改代码** — Bugbot 只输出发现；修复须另开任务或用户明确要求。
+**默认不自动改代码** —— Bugbot 只输出发现；修复须另开任务或用户明确要求。
 
-## 2.  invocation 规范（Agent）
+## 2. 调用规范（Agent）
 
-启动 **恰好一个** `bugbot` subagent：
+启动 **恰好一个** bugbot 类 subagent：
 
 | 参数 | 值 |
 |------|-----|
@@ -43,7 +42,7 @@ Custom Instructions: <用户专项指令，可选>
 |------|--------|
 | `branch changes` | **默认** — 相对默认基线分支的 merge-base，含已提交 + 暂存 + 未暂存 |
 | `uncommitted changes` | 仅审查工作区脏改动 |
-| `natural language` | git 不可用或 Bugbot 报「无法计算 diff」时的**最后手段** |
+| `natural language` | git 不可用或报「无法计算 diff」时的**最后手段** |
 
 `Change Description` 格式（natural language）：
 
@@ -62,7 +61,7 @@ path/other.ts (added):
 
 ### 2.4 PR / 指定分支
 
-用户指定 PR 或分支时：**先 checkout 目标分支**（冲突则询问是否 stash），再启动 Bugbot。
+用户指定 PR 或分支时：**先 checkout 目标分支**（冲突则询问是否 stash），再启动审查。
 
 ## 3. 输出格式（Agent 汇总给用户）
 
@@ -80,37 +79,37 @@ path/other.ts (added):
 
 | Severity | Location (file:line) | Finding |
 |----------|----------------------|---------|
-| HIGH | `documents.ts:145` | loading 时丢弃 onEditorUpdate |
+| HIGH | `path/to/file.ts:145` | <问题描述> |
 
 ## 4. 与 code-review-gate 分工
 
-| Bugbot | code-reviewer / 代码审查.md |
+| Bugbot | code-reviewer / 代码审查 |
 |--------|----------------------------|
 | diff 驱动、回归、静默 bug | 规格、架构、可维护性 |
 | 短表格式输出 | 审查记录归档到领域规范 |
 | 不修复（除非用户要求） | 可委派修复 |
 
-**推荐顺序：** TDD GREEN 后 → `code-reviewer` → `/review-bugbot` → `verification-gate`
+**推荐顺序：** TDD GREEN 后 → `code-reviewer` → Bugbot → `verification-gate`
 
-## 5. 本项目 Bugbot 自定义指令（编辑器 Phase B）
+## 5. 项目自定义指令（示例）
 
-审查编辑器相关 diff 时，在 `Custom Instructions` 中默认包含：
+审查本项目的 diff 时，在 `Custom Instructions` 里带上本项目的高风险点。示例（复制后按项目改写）：
 
-- loading 态是否导致输入丢失（`documents.ts` · `EditorPane.vue`）
-- savePatch FK / parent 校验 / 环检测
-- 纸面 CSS：padding 是否在 `.editor-pane__body`（非 `.block-editor`）
-- Slash 空列表键盘、菜单定位
-- 对照 [{DOMAIN_SPEC}.md](./{DOMAIN_SPEC}.md) §6 已知 HIGH
+- 状态切换时是否丢用户输入（`{EDITOR_COMPONENT}`）
+- 写入路径的外键 / 引用校验、环检测
+- 关键 CSS 的作用域（避免样式外溢到 `{SCOPE_ROOT}` 之外）
+- 键盘 / 焦点在空列表、菜单打开时的行为
+- 对照 `{DOMAIN_SPEC}` 已知的 HIGH 项
 
 ## 6. 审查记录归档
 
 Bugbot 发现与 code-review 合并去重后：
 
-- **HIGH+** → 写入 [{DOMAIN_SPEC}.md](./{DOMAIN_SPEC}.md) §6 或对应能力交接文档
+- **HIGH+** → 写入 `{DOMAIN_SPEC}` 或对应能力的交接文档
 - 已修复项标注 **已修复** 与日期
 
 ## 7. 限制
 
 - 依赖本地 git；仓库不完整时改用 `natural language`
 - 不替代 `{TEST_CMD}` / 手测
-- Skill 路径（Cursor）：`review-bugbot`
+- Skill 路径：`review-bugbot`（平台提供时）

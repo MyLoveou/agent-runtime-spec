@@ -36,7 +36,7 @@ description: >-
 $c = 'skills/spec-check/scripts/check-spec.ps1'
 & $c                 # 校验（默认取 git 根）
 & $c -Root .         # 指定仓库
-& $c -StrictLinks    # 连「豁免清单里的坏链」也算错误
+& $c -StrictLinks    # 把被豁免的坏链也当错误
 & $c -Quiet          # 只打结论行
 ```
 
@@ -44,16 +44,16 @@ $c = 'skills/spec-check/scripts/check-spec.ps1'
 
 ## 豁免
 
-根目录 `.speccheck.json`：
+**默认零豁免**：本仓没有豁免文件。确实需要放行时，才在仓库根建 `.speccheck.json`：
 
 ```json
 {
-  "ignoreLinkPaths": ["docs/standards/**"]
+  "ignoreLinkPaths": ["some/dir/**"]
 }
 ```
 
-命中 `ignoreLinkPaths` 的坏链降级为警告（可被 `-StrictLinks` 翻回错误）。
-**豁免是暂时的**：修完就从清单里删掉，别让清单变成垃圾桶。
+命中的坏链降级为警告（可被 `-StrictLinks` 翻回错误）。
+**豁免是暂时的**：修完就把条目删掉，整份文件没内容了就删文件。
 
 ## 接进流程
 
@@ -69,7 +69,7 @@ CI 侧见仓根 `.github/workflows/spec-check.yml`：push / PR 自动跑 `check-
 
 1. 判据必须是**可判定的**：能给出「哪个文件、哪条规则、期望 vs 实际」；
 2. 先在真实仓库上跑一遍，确认不误报，再合入；
-3. 有豁免需求时写进 `.speccheck.json`，并注明原因与到期条件；
+3. 确实需要豁免时再建 `.speccheck.json`，注明原因与到期条件，修完即删；
 4. 三份副本同步（本技能自己也要过 `check-spec.ps1`）。
 
 ## 边界

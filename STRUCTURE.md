@@ -41,6 +41,7 @@
 │
 ├─ AGENTS.md                 # 三平台共用入口
 ├─ README.md  STRUCTURE.md  CHANGELOG.md
+├─ .github/workflows/         # CI：spec-check（结构 + 编码）
 ├─ .encodingignore           # 编码校验豁免（示例文档可放行）
 └─ .gitignore
 ```
