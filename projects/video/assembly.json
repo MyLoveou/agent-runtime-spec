@@ -1,0 +1,21 @@
+{
+  "project": "video",
+  "role": "小说推荐类长视频：Remotion 卡片模板 + Python 数据流水线（采集 → 清洗 → 封面 → 点评 → 口播稿 → 配音字幕 → 渲染 → 归档）",
+  "platforms": ["dsh"],
+  "stack": ["python", "typescript", "react", "remotion", "ffmpeg"],
+  "rules": {
+    "include": [],
+    "exclude": []
+  },
+  "skills": [
+    "video-production",
+    "project-spec",
+    "code-review-gate",
+    "verification-gate",
+    "encoding-guard",
+    "knowledge-extract"
+  ],
+  "agents": [],
+  "entry": [],
+  "notes": "DSH 只支持 .dsh/skills（无 rules/agents/mcp），故 rules 与 agents 留空。入口文档保留项目自己的 CLAUDE.md，不从本库覆盖；docs/ 同理。导出为单向：spec → 本项目，业务仓改动不回写。"
+}
