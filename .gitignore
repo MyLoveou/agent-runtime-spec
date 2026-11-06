@@ -13,3 +13,6 @@
 # Python cache
 **/__pycache__/
 *.pyc
+
+# gitmove 本地状态（配置、索引、快照元数据；machine-local）
+.gitmove/
