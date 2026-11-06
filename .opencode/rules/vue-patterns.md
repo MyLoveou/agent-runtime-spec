@@ -1,6 +1,6 @@
 # Vue Patterns
 
-> Extends [typescript/patterns.md](../typescript/patterns.md) and [common/patterns.md](../common/patterns.md).
+> Extends `typescript-patterns` and `common-patterns`.
 
 ## Composition API
 

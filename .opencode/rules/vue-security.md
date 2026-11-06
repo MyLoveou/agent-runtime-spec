@@ -1,6 +1,6 @@
 # Vue Security
 
-> Extends [typescript/security.md](../typescript/security.md) and [common/security.md](../common/security.md).
+> Extends `typescript-security` and `common-security`.
 
 ## XSS
 

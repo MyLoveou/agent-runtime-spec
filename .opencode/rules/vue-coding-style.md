@@ -1,6 +1,6 @@
 # Vue Coding Style
 
-> Extends [typescript/coding-style.md](../typescript/coding-style.md) and [common/coding-style.md](../common/coding-style.md).
+> Extends `typescript-coding-style` and `common-coding-style`.
 
 ## SFC structure
 

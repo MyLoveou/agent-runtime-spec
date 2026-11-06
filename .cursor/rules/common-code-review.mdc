@@ -114,7 +114,7 @@ Use **code-reviewer** after writing or modifying code. Flag auth, input handling
 
 This rule works with:
 
-- [testing.md](testing.md) - Test coverage requirements
-- [security.md](security.md) - Security checklist
-- [git-workflow.md](git-workflow.md) - Commit standards
-- [agents.md](agents.md) - Agent delegation
+- `common-testing` - Test coverage requirements
+- `common-security` - Security checklist
+- `common-git-workflow` - Commit standards
+- `common-agents` - Agent delegation

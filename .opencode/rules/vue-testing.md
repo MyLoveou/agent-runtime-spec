@@ -1,6 +1,6 @@
 # Vue Testing
 
-> Extends [typescript/testing.md](../typescript/testing.md) and [common/testing.md](../common/testing.md).
+> Extends `typescript-testing` and `common-testing`.
 
 ## Stack
 

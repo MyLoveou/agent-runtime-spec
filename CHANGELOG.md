@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-06（修跨平台坏链）
+
+- 规则里的旧路径链接（`testing.md`、`../typescript/testing.md` 等）改成纯规则名（`common-testing`、`typescript-testing`），两个平台都不再断
+- `mcp/README.md` 两版重写：去掉已移除的 knowledge-graph 与「真源在仓库根 `mcp/`」的失效说法；OpenCode 版改为指向 `opencode.json#mcp`
+- 坏链 26 → 8，剩下的都在 `docs/standards/`（业务项目残留引用，待占位化）
+
 ## 2026-11-06（全局运行时清零）
 
 - 清空各平台全局安装：`~/.agents/skills` 386、`~/.cursor/skills` 294、`skills-cursor` 26、rules 121 / commands 94 / agents 67 / hooks 17、`~/.opencode` 210、`~/.config/opencode/skills` 11、`~/.claude/skills` 11
