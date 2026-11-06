@@ -57,7 +57,7 @@
 - 校验：`spec-check` 检查引用是否存在、`include`/`exclude` 是否冲突；
 - 示例：`projects/source-manager/`。
 
-导出工具：`skills/project-assembly/scripts/assemble.ps1 -Project <项目> -Target <业务仓>`（先加 `-DryRun` 看计划）。细节见 `projects/README.md`。`projects/` 同样不属于拷贝单元：它是本仓的档案，业务仓不需要。
+导出工具：`skills/project-assembly/scripts/assemble.ps1 -Project <项目> -Target <业务仓>`（先加 `-DryRun` 看计划）。注意：导出是**单向**的——业务仓里的改动不会回到本仓，也不会自动同步（见 `projects/README.md` 的「已知限制」）。细节见 `projects/README.md`。`projects/` 同样不属于拷贝单元：它是本仓的档案，业务仓不需要。
 
 ## 跨项目收件箱（`temp/`）
 

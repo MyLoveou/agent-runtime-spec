@@ -1,5 +1,10 @@
 # 变更记录
 
+## 2026-11-06（记录导出的单向限制）
+
+- `projects/README.md` 增「已知限制」：单向顺序、冲突不合并、不能跨项目反哺、不接受时别导出
+- `project-assembly` Skill 增同名小节（三份一致）
+- 决策 D-20261106-12：接受该限制，先只记录，不改实现；引用式分发留待以后
 ## 2026-11-06（装配单导出工具）
 
 - 新增 `project-assembly` 技能：`assemble.ps1` 按 `assembly.json` 把规则 / Agent / Skill 子集单向导出到业务仓
