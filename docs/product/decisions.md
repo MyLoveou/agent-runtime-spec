@@ -4,6 +4,14 @@
 
 ## 有效决策
 
+### D-20261107-01 · 外部视频技能只改编、不整包搬运
+
+- 场景：视频项目需要剪辑/字幕/脚本类技能；上游有 [puntorigen/avatar-skills](https://github.com/puntorigen/avatar-skills)（MIT，48 个）与 [varghq/skills](https://github.com/varghq/skills) 的 FFmpeg cookbook
+- **决定**：取方法、重写正文，新增 `video-compose` / `video-shortform-script` / `video-captions` / `video-cut-grammar` 四个 skill；正文平台中立、不含 `~/.cursor` 之类硬编码路径，不打包上游 Python 脚本与云端 API 依赖
+- **不选**：整包 vendor（3 份副本 × 48 技能，且正文违反「平台中立」硬规则）；直接 `npx skills add` 到本仓（会把外部路径与云端 token 依赖写进运行时资产）
+- **归属**：每个 SKILL.md 末尾标注来源与 MIT；FFmpeg 配方重写自 varghq cookbook
+- **配套**：技能数 30 → 34；`projects/video` 装配单加入这四个
+- 状态：有效
 ### D-20261107-02 · oil-ui 只收定方向的方法
 
 - 场景：已有工艺约束，缺一套「新界面先认产品、锁主角、灰度先于配色、用真实画面验收」的方法

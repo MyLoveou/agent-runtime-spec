@@ -1,5 +1,13 @@
 # 变更记录
 
+## 2026-11-07（视频技能补齐：剪辑 / 脚本 / 字幕 / 剪辑判断）
+
+- 新增 `video-compose`：素材分析 → treatment → 音乐 → 节拍 EDL → 预览门 → 标题 → 合片，含 `references/pipeline.md` 与 `references/ffmpeg-recipes.md`
+- 新增 `video-shortform-script`：3 秒钩子、单条主张、节拍表、口播轨、镜头脚本
+- 新增 `video-captions`：逐词字幕的布局冻结、最短停留、烧录/外挂取舍
+- 新增 `video-cut-grammar`：Murch Rule of Six 与可执行 cut sheet
+- 四个都改编自 MIT 来源并标注出处；不打包上游脚本与云端依赖
+- 技能数 30 → 34；`projects/video` 装配单加入这四个
 ## 2026-11-07（oil-ui 的定方向方法）
 
 - 从 oil-oil/oil-ui 接入 `oil-ui`：产品事实、主角、调性、灰度结构、方向卡、真实画面验收
