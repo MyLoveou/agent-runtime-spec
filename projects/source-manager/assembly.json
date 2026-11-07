@@ -7,7 +7,7 @@
     "include": ["project-core", "ai-execution", "workflow-triggers", "common-*", "typescript-*", "vue-*", "frontend-vue"],
     "exclude": ["java-*", "react-*", "backend-spring", "api-contracts"]
   },
-  "skills": ["project-spec", "requirements-refinement", "plan-workflow", "code-review-gate", "verification-gate", "eval-harness", "encoding-guard", "spec-check", "knowledge-extract", "search-first"],
+  "skills": ["project-spec", "project-spec-design", "project-spec-style", "requirements-refinement", "plan-workflow", "code-review-gate", "verification-gate", "eval-harness", "encoding-guard", "spec-check", "knowledge-extract", "search-first", "baseline-ui", "better-ui", "better-layout", "better-typography", "fixing-accessibility", "fixing-motion-performance", "improve-ui", "component-canvas", "create-canvas", "oil-ui"],
   "agents": ["architect", "planner", "code-reviewer", "frontend-vue-dev", "backend-dev", "qa-engineer"],
   "entry": ["AGENTS.md", "docs/"],
   "notes": "Electron 主进程按后端对待；仓库是 pnpm workspace，apps/ 与 packages/ 分层"

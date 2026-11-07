@@ -20,7 +20,7 @@ origin: 项目规范
 
 1. **G0** 读基线。声明 `场景: 改样式`。确认栈：Vue 或 React（本仓可能两者都有，跟文件走）。
 2. **钉范围**：页面/组件路径、要改的属性（间距、色、字号、断点）。列出 **不改**：逻辑、接口、文案语义。
-3. **跟现有语言**：先搜同页/同设计系统的变量、class、theme；禁止另起一套网上「设计系统」。
+3. **跟现有语言**：先搜同页/同设计系统的变量、class、theme；禁止另起一套网上「设计系统」。对照 `baseline-ui`、`better-layout`、`better-typography`、`better-ui`。控件对照 `fixing-accessibility`。已有动效对照 `fixing-motion-performance`。不要为了好看新加动画。
 4. 有 `openspec/` 且改动跨多个组件：
 
 ```bash

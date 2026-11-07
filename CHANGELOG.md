@@ -1,5 +1,18 @@
 # 变更记录
 
+## 2026-11-07（oil-ui 的定方向方法）
+
+- 从 oil-oil/oil-ui 接入 `oil-ui`：产品事实、主角、调性、灰度结构、方向卡、真实画面验收
+- 不收生图脚本、风格对比页生成器、版本检查和完整版推销
+- 确认前仍停在 `project-spec-design`；已有产品不换皮；动效仍默认不加
+- 技能数 29 → 30；`gitmove-v2` 与 `source-manager` 装配单启用
+## 2026-11-07（界面工艺技能）
+
+- 从 ibelick/ui-skills 接入：`baseline-ui`、`fixing-accessibility`、`fixing-motion-performance`、`improve-ui`、`component-canvas`、`create-canvas`
+- 从 jakubkrehel/skills 接入风格与样式：`better-ui`、`better-layout`、`better-typography`（配方保留原文数值）
+- 定观感仍走 `project-spec-design`，只改样式的门禁仍走 `project-spec-style`；`workflow-triggers` 增加界面工艺分流
+- `gitmove-v2` 与 `source-manager` 装配单启用这 9 个技能，并补上 `project-spec-design` / `project-spec-style`
+- 技能数 20 → 29
 ## 2026-11-06（记录导出的单向限制）
 
 - `projects/README.md` 增「已知限制」：单向顺序、冲突不合并、不能跨项目反哺、不接受时别导出

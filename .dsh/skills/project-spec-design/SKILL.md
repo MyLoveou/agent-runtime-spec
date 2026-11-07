@@ -19,7 +19,7 @@ origin: 项目规范
 
 1. **G0** 读基线与已有页面（同产品里已有的密度、色、字，不要换皮成另一款产品）。
 2. 问清：哪一页、给谁用、要解决的观感问题、有无设计稿。缺关键信息就问，不要发明品牌。
-3. 用 [templates/design-direction.md](../project-spec/templates/design-direction.md) 写出方向（层级、色、字、间距、状态、组件拆分）。给 **1 个主方案**；备选最多 1 个，并写为何不选。
+3. 新界面或用户明确要求重做视觉时，方向方法用 `oil-ui`（产品事实、主角、灰度、方向卡）。再用 [templates/design-direction.md](../project-spec/templates/design-direction.md) 记下层级、色、字、间距、状态和组件拆分。默认 **1 个主方案**；用户明确要求比较时才按 `oil-ui` 做多个真正不同的方向。已有页面只是不好看时，沿用现有密度、色和字，不要换皮。方向确认后落地时，工艺约束用 `baseline-ui`、`better-ui`、`better-layout`、`better-typography`。本技能仍只出方向。
 4. Vue / React 分开写落地要点（SFC vs 组件文件），不要混栈。
 5. 有 `openspec/`：可建 `style-direction-<name>` change，`skip_specs: true`；`handoff.md` 状态=`视觉待确认`。
 6. **STOP**，等用户说「按这个做」或指出修改。
