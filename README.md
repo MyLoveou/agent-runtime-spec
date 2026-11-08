@@ -5,6 +5,10 @@
 >
 > [![spec-check](https://github.com/MyLoveou/agent-runtime-spec/actions/workflows/spec-check.yml/badge.svg)](https://github.com/MyLoveou/agent-runtime-spec/actions/workflows/spec-check.yml)
 
+## 版本
+
+当前版本见根 `VERSION`，历史与「版本 ↔ commit」对照见 [docs/releases.md](docs/releases.md)。
+
 ## 目录
 
 ```

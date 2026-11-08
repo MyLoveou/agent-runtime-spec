@@ -34,7 +34,7 @@
 │  ├─ product/facts.md       实现 + 方向
 │  ├─ product/decisions.md   决策记忆
 │  ├─ requirements/features/ 需求 / 设计 / 实现方案
-│  └─ standards/             项目规范样板
+│  ├─ standards/             项目规范样板`n│  └─ releases.md            版本记录
 │
 ├─ temp/                     # 跨仓收件箱（submodule → MyLoveou/temp）
 │  └─ <YYYY-MM-DD-来源-主题>/ 其他项目的要求 / 建议，吸收完即删
@@ -46,7 +46,7 @@
 ├─ README.md  STRUCTURE.md  CHANGELOG.md
 ├─ .github/workflows/         # CI：spec-check（结构 + 编码）
 ├─ .encodingignore           # 编码校验豁免（示例文档可放行）
-├─ LICENSE                    # MIT
+├─ LICENSE                    # MIT`n├─ VERSION                    # 当前版本号（与 git tag 对应）
 └─ .gitignore
 ```
 
