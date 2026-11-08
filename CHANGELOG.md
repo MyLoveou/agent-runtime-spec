@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-08（ComfyUI 出图：技能 + MCP 配置片段，v2.1.0）
+
+- 新增技能 `comfy-workflow`：连接检查 → 工作流即数据 → 提交/轮询/取产物 → 参数与显存纪律 → 失败处理
+- `references/http-api.md`：`/prompt`、`/history`、`/view`、`/upload/image`、`/queue`、`/interrupt`、`/free` 与最小可复现脚本
+- `references/mcp-setup.md`：Cursor 与 OpenCode 的 MCP 片段、验证三步、安全底线；明确「MCP 配置由业务仓自己加」
+- `projects/video` 装配单加入该技能；版本 2.1.0（新增资产，次版本）
+
 ## 2026-11-08（版本 2.0.0：VERSION + 版本记录 + tag 纪律）
 
 - 新增 `VERSION`（2.0.0）与 `docs/releases.md`（版本表 + 打版本步骤）

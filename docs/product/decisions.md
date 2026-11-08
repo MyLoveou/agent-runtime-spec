@@ -4,6 +4,15 @@
 
 ## 有效决策
 
+### D-20261108-04 · ComfyUI 只接方法与配置，不把服务装进仓
+
+- 场景：本机已有 ComfyUI（桌面版，`127.0.0.1:8188`）；agent 需要本地生图能力
+- **决定**：新增技能 `comfy-workflow`（HTTP API + 工作流即数据 + 队列/显存纪律 + 失败表）与 `references/mcp-setup.md`（Cursor / OpenCode 配置片段）；MCP 条目由业务仓自己加，本仓不放
+- **不选**：把 ComfyUI MCP 写进本仓 `mcp.json`（本仓不产图，只会给每次会话加噪音）；把服务或模型权重入库（体积与许可）；整包搬 `Comfy-Org/comfy-skills`（Claude Code 插件形态，绑定 slash command 与云端）
+- **安全**：ComfyUI 默认无鉴权，`/prompt` 可执行任意已装节点，只允许连本地回环实例
+- **落点**：`skills/comfy-workflow`、`projects/video` 装配单
+- 状态：有效
+
 ### D-20261108-03 · 版本用 semver + VERSION + tag，tag 必须推远程
 
 - 场景：仓库有 `v1.0.0` 标签但只在本地，且钉在重构前的提交上；外部工具按「commit → 版本」映射时已经失真

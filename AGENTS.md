@@ -56,6 +56,6 @@
 
 - Cursor：重载窗口，Rules 面板能看到规则，`@architect` 等可调用
 - OpenCode：`opencode debug config`、`opencode debug skill`
-- DSH：新会话的 Skill 目录包含本仓 35 个 Skill
+- DSH：新会话的 Skill 目录包含本仓 36 个 Skill
 
 用户未要求时不 commit / push。

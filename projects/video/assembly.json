@@ -13,6 +13,7 @@
     "video-shortform-script",
     "video-captions",
     "video-cut-grammar",
+    "comfy-workflow",
     "project-spec",
     "code-review-gate",
     "verification-gate",
