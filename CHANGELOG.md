@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-08（经验总结集中到 temp：先搜后写，v2.2.0）
+
+- 位置改为 `temp/经验总结/<项目>/<序号>-<类型>-<主题>.md`；索引 `temp/经验总结/README.md` 按主题分组、标项目
+- 新增硬要求「先搜后写」：同类补充或链接，不新建重复
+- frontmatter 统一 `project` / `type` / `tags` / `date`；拿不到 temp 时写本地并标 `待迁移`
+- 规则 `common-learning-notes`、技能 `learning-notes`、`verification-gate` 三处同步；决策 D-20261108-06
+
 ## 2026-11-08（learning-notes 定为必装，v2.1.3）
 
 - `_template` 与 `gitmove-v2`、`source-manager` 三个装配单补上 `learning-notes`
