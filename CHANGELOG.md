@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-08（推送走分支再合并 main）
+
+- `AGENTS.md` 新增「推送流程」：切分支 → 过闸门 → 推分支 → 合并 main → 删分支
+- 决策 D-20261108-02 记录；`spec-runtime-maintain` 的闸门段补一句
+- 本次改动本身按新流程走：`chore/branch-flow` 分支合并
+
 ## 2026-11-08（交付后经验总结：规则 + 技能）
 
 - 新增规则 `common-learning-notes`（alwaysApply）：交付后必须在 `docs/经验总结/` 写一条笔记
