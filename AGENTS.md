@@ -26,6 +26,20 @@
 
 细则与发布自检见 `spec-runtime-maintain` Skill（三个平台目录各一份）。
 
+## 推送流程（避免并发冲突）
+
+> 默认分支是 `main`（自动化里也叫 master）。**不直接往 main 推。**
+
+1. 从最新 main 切分支：`git switch -c feat/<主题>`（修复用 `fix/<主题>`，文档用 `docs/<主题>`）
+2. 改完先过闸门：`spec-check` + `encoding-guard`
+3. 推分支：`git push -u origin feat/<主题>`
+4. 合并回 main：`git switch main && git pull --ff-only` → `git merge --no-ff feat/<主题>` → 再跑一次闸门 → `git push`
+5. 合并后删分支：`git branch -d feat/<主题>`，远程分支一并删
+6. 一条分支只做一次交付；长任务拆成多次小合并
+
+远程 main 有新提交时，先 rebase 分支再合并——**冲突在分支里解，不把冲突留到 main**。
+
+
 ## 读什么
 
 | 场景 | 先读 |

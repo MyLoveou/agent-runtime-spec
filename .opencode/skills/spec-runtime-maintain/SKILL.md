@@ -151,3 +151,5 @@ skills/spec-check/scripts/selftest.ps1        # 校验器自测（改过校验�
 ```
 
 失败就修，别绕过：本仓没有豁免文件，`spec-check` 的判据就是本 Skill 第 1–7 节的可执行版本。
+
+推送走分支：`git switch -c feat/<主题>` → push 分支 → 合并 `main`，不直推 main（流程见根 `AGENTS.md`）。
