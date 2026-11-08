@@ -1,0 +1,24 @@
+{
+  "project": "aitrain",
+  "role": "模型训练仓：角色数据集 → LoRA 训练 → 评测，产出 .safetensors 交给 AI视频 项目使用",
+  "platforms": ["dsh"],
+  "stack": ["python", "sd-scripts", "kohya", "sdxl", "illustrious", "comfyui"],
+  "rules": {
+    "include": [],
+    "exclude": []
+  },
+  "skills": [
+    "comfy-workflow",
+    "eval-harness",
+    "project-spec",
+    "code-review-gate",
+    "verification-gate",
+    "encoding-guard",
+    "knowledge-extract",
+    "search-first",
+    "learning-notes"
+  ],
+  "agents": [],
+  "entry": [],
+  "notes": "训练向装配：不做剪辑 / 分镜（在 projects/aivideo）。评测图走 ComfyUI HTTP API，故保留 comfy-workflow；eval-harness 用来把「这个 LoRA 好不好」变成可判定的固定提示词 × 种子 × 评判标准。DSH 只支持 .dsh/skills，故 rules/agents 留空。训练环境在仓外（可再生），数据集与 LoRA 体积大、不进 git。导出单向：spec → 本项目。"
+}

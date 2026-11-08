@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-08（AI 视频 / AI 训练 装配单补齐，v2.1.2）
+
+- `projects/aivideo`：加 `comfy-workflow`（工具直接打 `/prompt`）与 `learning-notes`（DSH 无规则机制）
+- `projects/aitrain`：加 `comfy-workflow`（评测图走 ComfyUI API）、`eval-harness`（把 LoRA 好坏变成可判定）、`learning-notes`
+- 两个 README 各加「本次补装」表说明原因
+- dry-run 对照：aivideo 新增 7 文件 / 1 处内容差异（`verification-gate` 已加经验总结检查项）；aitrain 新增 8 文件
+
 ## 2026-11-08（ComfyUI：自定义工作流文档 + 模板，v2.1.1）
 
 - `comfy-workflow` 新增 `references/workflow-authoring.md`：UI/API 两种格式、导出步骤、节点 id 稳定性、参数注入点、提交前两道自检、版本化约定、错误对照
