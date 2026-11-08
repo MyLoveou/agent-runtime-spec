@@ -6,6 +6,7 @@
 
 | 版本 | 日期 | 摘要 |
 |------|------|------|
+| **2.1.2** | 2026-11-08 | `aivideo` / `aitrain` 装配单补齐 `comfy-workflow`、`learning-notes`；`aitrain` 加 `eval-harness` |
 | **2.1.1** | 2026-11-08 | `comfy-workflow` 补「自定义工作流」文档与可跑模板（含 `VAEDecode` 缺节点坑） |
 | **2.1.0** | 2026-11-08 | 新增 `comfy-workflow`（ComfyUI 本地出图：HTTP API + MCP 配置片段）；技能 36 个 |
 | **2.0.0** | 2026-11-08 | 三平台自包含重构（规则 / Agent / Skill 分别成目录）；删 `domains/`、生成与同步脚本；规则 43 / Agent 9 / Skill 35；CI 结构 + 编码门禁；项目装配单与单向导出；视频剪辑四件套；交付后经验总结规范 |
