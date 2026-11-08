@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-08（ComfyUI：自定义工作流文档 + 模板，v2.1.1）
+
+- `comfy-workflow` 新增 `references/workflow-authoring.md`：UI/API 两种格式、导出步骤、节点 id 稳定性、参数注入点、提交前两道自检、版本化约定、错误对照
+- 新增 `templates/txt2img-sdxl.json`：6 节点最小可跑模板（含 `VAEDecode`，实测 832×1216 出图）
+- 文档记录了实测踩到的第一个坑：`KSampler → SaveImage` 缺 `VAEDecode` 会报 `return_type_mismatch`
+- SKILL.md 的「细节」段补上两处入口；三平台同步
+
 ## 2026-11-08（ComfyUI 出图：技能 + MCP 配置片段，v2.1.0）
 
 - 新增技能 `comfy-workflow`：连接检查 → 工作流即数据 → 提交/轮询/取产物 → 参数与显存纪律 → 失败处理

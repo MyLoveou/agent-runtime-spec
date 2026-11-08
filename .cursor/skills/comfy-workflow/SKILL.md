@@ -93,3 +93,5 @@ ComfyUI 默认**无鉴权**，`/prompt` 能执行任何已安装节点（含写�
 
 - 接口、请求体、错误结构：[references/http-api.md](references/http-api.md)
 - MCP 配置（Cursor / OpenCode）与验证：[references/mcp-setup.md](references/mcp-setup.md)
+- 自己制作 / 导出 / 参数化工作流：[references/workflow-authoring.md](references/workflow-authoring.md)
+- 可直接跑的最小模板（SDXL text2img）：[templates/txt2img-sdxl.json](templates/txt2img-sdxl.json)
