@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-08（infra 接入，v2.4.0）
+
+- 新增 `projects/infra`：30 条规则（common-* / typescript-* / vue-* / api-contracts / docs-maintenance）、26 个技能、7 个 Agent，cursor + dsh
+- 首次导出 175 个文件到工作区根；`AGENTS.md` 不在 entry 里，未被覆盖
+- 决策 D-20261108-08：资产放工作区根；已知成员仓单独打开时看不到
+- 注意：dry-run 曾把 `AGENTS.md` 列进 entry 导致 1 处 diff，已改为空
+
 ## 2026-11-08（资源管理器接入，v2.3.0）
 
 - 新增 `projects/resmgr`：30 条规则（common-* / vue-* / typescript-* / api-contracts / docs-maintenance）、25 个技能、6 个 Agent，cursor + opencode 双平台

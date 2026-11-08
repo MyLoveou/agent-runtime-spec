@@ -4,6 +4,15 @@
 
 ## 有效决策
 
+### D-20261108-08 · infra 接入，资产放工作区根
+
+- 场景：infra 是 workspace 仓（9 个成员仓被 gitignore 排除），根目录只有 `workspace.toml` 与 `AGENTS.md`，没有任何平台资产
+- **决定**：新增 `projects/infra`（30 规则 / 26 技能 / 7 Agent，cursor + dsh），资产装在工作区根；首次导出 175 个文件
+- **不选**：给 9 个成员仓各建一份（维护 9 份，且成员多为单一职责，收益低）；`AGENTS.md` 纳入 entry（那是它自己的真源，导出会覆盖）
+- **已知限制**：成员仓单独打开时看不到根目录的 `.cursor/`、`.dsh/`；需要时对具体成员单独导出
+- **落点**：`projects/infra/{assembly.json,README.md}`；`entry` 留空
+- 状态：有效
+
 ### D-20261108-07 · resmgr 接入，走拷贝式分发
 
 - 场景：让资源管理器拉到本库最新后不生效——它从未接入（无 rules / 无 AGENTS.md / 无装配单）
