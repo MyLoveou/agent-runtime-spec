@@ -4,6 +4,15 @@
 
 ## 有效决策
 
+### D-20261108-06 · 经验总结集中到 temp，先搜后写
+
+- 场景：每个项目都写自己的 `docs/经验总结/`，同一个坑在 N 个项目重复 N 遍，互相看不到
+- **决定**：笔记统一放 `temp/经验总结/<项目>/<序号>-<类型>-<主题>.md`；写前先搜，同类补充或链接；索引 `temp/经验总结/README.md` 按主题分组、每行标项目；frontmatter 带 `project` / `type` / `tags` / `date`
+- **不选**：各项目本地存（现状，重复且不可检索）；本仓 `docs/` 存（跨项目不可达，且会随导出分散）
+- **降级**：拿不到 temp 时写项目本地并标 `待迁移`，不要长期分散
+- **落点**：`rules/common-learning-notes`、`skills/learning-notes`、`verification-gate`
+- 状态：有效
+
 ### D-20261108-05 · `learning-notes` 是必装技能
 
 - 场景：经验总结此前只对三个 DSH 项目生效；`gitmove-v2`、`source-manager` 与新项目模板都漏装

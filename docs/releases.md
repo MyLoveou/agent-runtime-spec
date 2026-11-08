@@ -6,6 +6,7 @@
 
 | 版本 | 日期 | 摘要 |
 |------|------|------|
+| **2.2.0** | 2026-11-08 | 经验总结改为集中存 temp（`temp/经验总结/<项目>/`），先搜后写防重复；规则 / 技能 / 门禁同步 |
 | **2.1.3** | 2026-11-08 | `learning-notes` 定为必装技能；模板与 `gitmove-v2` / `source-manager` 补齐；`spec-check` 强制校验 |
 | **2.1.2** | 2026-11-08 | `aivideo` / `aitrain` 装配单补齐 `comfy-workflow`、`learning-notes`；`aitrain` 加 `eval-harness` |
 | **2.1.1** | 2026-11-08 | `comfy-workflow` 补「自定义工作流」文档与可跑模板（含 `VAEDecode` 缺节点坑） |

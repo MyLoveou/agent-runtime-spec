@@ -62,7 +62,7 @@ origin: 项目规范
 - 改过的代码符合 `comments` 规则
 - OpenSpec change：`tests.md` 记录为 PASS，`handoff.md` 已更新
 - 复杂需求：`设计.md` / `实现方案.md` 仍与代码同范围
-- 经验总结：`docs/经验总结/` 新增一条（结论 + 原理 + 可验证实验），见 `skills/learning-notes`
+- 经验总结：`temp/经验总结/<项目>/` 新增一条（先搜后写；结论 + 原理 + 可验证实验），见 `skills/learning-notes`
 
 ## 阶段 6：仓库卫生
 
