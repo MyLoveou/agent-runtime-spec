@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-08（资源管理器接入，v2.3.0）
+
+- 新增 `projects/resmgr`：30 条规则（common-* / vue-* / typescript-* / api-contracts / docs-maintenance）、25 个技能、6 个 Agent，cursor + opencode 双平台
+- 首次导出 206 个文件到业务仓；OpenCode 补 `opencode.json`（4 条常驻入口规则），否则 `.opencode/rules` 不生效
+- 决策 D-20261108-07：走拷贝式，源仓更新后需重跑导出
+- 遗留：该仓 52 篇 `docs/经验总结` 待迁 temp（需先挂 temp）
+
 ## 2026-11-08（经验总结集中到 temp：先搜后写，v2.2.0）
 
 - 位置改为 `temp/经验总结/<项目>/<序号>-<类型>-<主题>.md`；索引 `temp/经验总结/README.md` 按主题分组、标项目

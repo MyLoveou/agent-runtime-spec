@@ -1,0 +1,40 @@
+{
+  "project": "resmgr",
+  "role": "本地资源管理器：Electron 桌面端 + Vue 3 前端 + Python 后端，管理本地媒体库（扫描、分页、虚拟滚动、智能导入）",
+  "platforms": ["cursor", "opencode"],
+  "stack": ["electron", "vue3", "typescript", "python", "sqlite"],
+  "rules": {
+    "include": ["project-core", "ai-execution", "workflow-triggers", "common-*", "vue-*", "typescript-*", "api-contracts", "docs-maintenance"],
+    "exclude": []
+  },
+  "skills": [
+    "project-spec",
+    "project-spec-design",
+    "project-spec-style",
+    "requirements-refinement",
+    "plan-workflow",
+    "code-review-gate",
+    "verification-gate",
+    "eval-harness",
+    "encoding-guard",
+    "spec-check",
+    "knowledge-extract",
+    "search-first",
+    "dynamic-workflow-mode",
+    "baseline-ui",
+    "better-ui",
+    "better-layout",
+    "better-typography",
+    "fixing-accessibility",
+    "fixing-motion-performance",
+    "improve-ui",
+    "component-canvas",
+    "create-canvas",
+    "oil-ui",
+    "mermaid-diagrams",
+    "learning-notes"
+  ],
+  "agents": ["architect", "planner", "code-reviewer", "frontend-vue-dev", "backend-dev", "qa-engineer"],
+  "entry": [],
+  "notes": "桌面端按 Cursor / OpenCode 双平台接入；不带 java-* 与 react-*（后端是 Python，前端是 Vue）。entry 留空：该仓暂无 AGENTS.md，入口文档由它自己维护。经验总结按 v2.2.0 规范应迁到 temp/经验总结/resmgr/——该仓还没挂 temp，未挂载前按「本地 + 待迁移」降级。"
+}
