@@ -7,7 +7,7 @@
     "include": ["project-core", "ai-execution", "workflow-triggers", "docs-maintenance", "common-*", "typescript-*", "vue-*", "frontend-vue"],
     "exclude": ["java-*", "react-*", "backend-spring", "api-contracts"]
   },
-  "skills": ["project-spec", "project-spec-design", "project-spec-style", "requirements-refinement", "plan-workflow", "code-review-gate", "verification-gate", "eval-harness", "build-fix", "encoding-guard", "spec-check", "knowledge-extract", "search-first", "dynamic-workflow-mode", "baseline-ui", "better-ui", "better-layout", "better-typography", "fixing-accessibility", "fixing-motion-performance", "improve-ui", "component-canvas", "create-canvas", "oil-ui"],
+  "skills": ["project-spec", "project-spec-design", "project-spec-style", "requirements-refinement", "plan-workflow", "code-review-gate", "verification-gate", "eval-harness", "build-fix", "encoding-guard", "spec-check", "knowledge-extract", "search-first", "dynamic-workflow-mode", "baseline-ui", "better-ui", "better-layout", "better-typography", "fixing-accessibility", "fixing-motion-performance", "improve-ui", "component-canvas", "create-canvas", "oil-ui", "learning-notes"],
   "agents": ["architect", "planner", "code-reviewer", "frontend-vue-dev", "backend-dev", "qa-engineer"],
   "entry": [],
   "notes": "AGENTS.md 与 docs/ 保留项目自己的（已有工作约定、ADR、需求文档），不从本库覆盖；Rust 侧本库暂无对应规则"

@@ -4,6 +4,14 @@
 
 ## 有效决策
 
+### D-20261108-05 · `learning-notes` 是必装技能
+
+- 场景：经验总结此前只对三个 DSH 项目生效；`gitmove-v2`、`source-manager` 与新项目模板都漏装
+- **决定**：每个装配单的 `skills` 必须含 `learning-notes`；`spec-check` 强制校验（缺即报错），`selftest` 增加对应负例；`_template` 默认带上
+- **不选**：靠人记得加（这次就是漏的例子）；只在 `_template` 加而不校验（存量项目照旧漏）
+- **注意**：Cursor / OpenCode 另有同名规则（alwaysApply / instructions），两边不冲突——规则管「必须写」，技能管「怎么写」
+- 状态：有效
+
 ### D-20261108-04 · ComfyUI 只接方法与配置，不把服务装进仓
 
 - 场景：本机已有 ComfyUI（桌面版，`127.0.0.1:8188`）；agent 需要本地生图能力

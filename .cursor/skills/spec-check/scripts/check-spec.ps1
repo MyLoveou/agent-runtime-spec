@@ -407,6 +407,9 @@ if (Test-Path -LiteralPath $projRoot) {
             if ([string]::IsNullOrWhiteSpace($s)) { continue }
             if ($skillCur -notcontains $s) { Add-Error "projects/$pname：Skill '$s' 不存在" }
         }
+        if (@($asm.skills) -notcontains 'learning-notes') {
+            Add-Error "projects/$pname：缺必装 Skill 'learning-notes'（交付后的经验总结）"
+        }
         foreach ($a in @($asm.agents)) {
             if ([string]::IsNullOrWhiteSpace($a)) { continue }
             if ($agentCur -notcontains $a) { Add-Error "projects/$pname：Agent '$a' 不存在" }
