@@ -6,6 +6,7 @@
 
 | 版本 | 日期 | 摘要 |
 |------|------|------|
+| **2.1.3** | 2026-11-08 | `learning-notes` 定为必装技能；模板与 `gitmove-v2` / `source-manager` 补齐；`spec-check` 强制校验 |
 | **2.1.2** | 2026-11-08 | `aivideo` / `aitrain` 装配单补齐 `comfy-workflow`、`learning-notes`；`aitrain` 加 `eval-harness` |
 | **2.1.1** | 2026-11-08 | `comfy-workflow` 补「自定义工作流」文档与可跑模板（含 `VAEDecode` 缺节点坑） |
 | **2.1.0** | 2026-11-08 | 新增 `comfy-workflow`（ComfyUI 本地出图：HTTP API + MCP 配置片段）；技能 36 个 |

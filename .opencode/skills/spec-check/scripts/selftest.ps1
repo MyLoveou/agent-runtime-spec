@@ -96,6 +96,22 @@ try {
     Assert-Exit '本机绝对路径应被拦住' 1 $LASTEXITCODE
     [System.IO.File]::WriteAllText($readme, $backup, (New-Object System.Text.UTF8Encoding($false)))
 
+    # 6b. 装配单缺必装 Skill（learning-notes）
+    $asmDir2 = $null
+    if (Test-Path -LiteralPath (Join-Path $tmp 'projects')) {
+        $asmDir2 = Get-ChildItem -LiteralPath (Join-Path $tmp 'projects') -Directory | Where-Object { $_.Name -notlike '_*' } | Select-Object -First 1
+    }
+    if ($null -ne $asmDir2) {
+        $asmFile2 = Join-Path $asmDir2.FullName 'assembly.json'
+        $backup2 = [System.IO.File]::ReadAllText($asmFile2)
+        $obj2 = $backup2 | ConvertFrom-Json
+        $obj2.skills = @($obj2.skills | Where-Object { $_ -ne 'learning-notes' })
+        [System.IO.File]::WriteAllText($asmFile2, ($obj2 | ConvertTo-Json -Depth 10), (New-Object System.Text.UTF8Encoding($false)))
+        & $checker -Root $tmp -Quiet | Out-Null
+        Assert-Exit '装配单缺 learning-notes 应被拦住' 1 $LASTEXITCODE
+        [System.IO.File]::WriteAllText($asmFile2, $backup2, (New-Object System.Text.UTF8Encoding($false)))
+    }
+
     # 6. 装配单引用不存在的 Skill
     $projRoot = Join-Path $tmp 'projects'
     if (Test-Path -LiteralPath $projRoot) {

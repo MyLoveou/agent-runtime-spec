@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-08（learning-notes 定为必装，v2.1.3）
+
+- `_template` 与 `gitmove-v2`、`source-manager` 三个装配单补上 `learning-notes`
+- `spec-check` 新增强制判据：装配单缺 `learning-notes` 直接报错
+- `selftest` 增至 7 条断言（新增「去掉必装技能应被拦」）
+- 决策 D-20261108-05 记录：规则管「必须写」，技能管「怎么写」
+
 ## 2026-11-08（AI 视频 / AI 训练 装配单补齐，v2.1.2）
 
 - `projects/aivideo`：加 `comfy-workflow`（工具直接打 `/prompt`）与 `learning-notes`（DSH 无规则机制）

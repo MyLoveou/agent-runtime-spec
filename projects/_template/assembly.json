@@ -7,7 +7,7 @@
     "include": ["project-core", "ai-execution", "workflow-triggers", "common-*"],
     "exclude": []
   },
-  "skills": ["project-spec", "code-review-gate", "verification-gate", "encoding-guard", "spec-check"],
+  "skills": ["project-spec", "code-review-gate", "verification-gate", "encoding-guard", "spec-check", "learning-notes"],
   "agents": ["architect", "code-reviewer"],
   "entry": ["AGENTS.md", "docs/"],
   "notes": "复制本目录后改名，并把 project 字段改成目录名"
