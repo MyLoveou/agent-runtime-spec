@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-08（temp 统一挂载，v2.5.0）
+
+- temp 收件箱改为「一份 clone + 本地 junction」：6 个业务仓已挂载并通过 `.gitignore` 忽略
+- 本库移除 temp submodule 与 `.gitmodules`（submodule 会让每仓各一份，已实际分叉）
+- 合流分叉历史：`5e04cc2`（本地）与 `c669704`（只在副本里）合并，救回 AI视频 10 篇笔记，推送 `bf96278`
+- 规则与技能同步说明挂载方式；决策 D-20261108-09
+
 ## 2026-11-08（infra 接入，v2.4.0）
 
 - 新增 `projects/infra`：30 条规则（common-* / typescript-* / vue-* / api-contracts / docs-maintenance）、26 个技能、7 个 Agent，cursor + dsh

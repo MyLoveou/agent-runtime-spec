@@ -12,7 +12,7 @@
 | `.opencode/` | OpenCode：`opencode.json` / `rules`（`.md`）/ `agent` / `skills` / `workflows` / `evals` / `mcp` |
 | `.dsh/` | DeepSeek Harness：只有 `skills`（平台只支持这个） |
 | `docs/` | 本仓自身：事实基线、决策记忆、需求与设计、项目规范样板 |
-| `temp/` | 跨仓收件箱（submodule → `MyLoveou/temp`）：其他项目对本仓的要求 / 建议。只读进来，不进拷贝单元 |
+| `temp/` | 跨仓收件箱（本地 junction → `MyLoveou/temp` 的唯一 clone）：经验总结与跨项目沉淀都在这里。不进拷贝单元，不跟踪 |
 | `projects/` | 按项目装配单：每个业务仓启用了哪些规则 / Skill / Agent（只存名字，不存副本） |
 | `README.md` | 三平台怎么拷到业务仓、怎么新增资产 |
 | `STRUCTURE.md` | 目录树与平台差异 |

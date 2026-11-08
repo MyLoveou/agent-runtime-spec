@@ -4,6 +4,14 @@
 
 ## 有效决策
 
+### D-20261108-09 · temp 用「一份 clone + junction」统一挂载，弃用 submodule
+
+- 场景：AI视频、AI训练、本库各有一份 temp 副本，且历史已经分叉（`5e04cc2` vs `c669704`，后者只在本地）；AI视频/AI训练 的 temp 还是坏掉的 submodule 残留（`.git` 指向不存在的 `.git/modules/temp`）
+- **决定**：全机只留一份 temp clone（本机固定路径）；各仓用 `mklink /J <仓>\temp <temp clone 路径>` 挂载并写进 `.gitignore`；本库移除 temp submodule 与 `.gitmodules`
+- **不选**：submodule（每仓一份副本 → 分叉，这次就是这么坏掉的）；直接各仓 clone（同样分叉）
+- **已处理**：先把分叉的历史合流（`bf96278`），救回 AI视频 10 篇笔记；6 个业务仓已挂载并提交 `.gitignore`（infra 处于 detached HEAD，只改文件未提交）
+- 状态：有效
+
 ### D-20261108-08 · infra 接入，资产放工作区根
 
 - 场景：infra 是 workspace 仓（9 个成员仓被 gitignore 排除），根目录只有 `workspace.toml` 与 `AGENTS.md`，没有任何平台资产

@@ -35,8 +35,10 @@ frontmatter 至少写 `project` / `type` / `tags` / `date`——跨项目检索�
 
 ## 项目怎么拿到 temp
 
-- 业务仓把 temp 作为 submodule（或本地链接）挂进来；
-- 拿不到时：先写项目本地 `docs/经验总结/`，标题标 `待迁移`，下次有 temp 时移过去；不要长期分散。
+全机只保留**一份** temp 工作副本，各仓用**本地 junction** 挂到 `<仓>/temp`（Windows: `mklink /J`），并写进 `.gitignore`。
+不再用 submodule（本库已移除）——submodule 会让每个仓各拿一份副本，最后分叉。
+
+- 拿不到时：先写项目本地 `docs/经验总结/`，标题标 `待迁移`，下次挂上 temp 时移过去；不要长期分散。
 
 ## 红线
 
