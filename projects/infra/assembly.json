@@ -1,0 +1,41 @@
+{
+  "project": "infra",
+  "role": "二方基础能力库（workspace 仓）：9 个成员仓，Python 包（core / platforms / service / media / audio / toolbox / bundle）+ 两个前端包（@infra/vue、@infra/video）",
+  "platforms": ["cursor", "dsh"],
+  "stack": ["python", "fastapi", "httpx", "vue3", "typescript", "remotion"],
+  "rules": {
+    "include": ["project-core", "ai-execution", "workflow-triggers", "common-*", "typescript-*", "vue-*", "api-contracts", "docs-maintenance"],
+    "exclude": []
+  },
+  "skills": [
+    "project-spec",
+    "project-spec-design",
+    "project-spec-style",
+    "requirements-refinement",
+    "plan-workflow",
+    "code-review-gate",
+    "verification-gate",
+    "eval-harness",
+    "encoding-guard",
+    "spec-check",
+    "knowledge-extract",
+    "search-first",
+    "dynamic-workflow-mode",
+    "baseline-ui",
+    "better-ui",
+    "better-layout",
+    "better-typography",
+    "fixing-accessibility",
+    "fixing-motion-performance",
+    "improve-ui",
+    "component-canvas",
+    "create-canvas",
+    "oil-ui",
+    "mermaid-diagrams",
+    "learning-notes",
+    "project-assembly"
+  ],
+  "agents": ["architect", "planner", "code-reviewer", "frontend-vue-dev", "backend-dev", "qa-engineer", "doc-sync"],
+  "entry": [],
+  "notes": "workspace 仓：9 个成员仓被 .gitignore 排除，各自独立发布；本装配单只作用于工作区根目录。不带 java-*（Python 后端）与 react-*（前端是 Vue）。rules 里没有 Python 专用规则，Python 成员靠 common-* 兜底。成员仓单独打开时看不到根目录的 .cursor/.dsh——需要时对具体成员单独导出。project-assembly 用于把能力库的子集再分发给消费方。entry 留空：工作区的 AGENTS.md 是它自己的真源，不从本库覆盖。"
+}
