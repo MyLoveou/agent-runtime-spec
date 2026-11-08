@@ -82,3 +82,27 @@
 - [ ] 封面文件与条目一一对应，无缺图
 - [ ] 视频素材已确认无硬字幕（或已按上面顺序处理）
 - [ ] 来源链接已留痕
+
+## 编码兼容性：下载就选 H.264 + AAC
+
+YouTube 默认返回 **VP9 或 AV1 视频 + Opus 音频**；装进 mp4 容器后扩展名是 `.mp4`，
+但 **Premiere / PR 打不开**，报「文件类型不支持」。
+
+| 组合 | Premiere |
+|---|---|
+| H.264 + AAC（mp4） | 原生支持 |
+| VP9（mp4 或 webm） | 不支持 |
+| AV1（mp4） | 新版支持，旧版不支持 |
+| Opus 音频 | 不支持 |
+
+下载时显式指定流，别用 `bv*+ba`：
+
+```
+-f "bv*[height<=1080][vcodec^=avc1]+ba[acodec^=mp4a]"
+```
+
+代价：H.264 档码率略低于 VP9，体积反而更小，画质肉眼无差。
+若已经下完才发现：`ffmpeg -i in.mp4 -c:v libx264 -crf 20 -c:a aac out.mp4` 重编码，
+但会二次压缩、体积翻倍，能重下就重下。
+
+**验收**：`ffprobe -show_entries stream=codec_name` 应看到 `h264` + `aac`。
