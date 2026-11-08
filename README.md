@@ -10,22 +10,22 @@
 ```
 .
 ├─ .cursor/          # Cursor 运行时（完整）
-│  ├─ rules/*.mdc          42 条
+│  ├─ rules/*.mdc          43 条
 │  ├─ agents/*.md          9 个
-│  ├─ skills/<name>/       34 个
+│  ├─ skills/<name>/       35 个
 │  ├─ workflows/  evals/
 │  ├─ hooks/hooks.json
 │  ├─ mcp.json  mcp/
 │  └─ constraints.md
 ├─ .opencode/        # OpenCode 运行时（完整）
 │  ├─ opencode.json        instructions + mcp
-│  ├─ rules/*.md           42 条（正文同 Cursor）
+│  ├─ rules/*.md           43 条（正文同 Cursor）
 │  ├─ agent/*.md           9 个
-│  ├─ skills/<name>/       34 个
+│  ├─ skills/<name>/       35 个
 │  ├─ workflows/  evals/  mcp/
 │  └─ constraints.md
 ├─ .dsh/             # DeepSeek Harness：只有 skills/
-│  ├─ skills/<name>/       34 个
+│  ├─ skills/<name>/       35 个
 │  └─ README.md            平台限制说明
 ├─ AGENTS.md         # 三平台共用入口
 ├─ docs/             # 本仓自身文档
@@ -105,7 +105,7 @@ skills/spec-check/scripts/install-hook.ps1          # 装 pre-push
 | Hooks | `hooks.json` | 不移植（要写 TS plugin） | 无 |
 | MCP | `mcp.json` | `opencode.json` 的 `mcp` | 全局配置，无项目级 |
 
-OpenCode 只把 6 个入口规则放进 `instructions`（`project-core`、`ai-execution`、`workflow-triggers`、`common-openspec` + `AGENTS.md` + `constraints.md`），其余 36 条按需读——全塞进去每次会话多烧约 15k tokens。
+OpenCode 只把 7 个入口规则放进 `instructions`（`project-core`、`ai-execution`、`workflow-triggers`、`common-openspec`、`common-learning-notes` + `AGENTS.md` + `constraints.md`），其余 36 条按需读——全塞进去每次会话多烧约 15k tokens。
 
 DSH 项目级只认 `.dsh/skills`（优先级 100），没有项目级 Agent / 命令 / hooks / MCP；规则等效物只有根 `AGENTS.md`。
 

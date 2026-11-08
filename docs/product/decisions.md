@@ -4,6 +4,15 @@
 
 ## 有效决策
 
+### D-20261108-01 · 交付后必须附一条经验总结（学习向）
+
+- 场景：项目由 AI 执行，但人需要理解原理；`资源管理器/docs/经验总结` 已有 51 篇可借鉴的写法（结论 + 原则 + 入口 + 踩坑 / 学习向 / 图解）
+- **决定**：新增规则 `common-learning-notes`（每次交付后写一条）+ 技能 `learning-notes`（四类模板与写法）；固定目录 `docs/经验总结/`、命名 `<序号>-<类型>-<主题>.md`、序号连续；交付回复末尾附路径 + 一句话知识点
+- **内容要求**：结论先行 → 原理（含替代方案与边界）→ 可验证的最小实验 → 一条延伸；禁复述代码、禁「学习了」这类空话
+- **不选**：只靠自愿（会漏）；写进代码注释（读者不看）；只写「做了什么」（没有原理，等于没沉淀）
+- **落点**：`rules/common-learning-notes`、`skills/learning-notes`、`verification-gate` 阶段 5 与输出格式、`AGENTS.md` 读什么表
+- 状态：有效
+
 ### D-20261107-01 · 外部视频技能只改编、不整包搬运
 
 - 场景：视频项目需要剪辑/字幕/脚本类技能；上游有 [puntorigen/avatar-skills](https://github.com/puntorigen/avatar-skills)（MIT，48 个）与 [varghq/skills](https://github.com/varghq/skills) 的 FFmpeg cookbook

@@ -1,5 +1,19 @@
 # 变更记录
 
+## 2026-11-08（交付后经验总结：规则 + 技能）
+
+- 新增规则 `common-learning-notes`（alwaysApply）：交付后必须在 `docs/经验总结/` 写一条笔记
+- 新增技能 `learning-notes`：五类前缀（踩坑 / 技术 / 设计 / 学习向 / 图解）、四套模板、学习指导三步法、索引维护、反例清单
+- `verification-gate` 阶段 5 与输出格式加入「经验总结」检查项；`AGENTS.md` 读什么表加一行
+- 计数：规则 42 → 43，技能 34 → 35
+
+## 2026-11-08（AI 视频项目接入）
+
+- 新增 `projects/aivideo` 装配单：只启 `dsh`；`video-compose` / `video-captions` / `video-cut-grammar` / `video-shortform-script` 加 `project-spec`、`code-review-gate`、`verification-gate`、`encoding-guard`、`knowledge-extract`、`search-first`，共 10 个 Skill
+- 业务仓（AI 视频，仓外）同日接入：`gitmove init` + 注册别名 `aivideo`（`biz`），按装配单导出到 `.dsh/skills/`（30 个文件）
+- 业务仓侧另接 gitmove v2 备份：restic 单盘（E 盘 `backup/aivideo-restic`），首次快照 49 文件 / 2.6 MB，已做恢复校验
+- 不启 `video-production`：生成式出片（ComfyUI + Wan2.2）与「模板固定、只换数据」的卡片式长视频不是一条链路；要长片拼接时再评估
+- 技能数不变（34），只新增装配单
 ## 2026-11-07（视频技能补齐：剪辑 / 脚本 / 字幕 / 剪辑判断）
 
 - 新增 `video-compose`：素材分析 → treatment → 音乐 → 节拍 EDL → 预览门 → 标题 → 合片，含 `references/pipeline.md` 与 `references/ffmpeg-recipes.md`

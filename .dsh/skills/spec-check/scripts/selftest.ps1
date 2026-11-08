@@ -77,7 +77,7 @@ try {
     # 3. 破坏规则分类计数
     $struct = Join-Path $tmp 'STRUCTURE.md'
     $backup = [System.IO.File]::ReadAllText($struct)
-    [System.IO.File]::WriteAllText($struct, ($backup -replace 'common 14', 'common 99'), (New-Object System.Text.UTF8Encoding($false)))
+    [System.IO.File]::WriteAllText($struct, ($backup -replace 'common \d+', 'common 99'), (New-Object System.Text.UTF8Encoding($false)))
     & $checker -Root $tmp -Quiet | Out-Null
     Assert-Exit '规则分类漂移应被拦住' 1 $LASTEXITCODE
     [System.IO.File]::WriteAllText($struct, $backup, (New-Object System.Text.UTF8Encoding($false)))

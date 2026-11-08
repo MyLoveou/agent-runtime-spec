@@ -6,7 +6,8 @@
     ".opencode/rules/project-core.md",
     ".opencode/rules/ai-execution.md",
     ".opencode/rules/workflow-triggers.md",
-    ".opencode/rules/common-openspec.md"
+    ".opencode/rules/common-openspec.md",
+    ".opencode/rules/common-learning-notes.md"
   ],
   "mcp": {
     "codegraph": {

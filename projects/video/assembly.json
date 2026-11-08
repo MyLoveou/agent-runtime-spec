@@ -17,7 +17,8 @@
     "code-review-gate",
     "verification-gate",
     "encoding-guard",
-    "knowledge-extract"
+    "knowledge-extract",
+    "learning-notes"
   ],
   "agents": [],
   "entry": [],

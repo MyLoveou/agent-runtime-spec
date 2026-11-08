@@ -62,6 +62,7 @@ origin: 项目规范
 - 改过的代码符合 `comments` 规则
 - OpenSpec change：`tests.md` 记录为 PASS，`handoff.md` 已更新
 - 复杂需求：`设计.md` / `实现方案.md` 仍与代码同范围
+- 经验总结：`docs/经验总结/` 新增一条（结论 + 原理 + 可验证实验），见 `skills/learning-notes`
 
 ## 阶段 6：仓库卫生
 
@@ -81,6 +82,7 @@ origin: 项目规范
 - backend compile/test：通过 / 跳过
 - 后端重启+冒烟：通过 / 跳过 / 未执行
 - 文档同步：是 / 否 / N/A
+- 经验总结：<路径> / 无
 - 结论：可交付 / 阻塞：…
 ```
 

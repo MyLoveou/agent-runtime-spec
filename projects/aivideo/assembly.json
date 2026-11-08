@@ -1,0 +1,25 @@
+{
+  "project": "aivideo",
+  "role": "AI 生成视频（ComfyUI + Wan2.2）：图生视频 / 文生视频、角色一致性、长片续写，HTTP API 驱动出片",
+  "platforms": ["dsh"],
+  "stack": ["python", "comfyui", "wan2.2", "ffmpeg"],
+  "rules": {
+    "include": [],
+    "exclude": []
+  },
+  "skills": [
+    "video-compose",
+    "video-captions",
+    "video-cut-grammar",
+    "video-shortform-script",
+    "project-spec",
+    "code-review-gate",
+    "verification-gate",
+    "encoding-guard",
+    "knowledge-extract",
+    "search-first"
+  ],
+  "agents": [],
+  "entry": [],
+  "notes": "DSH 只支持 .dsh/skills（无 rules/agents/mcp），故 rules 与 agents 留空；入口文档由业务仓自己维护 AGENTS.md，不从本库覆盖。生成端（ComfyUI 工作流）属业务仓自有资产，不进本库。导出为单向：spec → 本项目，业务仓改动不回写。"
+}
