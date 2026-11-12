@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-12（AIStudyHelper 接入，v2.8.0）
+
+- 新增 `projects/aistudyhelper`：25 条规则（common-* / typescript-* / api-contracts / docs-maintenance）、18 个技能、7 个 Agent，cursor + dsh
+- 首次导出 126 个文件；为项目生成 `AGENTS.md`（入口：HANDOFF / BACKLOG / CODE_REVIEW + 三条铁律）
+- 决策 D-20261112-02：vendor 仓按 vendor 方式对待，不引入 java-*（Android 是 Kotlin + Gradle）
+
 ## 2026-11-12（multi-repo-ops 技能，v2.7.0）
 
 - 新增 Skill `multi-repo-ops`：多仓协同的三个角色（巡检 / 导出 / 笔记）+ 六步流程 + 并行边界 + 失败分支

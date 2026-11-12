@@ -4,6 +4,14 @@
 
 ## 有效决策
 
+### D-20261112-02 · AIStudyHelper 接入：vendor 仓不进规则体系
+
+- 场景：AIStudyHelper 包着 DeepTutor-src（Python + Next.js）与 AITeachMe（Android / 后端 / 桌面端）两个 vendor 仓
+- **决定**：新增 `projects/aistudyhelper`（25 规则 / 18 技能 / 7 Agent，cursor + dsh），资产装项目根；为项目补 `AGENTS.md` 作为入口；vendor 仓的改动走 `multi-repo-ops`（补丁 + 上游同步）
+- **不选**：引入 `java-*`（那是 Spring 规则，Android 是 Kotlin + Gradle）；把 vendor 仓各建装配单（它们不是我们的仓）
+- **已知**：项目无 remote，本地提交即可；`probe/` 有大量基线产物，不要在导出时被误认为资产
+- 状态：有效
+
 ### D-20261112-01 · 多仓操作拆成三个子代理 + 一条流程
 
 - 场景：一次性把 temp 统一到 7 个仓时，串行手工做：巡检、导出、搬笔记、发版混在一个回合里，脏仓与脱管 HEAD 都是事后才发现
