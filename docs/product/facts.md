@@ -11,7 +11,7 @@
 ### 做什么
 
 - 产品一句话：给业务仓提供 Cursor / OpenCode / DeepSeek Harness 三套**自包含**运行时（规则、Agent、Skill、工作流、MCP），拷贝即用。
-- 已交付：43 条规则、12 个 Agent、36 个 Skill（`project-spec` 家族、需求、规划、验收、`mermaid-diagrams`、`spec-runtime-maintain`、`encoding-guard`、`spec-check`、`video-production`、`project-assembly`、`video-compose`、`video-shortform-script`、`video-captions`、`video-cut-grammar`、`learning-notes`、`comfy-workflow`，以及界面工艺：`baseline-ui`、`better-ui`、`better-layout`、`better-typography`、`fixing-accessibility`、`fixing-motion-performance`、`improve-ui`、`component-canvas`、`create-canvas`、`oil-ui`）、5 条工作流、3 个评测样例；Cursor hooks 与 MCP（codegraph / git / ssh）。
+- 已交付：43 条规则、12 个 Agent、37 个 Skill（`project-spec` 家族、需求、规划、验收、`mermaid-diagrams`、`spec-runtime-maintain`、`encoding-guard`、`spec-check`、`video-production`、`project-assembly`、`video-compose`、`video-shortform-script`、`video-captions`、`video-cut-grammar`、`learning-notes`、`comfy-workflow`、`multi-repo-ops`，以及界面工艺：`baseline-ui`、`better-ui`、`better-layout`、`better-typography`、`fixing-accessibility`、`fixing-motion-performance`、`improve-ui`、`component-canvas`、`create-canvas`、`oil-ui`）、5 条工作流、3 个评测样例；Cursor hooks 与 MCP（codegraph / git / ssh）。
 - **编码门禁**：`encoding-guard` 提供 `check-encoding.ps1`（commit / push / files / remote 四种模式）与 `install-hooks.ps1`（pre-commit + pre-push，可 repo 或 global），拦截问号替字、U+FFFD、mojibake。
 - **许可**：MIT（根 `LICENSE`）。
 - **项目装配**：`projects/<项目>/assembly.json` 记录每个业务仓启用的规则 / Skill / Agent；只存名字不存副本，`spec-check` 校验引用与冲突。
@@ -35,7 +35,7 @@
 
 - OpenCode：`opencode debug config`、`opencode debug skill`
 - Cursor：重载窗口，Rules 面板与 `@agent` 可用
-- DSH：新会话 Skill 目录含本仓 36 个 Skill
+- DSH：新会话 Skill 目录含本仓 37 个 Skill
 - 一致性：同一 Skill 三份正文逐字一致；规则 `.mdc` 去 frontmatter == `.md`
 
 ### 实现边界
