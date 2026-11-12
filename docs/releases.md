@@ -6,6 +6,7 @@
 
 | 版本 | 日期 | 摘要 |
 |------|------|------|
+| **2.6.0** | 2026-11-12 | 新增 3 个子代理（`repo-surveyor` / `exporter` / `note-curator`）与「多仓协同」工作流；Agent 9 → 12，工作流 4 → 5 |
 | **2.5.0** | 2026-11-08 | temp 改为「一份 clone + 本地 junction」统一挂载；本库移除 temp submodule（6 个业务仓已挂载） |
 | **2.4.0** | 2026-11-08 | 新增 `projects/infra`：二方能力库接入（30 规则 / 26 技能 / 7 Agent，cursor + dsh） |
 | **2.3.0** | 2026-11-08 | 新增 `projects/resmgr`：资源管理器接入（30 规则 / 25 技能 / 6 Agent，Cursor + OpenCode） |

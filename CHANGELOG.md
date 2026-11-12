@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-12（多仓协同：三个子代理 + 一条工作流，v2.6.0）
+
+- 新增 Agent：`repo-surveyor`（只读巡检各仓分支/脏/脱管/remote/temp 挂载/闸门）、`exporter`（装配单导出，dry-run 优先，不加 -Force）、`note-curator`（先搜后写、迁移本地笔记、维护索引）
+- 新增工作流 `workflows/multi-repo.md`：巡检 → 定范围 → 导出 → 笔记 → 本库发版 → 业务仓收尾；含并行边界与失败分支
+- 计数：Agent 9 → 12，工作流 4 → 5；README / STRUCTURE / facts 同步
+
 ## 2026-11-08（temp 统一挂载，v2.5.0）
 
 - temp 收件箱改为「一份 clone + 本地 junction」：6 个业务仓已挂载并通过 `.gitignore` 忽略

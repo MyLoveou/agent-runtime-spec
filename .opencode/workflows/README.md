@@ -2,7 +2,7 @@
 
 把 Skill、Agent、Rule 串成可复述的端到端流程。入口见 `workflow-triggers` Rule。
 
-## 四条主工作流
+## 工作流
 
 | 工作流 | 文件 | 典型口令 |
 |--------|------|----------|
@@ -10,6 +10,7 @@
 | **设计** | [design.md](./design.md) | 能力设计、模型/模块、UI 方向 |
 | **开发** | [development.md](./development.md) | 实现、修 bug |
 | **交付** | [delivery.md](./delivery.md) | 验收、准备 PR |
+| **多仓协同** | [multi-repo.md](./multi-repo.md) | 同步到多个仓、搬家笔记、跨仓发版 |
 
 新能力默认走 **project-spec**：L1 需求 →（复杂）**L2 设计确认** → L3 实现方案 → apply → 验收 → archive。
 

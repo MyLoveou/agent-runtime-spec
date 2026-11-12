@@ -15,7 +15,7 @@
 .
 ├─ .cursor/          # Cursor 运行时（完整）
 │  ├─ rules/*.mdc          43 条
-│  ├─ agents/*.md          9 个
+│  ├─ agents/*.md          12 个
 │  ├─ skills/<name>/       36 个
 │  ├─ workflows/  evals/
 │  ├─ hooks/hooks.json
@@ -24,7 +24,7 @@
 ├─ .opencode/        # OpenCode 运行时（完整）
 │  ├─ opencode.json        instructions + mcp
 │  ├─ rules/*.md           43 条（正文同 Cursor）
-│  ├─ agent/*.md           9 个
+│  ├─ agent/*.md           12 个
 │  ├─ skills/<name>/       36 个
 │  ├─ workflows/  evals/  mcp/
 │  └─ constraints.md
