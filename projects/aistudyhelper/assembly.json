@@ -1,0 +1,33 @@
+{
+  "project": "aistudyhelper",
+  "role": "AI 学习助手：vendor DeepTutor（Python 后端 + Next.js 前端）与 AITeachMe（Android / 后端 / 桌面端），做题库、仿题、知识库检索与练习",
+  "platforms": ["cursor", "dsh"],
+  "stack": ["python", "nextjs", "typescript", "kotlin", "tauri", "ollama"],
+  "rules": {
+    "include": ["project-core", "ai-execution", "workflow-triggers", "common-*", "typescript-*", "api-contracts", "docs-maintenance"],
+    "exclude": []
+  },
+  "skills": [
+    "project-spec",
+    "project-spec-design",
+    "project-spec-style",
+    "requirements-refinement",
+    "plan-workflow",
+    "code-review-gate",
+    "verification-gate",
+    "eval-harness",
+    "encoding-guard",
+    "spec-check",
+    "knowledge-extract",
+    "search-first",
+    "dynamic-workflow-mode",
+    "mermaid-diagrams",
+    "baseline-ui",
+    "better-ui",
+    "learning-notes",
+    "multi-repo-ops"
+  ],
+  "agents": ["architect", "planner", "code-reviewer", "backend-dev", "frontend-dev", "qa-engineer", "doc-sync"],
+  "entry": [],
+  "notes": "vendor 仓（DeepTutor-src / AITeachMe）是独立 git 仓，按 multi-repo-ops 的 vendor/patch 方式处理，不直接改上游。DeepTutor 前端是 Next.js，构建必须用 DEEPTUTOR_NEXT_DIST_DIR=.next-deeptutor，否则改动不生效（见 docs/HANDOFF.md 铁律 1）。Android 是 Kotlin+Gradle，本库的 java-* 规则面向 Spring 后端，故不引入。entry 留空：项目自己的 docs/HANDOFF.md 与 BACKLOG.md 是入口真源。"
+}
