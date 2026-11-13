@@ -1,5 +1,11 @@
 # 变更记录
 
+## 2026-11-14（视频上游索引，v2.9.0）
+
+- `video-production` 新增 `references/upstream-index.md`：三份 awesome list 的定位与许可、四关筛选、已有能力对照、缺口→候选矩阵（Remotion 官方只链接 / shotcraft Apache-2.0 可改编 / launch-motion MIT 可改编 / talkcraft 只看思路）
+- 决策 D-20261114-01：索引不 vendor；只搬 MIT / Apache-2.0 的做法并标出处
+- 关键结论：zhuyansen 实测 16 个技能全部通过基本检查，不用技能那次也通过且最快——技能价值在风格与工作流
+
 ## 2026-11-12（AIStudyHelper 接入，v2.8.0）
 
 - 新增 `projects/aistudyhelper`：25 条规则（common-* / typescript-* / api-contracts / docs-maintenance）、18 个技能、7 个 Agent，cursor + dsh

@@ -76,6 +76,7 @@ description: >-
 | 抓元数据、下视频素材、判硬字幕 | [references/acquisition.md](references/acquisition.md) |
 | 遇到「明明应该能跑」的问题 | [references/pitfalls.md](references/pitfalls.md) |
 | 选工具、决定哪些能力自己写 | [references/infra.md](references/infra.md) |
+| 去外部找技能 / 判断能不能搬 | [references/upstream-index.md](references/upstream-index.md) |
 
 ## 边界
 

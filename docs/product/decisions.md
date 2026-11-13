@@ -4,6 +4,14 @@
 
 ## 有效决策
 
+### D-20261114-01 · 视频上游索引只作参考，按许可逐个改编
+
+- 场景：`awesome-video-skills` 一类索引（zhuyansen 499 仓 / AaronAust1n 479 仓 / ella-wang 17 技能）被问能否用于视频制作技能
+- **决定**：索引**不进技能目录**；新增 `video-production/references/upstream-index.md` 记录定位、四关筛选（许可/活性/依赖/是否补缺口）、缺口→候选矩阵；只搬运 MIT / Apache-2.0 的具体做法并标出处，`NONE` / `NOASSERTION` 只链接
+- **依据**：zhuyansen 实测 16 个技能全部通过四项基本检查，**不用技能那次也通过且最快（4.4 分钟）**——技能价值在风格与工作流，不在能否出片
+- **不选**：整包 vendor（体积 + 无许可仓库的法律风险）；把索引当技能安装（索引不含可执行内容）
+- 状态：有效
+
 ### D-20261112-02 · AIStudyHelper 接入：vendor 仓不进规则体系
 
 - 场景：AIStudyHelper 包着 DeepTutor-src（Python + Next.js）与 AITeachMe（Android / 后端 / 桌面端）两个 vendor 仓

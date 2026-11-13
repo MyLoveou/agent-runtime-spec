@@ -6,6 +6,7 @@
 
 | 版本 | 日期 | 摘要 |
 |------|------|------|
+| **2.9.0** | 2026-11-14 | `video-production` 新增「上游技能索引」：三份 awesome list 的定位、四关筛选、缺口→候选矩阵与改编规则 |
 | **2.8.0** | 2026-11-12 | 新增 `projects/aistudyhelper`：AIStudyHelper 接入（25 规则 / 18 技能 / 7 Agent，cursor + dsh） |
 | **2.7.0** | 2026-11-12 | 新增 `multi-repo-ops` 技能：多仓协同的三个角色与六步流程（DSH 无子代理，靠它兜底）；Skill 36 → 37 |
 | **2.6.0** | 2026-11-12 | 新增 3 个子代理（`repo-surveyor` / `exporter` / `note-curator`）与「多仓协同」工作流；Agent 9 → 12，工作流 4 → 5 |
