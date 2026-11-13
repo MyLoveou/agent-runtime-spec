@@ -4,6 +4,16 @@
 
 ## 有效决策
 
+### D-20261115-01 · 引入 video-storyboard（改编 storyboard-master）
+
+- 场景：`storyboard-master`（MIT，3★）提供「剧本 → 分镜」的知识库：五张决策表、仲裁优先级、三档图数、多帧一致性、提示词四模板
+- **决定**：改编为 `video-storyboard`（三平台各一份）：`SKILL.md` + `references/decision-tables.md` + `references/prompt-templates.md`；不搬它的 34 个知识库文件与 Python 引擎，也不依赖 Obsidian vault
+- **依据**：星数低但内容是真规则表（同输入同输出），正好补本库「只有流程、没有镜头决策」的缺口；许可 MIT 允许改编
+- **不选**：整包 vendor（34 个 md 约 200KB × 3 平台，且大量模型专用参数会过时）
+- **模型无关化**：删掉具体模型卡（即梦/Seedream/可灵等版本号），只留「按你的模型替换」的通用写法
+- **落点**：`skills/video-storyboard`、`projects/aivideo` 装配单、`video-production/references/upstream-index.md` 标记为已引入
+- 状态：有效
+
 ### D-20261114-01 · 视频上游索引只作参考，按许可逐个改编
 
 - 场景：`awesome-video-skills` 一类索引（zhuyansen 499 仓 / AaronAust1n 479 仓 / ella-wang 17 技能）被问能否用于视频制作技能

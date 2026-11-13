@@ -1,5 +1,13 @@
 # 变更记录
 
+## 2026-11-15（video-storyboard 分镜技能，v2.10.0）
+
+- 新增 `video-storyboard`：六步（拆片段 → 判类型 → 五张表 → 仲裁 → 图数 → 提示词包）+ 一致性清单 + 四条硬规则
+- `references/decision-tables.md`：六类内容判别（有动作≠动作）、景别/角度/运镜/光影/节奏五表、仲裁（情绪>信息>权力）、三档图数与关键帧修正
+- `references/prompt-templates.md`：定妆照 / 场景图 / 分镜图 / 视频四模板 + 取料地图 + 负面词分层 + 返工原因表
+- 改编自 storyboard-master（MIT），模型无关化；`projects/aivideo` 装配单加入；upstream-index 标记已引入
+- 计数：Skill 37 → 38
+
 ## 2026-11-14（视频上游索引，v2.9.0）
 
 - `video-production` 新增 `references/upstream-index.md`：三份 awesome list 的定位与许可、四关筛选、已有能力对照、缺口→候选矩阵（Remotion 官方只链接 / shotcraft Apache-2.0 可改编 / launch-motion MIT 可改编 / talkcraft 只看思路）

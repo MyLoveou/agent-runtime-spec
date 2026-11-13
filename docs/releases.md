@@ -6,6 +6,7 @@
 
 | 版本 | 日期 | 摘要 |
 |------|------|------|
+| **2.10.0** | 2026-11-15 | 新增 `video-storyboard`（源自 storyboard-master，MIT）：六步分镜流程、五张决策表、一致性清单、提示词四模板；Skill 37 → 38 |
 | **2.9.0** | 2026-11-14 | `video-production` 新增「上游技能索引」：三份 awesome list 的定位、四关筛选、缺口→候选矩阵与改编规则 |
 | **2.8.0** | 2026-11-12 | 新增 `projects/aistudyhelper`：AIStudyHelper 接入（25 规则 / 18 技能 / 7 Agent，cursor + dsh） |
 | **2.7.0** | 2026-11-12 | 新增 `multi-repo-ops` 技能：多仓协同的三个角色与六步流程（DSH 无子代理，靠它兜底）；Skill 36 → 37 |

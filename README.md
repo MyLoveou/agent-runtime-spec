@@ -16,7 +16,7 @@
 ├─ .cursor/          # Cursor 运行时（完整）
 │  ├─ rules/*.mdc          43 条
 │  ├─ agents/*.md          12 个
-│  ├─ skills/<name>/       37 个
+│  ├─ skills/<name>/       38 个
 │  ├─ workflows/  evals/
 │  ├─ hooks/hooks.json
 │  ├─ mcp.json  mcp/
@@ -25,11 +25,11 @@
 │  ├─ opencode.json        instructions + mcp
 │  ├─ rules/*.md           43 条（正文同 Cursor）
 │  ├─ agent/*.md           12 个
-│  ├─ skills/<name>/       37 个
+│  ├─ skills/<name>/       38 个
 │  ├─ workflows/  evals/  mcp/
 │  └─ constraints.md
 ├─ .dsh/             # DeepSeek Harness：只有 skills/
-│  ├─ skills/<name>/       37 个
+│  ├─ skills/<name>/       38 个
 │  └─ README.md            平台限制说明
 ├─ AGENTS.md         # 三平台共用入口
 ├─ docs/             # 本仓自身文档
