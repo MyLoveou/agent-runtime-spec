@@ -31,6 +31,7 @@
 | 字幕（逐词 / 整句 / 烧录） | `video-captions` |
 | 剪辑点判断 | `video-cut-grammar` |
 | 本地出图 / 工作流 | `comfy-workflow` |
+| 剧本 → 分镜（决策表 + 提示词包） | `video-storyboard` |
 
 ## 候选矩阵（缺口 → 候选 → 处置）
 
@@ -40,6 +41,7 @@
 | 镜头配方（150+ 种景别/运镜）+ 成片质检 | [Vincentwei1021/video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) | **Apache-2.0** | **可改编**：抽「镜头清单 + QA 检查表」两节 |
 | 响度 / 成片工艺（广播级 LUFS） | [AbubakrChan/product-launch-motion](https://github.com/AbubakrChan/product-launch-motion) | **MIT** | **可改编**：抽音频与调色工艺 |
 | 拼贴风解释片（Vox 风格） | [Alisa0808/vox-director](https://github.com/Alisa0808/vox-director) | **MIT** | 可选：有拼贴需求时再改编 |
+| 剧本 → 分镜（景别/角度/运镜/光影/节奏） | [c-wang-dev/storyboard-master](https://github.com/c-wang-dev/storyboard-master) | **MIT** | ✅ 已改编为 `video-storyboard` |
 | 逐词同步 + 78 个动效配方 | [Vincentwei1021/video-talkcraft](https://github.com/Vincentwei1021/video-talkcraft) | **NOASSERTION** | **只看思路**：机制可学，正文不搬 |
 
 ## 引入规则
