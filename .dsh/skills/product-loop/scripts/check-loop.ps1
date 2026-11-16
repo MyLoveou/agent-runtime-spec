@@ -128,6 +128,13 @@ foreach ($e in $epics) {
     else {
         $lg = [System.IO.File]::ReadAllText($ledgerPath)
         if ($lg -notmatch '##\s*(轮次|Round)\s*\d+') { Add-Warn "${name}: ledger 没有轮次记录" }
+        $moves = [regex]::Matches($lg, '([a-z-]+)\s*->\s*([a-z-]+)')
+        if ($moves.Count -eq 0) {
+            if ($cur -and $cur -ne 'draft') { Add-Err "${name}: ledger 无迁移记录，但 state 是 $cur" }
+        } else {
+            $lastTo = $moves[$moves.Count - 1].Groups[2].Value
+            if ($cur -and $lastTo -ne $cur) { Add-Err "${name}: ledger 最后迁移到 $lastTo，但 state 是 $cur" }
+        }
     }
 }
 

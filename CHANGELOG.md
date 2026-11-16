@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-17（product-loop 脚本加固，v2.13.1）
+
+- `check-loop.ps1` 新增 ledger 与 state 一致性校验：最后一条迁移必须等于 state 状态
+- `ticket.ps1` 新增 `-Actor` 参数：`done` 必须 `-Actor human`（或 `DSH_TICKET_ACTOR=human`）
+- 实测跑通完整循环：new-epic → 填 spec/plan/tasks → check-loop 0 告警 → draft→ready→in-progress→in-review→built→done（人工）→ 4 个单元测试 RED→GREEN → 合并
+- 修掉一个脚本坑：PowerShell 5.1 对单引号字符串里的反引号解析异常，改用不含反引号的 `->` 正则
+
 ## 2026-11-17（product-loop 补脚本，v2.13.0）
 
 - 新增 `scripts/new-epic.ps1`：生成 spec/plan/tasks/state/ledger 五件套
