@@ -147,7 +147,7 @@ draft → ready-for-dev → in-progress → in-review → built → done
 |---|---|---|
 | `scripts/new-epic.ps1 -Slug <x> -Title <y>` | 生成五件套骨架 | 目录已存在 |
 | `scripts/check-loop.ps1 [-Json]` | 校验 id 闭合、状态合法、任务挂 AC、AC 可量化、ledger 存在 | 退出码 1，逐条列出 |
-| `scripts/ticket.ps1 -Epic <x> -To <status> [-Actor agent\|human] [-Reason] [-Evidence]` | 状态迁移 + 追加 ledger 行 | 非法迁移 / blocked 缺原因 / 非人工标 done |
+| `scripts/ticket.ps1 -Epic <x> -To <status> [-Actor agent\|human] [-Reason] [-Evidence]` | 状态迁移 + 追加 ledger 行 | 非法迁移 / blocked 缺原因 / 未勾任务进 in-review·built·done / 非人工标 done |
 | `scripts/selftest.ps1` | 脚本自身的回归（10 条断言） | 任一断言失败 |
 
 ```powershell

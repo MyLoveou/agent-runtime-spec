@@ -55,8 +55,17 @@ try {
     & $ps -NoProfile -ExecutionPolicy Bypass -File (Join-Path $here 'ticket.ps1') -Epic demo -To blocked -Root $root | Out-Null
     Assert-Exit 'blocked 缺原因应被拒' 1 $LASTEXITCODE
 
-    # 7. done 权限
+    # 7. 未勾任务时不能进 in-review
     & $ps -NoProfile -ExecutionPolicy Bypass -File (Join-Path $here 'ticket.ps1') -Epic demo -To in-progress -Root $root | Out-Null
+    & $ps -NoProfile -ExecutionPolicy Bypass -File (Join-Path $here 'ticket.ps1') -Epic demo -To in-review -Root $root | Out-Null
+    Assert-Exit '未勾任务时 in-review 应被拒' 1 $LASTEXITCODE
+
+    # 勾上任务后可继续
+    $demoTasks = Join-Path $demoDir 'tasks.md'
+    $tk = [System.IO.File]::ReadAllText($demoTasks)
+    [System.IO.File]::WriteAllText($demoTasks, $tk.Replace('- [ ] 完成', '- [x] 完成'), $enc)
+
+    # 8. done 权限
     & $ps -NoProfile -ExecutionPolicy Bypass -File (Join-Path $here 'ticket.ps1') -Epic demo -To in-review -Root $root | Out-Null
     & $ps -NoProfile -ExecutionPolicy Bypass -File (Join-Path $here 'ticket.ps1') -Epic demo -To built -Root $root | Out-Null
     & $ps -NoProfile -ExecutionPolicy Bypass -File (Join-Path $here 'ticket.ps1') -Epic demo -To done -Root $root | Out-Null

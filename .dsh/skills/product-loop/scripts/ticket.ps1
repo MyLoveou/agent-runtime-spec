@@ -44,6 +44,19 @@ if ($allowed -notcontains $To) {
     exit 1
 }
 
+# 进入 in-review / built / done 前，任务必须全部勾选
+if ($To -in @('in-review', 'built', 'done')) {
+    $tasksPath = Join-Path $dir 'tasks.md'
+    if (Test-Path $tasksPath) {
+        $tk = [System.IO.File]::ReadAllText($tasksPath)
+        $unchecked = ([regex]::Matches($tk, '(?m)^-\s*\[\s*\]')).Count
+        if ($unchecked -gt 0) {
+            Write-Host "拒绝: 还有 $unchecked 个任务未勾选，不能进入 $To（先跑测试并改成 - [x] 完成）"
+            exit 1
+        }
+    }
+}
+
 # 只允许人/编排器标 done
 if ($To -eq 'done' -and $Actor -ne 'human' -and $env:DSH_TICKET_ACTOR -ne 'human') {
     Write-Host '拒绝: 只有人或编排器可以把票标成 done（用 -Actor human，或设置 DSH_TICKET_ACTOR=human）'
