@@ -10,7 +10,7 @@
 $ErrorActionPreference = 'Stop'
 $enc = New-Object System.Text.UTF8Encoding($true)
 
-$dir = Join-Path $Root "docs\loop\$Epic"
+$dir = Join-Path (Join-Path (Join-Path $Root 'docs') 'loop') $Epic
 $statePath = Join-Path $dir 'state.md'
 $ledgerPath = Join-Path $dir 'ledger.md'
 if (-not (Test-Path $statePath)) { Write-Host "找不到: $statePath"; exit 2 }

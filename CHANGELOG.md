@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-17（product-loop 脚本跨平台，v2.14.1）
+
+- 修 CI 红灯：ubuntu 运行时 `$env:SystemRoot` 为空、`docs\loop` 反斜杠被当成文件名
+- 三个脚本路径改用 `Join-Path` 逐级拼接；`selftest.ps1` 自适应 `pwsh` / `powershell` 与 `GetTempPath()`
+- 每次用编辑工具改完 `.ps1` 必须补 UTF-8 BOM，否则 PS 5.1 按 ANSI 读会报「字符串未闭合」
+- 本地 selftest 10/10；CI 新增的 product-loop 自测步骤通过后才允许 encoding-guard 执行
+
 ## 2026-11-17（product-loop 任务级状态，v2.14.0）
 
 - `tasks.md` 引入勾选框：每个任务必须有 `- [ ] 完成`；勾选后必须有「验证：」命令
