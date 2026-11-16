@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-17（ticket 与 check-loop 判据对齐，v2.14.2）
+
+- 实测发现：`ticket` 允许带未勾任务进 `in-review`，只有 `check-loop` 事后报错——两个判据不一致
+- `ticket.ps1` 新增闸：目标为 `in-review` / `built` / `done` 时，若 `tasks.md` 还有 `- [ ]` 直接拒绝
+- `selftest.ps1` 增至 11 条（新增「未勾任务时 in-review 应被拒」），先勾任务再走完 done 流程
+- 说明：闸门现在前置到状态迁移，`check-loop` 保留为事后审计（双保险）
+
 ## 2026-11-17（product-loop 脚本跨平台，v2.14.1）
 
 - 修 CI 红灯：ubuntu 运行时 `$env:SystemRoot` 为空、`docs\loop` 反斜杠被当成文件名
