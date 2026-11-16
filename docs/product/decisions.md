@@ -4,6 +4,15 @@
 
 ## 有效决策
 
+### D-20261117-01 · product-loop 吸收三家的结构（实测后重写）
+
+- 场景：四套流程同题实测（BMAD / Spec Kit / Superpowers / product-loop），本库的循环计划侧最薄：无 id 体系、无验收模板、无风险表
+- **决定**：重写 `product-loop`：① 三层票结构（Initiative/Epic/Story）+ 「票即规格」；② `CAP/AC/R/ST/T` id 与引用闭合；③ 状态机（draft→…→built→done，含 blocked/dropped），agent 最多到 `built`；④ `spec/plan/tasks` 三件套模板与契约文件；⑤ 每任务 RED→GREEN、验证在前；⑥ blocked 原因固定词表 + deferred 记录
+- **不选**：整包引入 BMAD（v6 无 tickets.py、`_bmad` 必须跟项目根、默认英文）；整包引入 Spec Kit（占位宪法、斜杠命令/hook 依赖、不建分支）；整包引入 Superpowers（Claude Code 专有 subagent 语法与 bash 工作区脚本）
+- **配套**：新增 `ticket-keeper` 代理（只记账、不改代码、不标 done）；`references/spec-templates.md` 与 `references/loop-contract.md`
+- **依据**：实测产物对比见 lab 仓 `docs/skill-test-report.md`
+- 状态：有效
+
 ### D-20261116-01 · 自驱迭代用 product-loop，评审门是唯一人工闸
 
 - 场景：希望「自己找需求 → 子代理实现 → 连续推进」，但新需求必须人评审；且不许直改 master

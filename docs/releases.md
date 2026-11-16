@@ -6,6 +6,7 @@
 
 | 版本 | 日期 | 摘要 |
 |------|------|------|
+| **2.12.0** | 2026-11-17 | `product-loop` 重构：三层票结构、CAP/AC/R 引用闭合、状态机、blocked/deferred、spec/plan/tasks 模板；新增 `ticket-keeper` 代理；Agent 14 → 15 |
 | **2.11.0** | 2026-11-16 | 新增 `product-loop` 技能与 `market-scout` / `tech-scout` 两个只读调研代理：自驱循环 + 人工评审门 + 分支纪律；Agent 12 → 14，Skill 38 → 39 |
 | **2.10.0** | 2026-11-15 | 新增 `video-storyboard`（源自 storyboard-master，MIT）：六步分镜流程、五张决策表、一致性清单、提示词四模板；Skill 37 → 38 |
 | **2.9.0** | 2026-11-14 | `video-production` 新增「上游技能索引」：三份 awesome list 的定位、四关筛选、缺口→候选矩阵与改编规则 |
