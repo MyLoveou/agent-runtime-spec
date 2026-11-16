@@ -7,7 +7,7 @@
 $ErrorActionPreference = 'Stop'
 $enc = New-Object System.Text.UTF8Encoding($true)
 
-$dir = Join-Path $Root "docs\loop\$Slug"
+$dir = Join-Path (Join-Path (Join-Path $Root 'docs') 'loop') $Slug
 if (Test-Path $dir) { Write-Host "已存在: $dir"; exit 1 }
 New-Item -ItemType Directory -Force -Path $dir | Out-Null
 

@@ -10,7 +10,7 @@ $warnings = New-Object System.Collections.ArrayList
 function Add-Err([string]$m) { [void]$errors.Add($m) }
 function Add-Warn([string]$m) { [void]$warnings.Add($m) }
 
-$loopDir = Join-Path $Root 'docs\loop'
+$loopDir = Join-Path (Join-Path $Root 'docs') 'loop'
 if (-not (Test-Path $loopDir)) {
     if ($Json) { '{ "ok": true, "epics": 0, "errors": [], "warnings": ["no docs/loop"] }' }
     else { Write-Host 'check-loop  ok  （没有 docs/loop，跳过）' }
