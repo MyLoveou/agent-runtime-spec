@@ -138,6 +138,24 @@ draft → ready-for-dev → in-progress → in-review → built → done
 - 模板（spec / plan / tasks / 契约）：[references/spec-templates.md](references/spec-templates.md)
 - 契约（id、状态机、ledger、blocked 原因）：[references/loop-contract.md](references/loop-contract.md)
 
+
+## 脚本（契约的可执行版本）
+
+目录约定：`docs/loop/<epic>/{spec,plan,tasks,state,ledger}.md`
+
+| 脚本 | 用途 | 失败时 |
+|---|---|---|
+| `scripts/new-epic.ps1 -Slug <x> -Title <y>` | 生成五件套骨架 | 目录已存在 |
+| `scripts/check-loop.ps1 [-Json]` | 校验 id 闭合、状态合法、任务挂 AC、AC 可量化、ledger 存在 | 退出码 1，逐条列出 |
+| `scripts/ticket.ps1 -Epic <x> -To <status> [-Reason] [-Evidence]` | 状态迁移 + 追加 ledger 行 | 非法迁移/缺原因/非人工标 done |
+
+```powershell
+pwsh -File scripts/new-epic.ps1 -Slug export-v2 -Title "导出 v2"
+pwsh -File scripts/check-loop.ps1
+pwsh -File scripts/ticket.ps1 -Epic export-v2 -To ready-for-dev -Evidence "spec/plan 已填"
+```
+
+`done` 只能由人标：需要 `DSH_TICKET_ACTOR=human`，否则脚本拒绝。
 ## 来源
 
 结构吸收自 [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD)（票树 / 状态机 / blocked 语义）、
