@@ -1,5 +1,13 @@
 # 变更记录
 
+## 2026-11-17（product-loop 补脚本，v2.13.0）
+
+- 新增 `scripts/new-epic.ps1`：生成 spec/plan/tasks/state/ledger 五件套
+- 新增 `scripts/check-loop.ps1`：校验 id 闭合（AC→CAP、T→AC、R/ST→CAP）、状态枚举、任务挂 AC、AC 可量化提示、ledger 存在；支持 `-Json`
+- 新增 `scripts/ticket.ps1`：状态迁移表校验、blocked 必须有原因、`done` 仅人工（`DSH_TICKET_ACTOR=human`）
+- 实测：正常迁移通过；跳级/非法状态/缺原因/悬空引用全部被拦
+- 决策 D-20261117-02：契约必须落成脚本
+
 ## 2026-11-17（product-loop 重构，v2.12.0）
 
 - `product-loop` 重写：三层票结构（Initiative/Epic/Story）、票即规格、`CAP/AC/R/ST/T` 引用闭合、状态机（agent 最多到 `built`）、blocked 固定词表、deferred 记录

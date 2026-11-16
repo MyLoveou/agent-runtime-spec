@@ -4,6 +4,15 @@
 
 ## 有效决策
 
+### D-20261117-02 · product-loop 的契约必须落成脚本
+
+- 场景：v2.12.0 把 id 闭合、状态机、ledger 写成了文档，但 BMAD/Spec Kit 真正的强制力来自 `tickets.py` / `create-new-feature.ps1` 这类脚本；只写文档等于没有约束
+- **决定**：新增三个脚本——`new-epic.ps1`（五件套脚手架）、`check-loop.ps1`（id 闭合 / 状态枚举 / 任务挂 AC / AC 可量化提示 / ledger 存在，支持 `-Json`）、`ticket.ps1`（状态迁移表、blocked 必须有原因、done 仅人工）
+- **实测**：draft→ready-for-dev 通过；ready-for-dev→done 拒绝；非法状态退出码 2；blocked 缺原因拒绝；把 `AC-1` 改成引用 `CAP-9` 后 `check-loop` 报错退出 1；恢复后 ok
+- **Windows 坑**：`.ps1` 必须 UTF-8 with BOM（否则 PS 5.1 按 ANSI 读，中文乱码 + here-string 提前结束）；`"$name:"` 会被当成作用域变量，必须写 `"${name}:"`
+- **落点**：`skills/product-loop/scripts/`（三平台一致）
+- 状态：有效
+
 ### D-20261117-01 · product-loop 吸收三家的结构（实测后重写）
 
 - 场景：四套流程同题实测（BMAD / Spec Kit / Superpowers / product-loop），本库的循环计划侧最薄：无 id 体系、无验收模板、无风险表
