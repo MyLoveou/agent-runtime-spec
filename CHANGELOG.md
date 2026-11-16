@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-17（AC 启发式 + 第二轮循环实测，v2.14.3）
+
+- `check-loop` 的「AC 可量化」启发式补上 `==`，否则「章节数 == 场景数」这类判定被误报
+- 第二个 epic（`p1-epub`，EPUB3 导出）完整跑通：3 任务 RED→GREEN、7 个测试 OK、`CHECK OK ... epub=ok`
+- 闸门实测：未勾任务时 `ticket` 拒绝进 `in-review`（v2.14.2 的前置闸生效），勾选后才到 `built`
+- `built` 停住等人：`done` 无 `-Actor human` 被拒
+
 ## 2026-11-17（ticket 与 check-loop 判据对齐，v2.14.2）
 
 - 实测发现：`ticket` 允许带未勾任务进 `in-review`，只有 `check-loop` 事后报错——两个判据不一致
