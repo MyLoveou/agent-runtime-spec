@@ -121,7 +121,7 @@ foreach ($e in $epics) {
     # AC 必须二元可判定：至少包含数字或明确比较词
     foreach ($m in [regex]::Matches($spec, '(?m)^\|\s*(AC-\d+)\s*\|[^|]*\|([^|]*)\|')) {
         $ac = $m.Groups[1].Value; $judge = $m.Groups[2].Value
-        if ($judge -notmatch '\d|等于|相同|通过|失败|为 0|≤|≥|<|>') {
+        if ($judge -notmatch '\d|等于|相同|通过|失败|为 0|≤|≥|<|>|==') {
             Add-Warn "${name}: $ac 的判定可能不可量化（'$($judge.Trim())'）"
         }
     }
