@@ -4,6 +4,14 @@
 
 ## 有效决策
 
+### D-20261117-03 · 任务级状态：勾选框 + 验证命令才允许 built
+
+- 场景：跑完一轮真实循环后发现，`built` 只代表 agent 自称做完——epic 级状态无法证明 T-1..T-3 各自完成；`check-loop` 也因此无法拦「跳步」
+- **决定**：`tasks.md` 每个 `## T-n` 下必须有 `- [ ] 完成` 勾选框；勾选后必须同时有「验证：」命令；状态进入 `in-review` / `built` / `done` 时若有未勾任务，`check-loop` 直接报错；`done` 另需 `-Actor human`
+- **配套**：新增 `selftest.ps1`（10 条断言，含「built 但任务未勾选应被拦」「ledger 与 state 不一致应被拦」）；模板改回中文
+- **依据**：同轮实测中，旧版 `check-loop` 对「state=in-progress 而 ledger=done」无感，说明只靠 epic 级状态会漏
+- 状态：有效
+
 ### D-20261117-02 · product-loop 的契约必须落成脚本
 
 - 场景：v2.12.0 把 id 闭合、状态机、ledger 写成了文档，但 BMAD/Spec Kit 真正的强制力来自 `tickets.py` / `create-new-feature.ps1` 这类脚本；只写文档等于没有约束

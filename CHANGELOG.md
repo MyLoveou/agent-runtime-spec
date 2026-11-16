@@ -1,5 +1,13 @@
 # 变更记录
 
+## 2026-11-17（product-loop 任务级状态，v2.14.0）
+
+- `tasks.md` 引入勾选框：每个任务必须有 `- [ ] 完成`；勾选后必须有「验证：」命令
+- `check-loop` 新规则：进入 `in-review` / `built` / `done` 时存在未勾任务即报错
+- `ticket.ps1` 的 `done` 需 `-Actor human`（或 `DSH_TICKET_ACTOR=human`）
+- 新增 `scripts/selftest.ps1`：10 条断言覆盖脚手架、悬空引用、状态机、blocked 原因、done 权限、未勾任务、ledger 不一致
+- 模板改回中文（BOM 已确保 PS 5.1 可读）
+
 ## 2026-11-17（product-loop 脚本加固，v2.13.1）
 
 - `check-loop.ps1` 新增 ledger 与 state 一致性校验：最后一条迁移必须等于 state 状态
