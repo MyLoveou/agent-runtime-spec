@@ -3,6 +3,7 @@
     [Parameter(Mandatory = $true)][string]$To,
     [string]$Reason = '',
     [string]$Evidence = '',
+    [string]$Actor = 'agent',
     [string]$Root = (Get-Location).Path
 )
 
@@ -44,8 +45,8 @@ if ($allowed -notcontains $To) {
 }
 
 # 只允许人/编排器标 done
-if ($To -eq 'done' -and $env:DSH_TICKET_ACTOR -ne 'human') {
-    Write-Host '拒绝: 只有人或编排器可以把票标成 done（设置 DSH_TICKET_ACTOR=human 表示人工操作）'
+if ($To -eq 'done' -and $Actor -ne 'human' -and $env:DSH_TICKET_ACTOR -ne 'human') {
+    Write-Host '拒绝: 只有人或编排器可以把票标成 done（用 -Actor human，或设置 DSH_TICKET_ACTOR=human）'
     exit 1
 }
 

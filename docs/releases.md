@@ -6,6 +6,7 @@
 
 | 版本 | 日期 | 摘要 |
 |------|------|------|
+| **2.13.1** | 2026-11-17 | `product-loop` 脚本加固：ledger 与 state 一致性校验、`-Actor human` 权限参数；实测跑通一轮完整循环 |
 | **2.13.0** | 2026-11-17 | `product-loop` 补脚本：`new-epic.ps1` / `check-loop.ps1` / `ticket.ps1`，把 id 闭合、状态机、ledger 变成可执行校验 |
 | **2.12.0** | 2026-11-17 | `product-loop` 重构：三层票结构、CAP/AC/R 引用闭合、状态机、blocked/deferred、spec/plan/tasks 模板；新增 `ticket-keeper` 代理；Agent 14 → 15 |
 | **2.11.0** | 2026-11-16 | 新增 `product-loop` 技能与 `market-scout` / `tech-scout` 两个只读调研代理：自驱循环 + 人工评审门 + 分支纪律；Agent 12 → 14，Skill 38 → 39 |
