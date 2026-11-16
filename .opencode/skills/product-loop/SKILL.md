@@ -147,13 +147,33 @@ draft → ready-for-dev → in-progress → in-review → built → done
 |---|---|---|
 | `scripts/new-epic.ps1 -Slug <x> -Title <y>` | 生成五件套骨架 | 目录已存在 |
 | `scripts/check-loop.ps1 [-Json]` | 校验 id 闭合、状态合法、任务挂 AC、AC 可量化、ledger 存在 | 退出码 1，逐条列出 |
-| `scripts/ticket.ps1 -Epic <x> -To <status> [-Reason] [-Evidence]` | 状态迁移 + 追加 ledger 行 | 非法迁移/缺原因/非人工标 done |
+| `scripts/ticket.ps1 -Epic <x> -To <status> [-Actor agent\|human] [-Reason] [-Evidence]` | 状态迁移 + 追加 ledger 行 | 非法迁移 / blocked 缺原因 / 非人工标 done |
+| `scripts/selftest.ps1` | 脚本自身的回归（10 条断言） | 任一断言失败 |
 
 ```powershell
 pwsh -File scripts/new-epic.ps1 -Slug export-v2 -Title "导出 v2"
 pwsh -File scripts/check-loop.ps1
 pwsh -File scripts/ticket.ps1 -Epic export-v2 -To ready-for-dev -Evidence "spec/plan 已填"
+pwsh -File scripts/selftest.ps1
 ```
+
+### 任务级状态
+
+`tasks.md` 里每个 `## T-n` 下必须有一行勾选框：
+
+```markdown
+## T-1 加 provenance 字段
+
+- [ ] 完成
+- 挂 AC：AC-1
+- 验证：python -m unittest discover -s tests
+```
+
+- 做完改成 `- [x] 完成`；
+- 勾了但没写「验证」→ `check-loop` 报错；
+- 状态到 `in-review` / `built` / `done` 时仍有未勾任务 → `check-loop` 报错。
+
+这条堵的是「自称做完」：`built` 不再靠嘴说，靠勾选框与验证命令。
 
 `done` 只能由人标：需要 `DSH_TICKET_ACTOR=human`，否则脚本拒绝。
 ## 来源

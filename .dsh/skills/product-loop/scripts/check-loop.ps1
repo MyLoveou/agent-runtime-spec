@@ -98,14 +98,24 @@ foreach ($e in $epics) {
             if (-not $caps.ContainsKey($cm.Value)) { Add-Err "${name}: $($m.Groups[1].Value) 引用不存在的 $($cm.Value)" }
         }
     }
-    # 每个任务至少挂一个 AC
+    # 每个任务至少挂一个 AC；必须有完成勾选框；勾了就要有验证命令
     $taskBlocks = [regex]::Split($tasks, '(?m)^##\s+')
+    $totalTasks = 0
+    $doneTasks = 0
     foreach ($b in $taskBlocks) {
         if ($b -match '^(T-\d+)\b') {
             $tid = $Matches[1]
+            $totalTasks++
             if ($b -notmatch 'AC-\d+') { Add-Err "${name}: $tid 没有挂 AC" }
+            $checked = ($b -match '(?m)^-\s*\[[xX]\]')
+            $unchecked = ($b -match '(?m)^-\s*\[\s*\]')
+            if (-not ($checked -or $unchecked)) { Add-Err "${name}: $tid 缺少完成勾选框（- [ ] 完成）" }
+            if ($checked) {
+                $doneTasks++
+                if ($b -notmatch '(?m)^-\s*验证[：:]') { Add-Err "${name}: $tid 已勾选但没有验证命令" }
+            }
             if ($b -notmatch '(?m)^-\s*RED[：:]') { Add-Warn "${name}: $tid 没写 RED" }
-            if ($b -notmatch '(?m)^-\s*验证[：:]') { Add-Warn "${name}: $tid 没写验证命令" }
+            if (-not $checked -and $b -notmatch '(?m)^-\s*验证[：:]') { Add-Warn "${name}: $tid 没写验证命令" }
         }
     }
     # AC 必须二元可判定：至少包含数字或明确比较词
@@ -121,6 +131,11 @@ foreach ($e in $epics) {
     else {
         $cur = $Matches[1]
         if ($statusEnum -notcontains $cur) { Add-Err "${name}: 非法状态 '$cur'" }
+        # 进入 in-review 及之后，必须所有任务已勾选
+        $gated = @('in-review', 'built', 'done')
+        if ($gated -contains $cur -and $doneTasks -lt $totalTasks) {
+            Add-Err "${name}: 还有 $($totalTasks - $doneTasks) 个任务未勾选，不能进入 $cur"
+        }
     }
 
     # ledger 必须存在且非空

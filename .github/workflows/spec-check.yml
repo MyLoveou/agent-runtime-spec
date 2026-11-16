@@ -27,6 +27,9 @@ jobs:
         shell: pwsh
         run: ./.cursor/skills/spec-check/scripts/selftest.ps1
 
+      - name: product-loop 脚本自测（票 / 状态机 / 校验器）
+        shell: pwsh
+        run: ./.cursor/skills/product-loop/scripts/selftest.ps1
       - name: encoding-guard（问号替字 / mojibake / 非法 UTF-8）
         shell: pwsh
         run: ./.cursor/skills/encoding-guard/scripts/check-encoding.ps1 -Mode files -Path .
