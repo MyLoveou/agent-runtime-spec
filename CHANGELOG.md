@@ -1,5 +1,12 @@
 # 变更记录
 
+## 2026-11-17（product-loop 重构，v2.12.0）
+
+- `product-loop` 重写：三层票结构（Initiative/Epic/Story）、票即规格、`CAP/AC/R/ST/T` 引用闭合、状态机（agent 最多到 `built`）、blocked 固定词表、deferred 记录
+- 新增 `references/spec-templates.md`（spec/plan/tasks/契约骨架）与 `references/loop-contract.md`（id/状态/ledger/blocked）
+- 执行纪律吸收 RED→GREEN 与「验证在前」；新增 `ticket-keeper` 代理（只记账）
+- 计数：Agent 14 → 15；结构来源 BMAD / Spec Kit / Superpowers，均在技能末尾标出处
+
 ## 2026-11-16（product-loop 自驱循环，v2.11.0）
 
 - 新增 Skill `product-loop`：七步循环（调研 → 候选卡 → 评审门 → 分支实现 → 闸门 → 合并记账 → 下一轮）+ 候选卡格式 + 预算/停止条件 + 反模式

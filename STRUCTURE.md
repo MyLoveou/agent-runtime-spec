@@ -8,7 +8,7 @@
 .
 ├─ .cursor/                  # Cursor 运行时（可直接拷走）
 │  ├─ rules/*.mdc            43 条（common 15 / java 5 / react 5 / vue 5 / typescript 5 / 其它 8）
-│  ├─ agents/*.md            14 个
+│  ├─ agents/*.md            15 个
 │  ├─ skills/<name>/SKILL.md 39 个（含 spec-runtime-maintain、encoding-guard、界面工艺）
 │  ├─ workflows/             6 个（README + 需求/设计/开发/交付 + 多仓协同）
 │  ├─ evals/                 3 个示例
@@ -20,7 +20,7 @@
 ├─ .opencode/                # OpenCode 运行时（可直接拷走）
 │  ├─ opencode.json          instructions(7) + mcp(3)
 │  ├─ rules/*.md             43 条（正文同 Cursor，无 frontmatter）
-│  ├─ agent/*.md             14 个（mode: subagent）
+│  ├─ agent/*.md             15 个（mode: subagent）
 │  ├─ skills/<name>/         39 个（与 Cursor 逐字一致）
 │  ├─ workflows/  evals/
 │  ├─ mcp/                   说明
